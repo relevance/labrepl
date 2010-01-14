@@ -74,10 +74,61 @@
      "You don't have to write inside-out code in Clojure. The " [:code "->"] " macro takes its first form, and passes it as the first argument to its next form. The result then becomes the first argument of the next form, and so on. It is easier to read than to describe:"
      (code (-> (Random.) (.nextInt) (long) (Date.)))]]])
 
+(defn load-and-reload
+  []
+  [[:h3 "Load and Reload"]
+   [:p "The REPL isn't for everything. For work you plan to keep, you will want to place your source code in a separate file. Here are the rules of thumb to remember when creating your own Clojure namespaces."
+    [:ol
+     [:li "Clojure namespaces (a.k.a. libraries) are equivalent to Java packages."]
+     [:li "Clojure respects Java naming conventions for directories and files, but Lisp naming conventions for namespace names. So a Clojure namespace " [:code "com.my-app.utils"] " would live in a path named " [:code "com/my_app/utils.clj"] ". Note especially the underscore/hyphen distinction."]
+     [:li "Clojure files normally begin with a namespace declaration, e.g."
+      (code (ns com.my-app.utils))]
+     [:li "The syntax for import/use/refer/require presented in the previous sections is for REPL use. Namespace declarations allow similar forms--similar enough to aid memory, but also different enough to confuse. The following forms at the REPL:"
+      (code (use 'foo.bar)
+            (require 'baz.quux)
+            (import '[java.util Date Random]))
+      " would look like this in a source code file:"
+      (code (ns com.my-app.utils
+              (:use foo.bar)
+              (:require 'baz.quux)
+              (:import [java.util Date Random])))
+      " Symbols become keywords, and quoting is no longer required."]
+     [:li "At the time of this writing, the error messages for doing it wrong with namespaces are, well, opaque. Be careful."]]]
+   [:p "Now let's try creating a source code file. We aren't going to bother with explicit compilation for now. Clojure will automatically (and quickly) compile source code files on the classpath. Instead, we can just add Clojure (.clj) files to the " [:code "src"] " directory."
+    [:ol
+     [:li "Create a file named " [:code "student/dialect.clj"] " in the " [:code "src"] " directory, with the appropriate namespace declaration:"
+      (code (ns student.dialect))]
+     [:li "Now, implement a simple " [:code "canadianize"] " function that takes a string, and appends " [:code ", eh?"]
+      (code (defn canadianize
+              [sentence]
+              (str sentence ", eh")))]
+     [:li "From your REPL, use the new namespace:"
+      (code (use student.dialect))]
+     [:li "Now try it out."
+      (code (canadianize "Hello, world."))]
+     [:li "Oops! We need to trim the period off the end of the input. Fortunately, " [:code "clojure.contrib.str-utils2"] " provides " [:code "chop"] ". Go back to " [:code "student/dialect.clj"] " and add require in " [:code "clojure.contrib.str-utils2"] ": "
+      (code (ns student.dialect
+              (:require [clojure.contrib.str-utils2 :as s])))]
+     [:li "Now, update " [:code "canadianize"] " to use " [:code "chop"] ": "
+      (code (defn canadianize
+              [sentence]
+              (str (s/chop sentence) ", eh?")))]
+     [:li "If you simply retry calling " [:code "canadianize"] " from the repl, you will not see your new change, because the code was already loaded. However, you can use namespace forms with " [:code "reload"] "( or " [:code "reload-all"] ") to reload a namespace (and its dependencies)."
+      (code (use :reload 'student.dialect))]]]])
+
+(defn bonus
+  []
+  [[:h3 "Bonus"]
+   [:ol
+    [:li "Canadianize was too easy. Implement " [:code "pig-latinize"] "."]
+    [:li "Pig latin was too easy. Implement " [:code "germanize"] "."]]])
+
 (defn instructions
   []
   (concat (overview)
           (require-section)
           (refer-and-use)
-          (import-section)))
+          (import-section)
+          (load-and-reload)
+          (bonus)))
 

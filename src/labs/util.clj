@@ -3,7 +3,6 @@
 
 (defn format-code
   [codes]
-  (println codes)
   (apply str (map (fn [c] (with-out-str (pprint c))) codes)))
 
 (defmacro code
