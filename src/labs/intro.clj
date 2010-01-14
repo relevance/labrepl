@@ -1,9 +1,5 @@
 (ns labs.intro
-  (:use clojure.contrib.pprint))
-
-(defmacro code
-  [code]
-  `[:pre [:code (with-out-str (pprint '~code))]])
+  (:use clojure.contrib.pprint labs.util))
 
 (defn overview
   []
@@ -31,8 +27,8 @@
      [:li
       "You can define your own functions with "
       [:code "defn"]
-      "Use the following form to define a function named double that doubles its argument."
-      (code (defn double
+      "Use the following form to define a function named triple that triples its argument."
+      (code (defn triple
                [arg]
                (* 2 arg)))]
      [:li
@@ -66,10 +62,10 @@
      "Notice how the source for "
      [:code "println"]
      " includes a string before the arguments. This is how  you define docstrings. Try it with your own functions: "
-     (code (defn double
-             "Doubles arg. Don't write redundant docstrings like this in real code."
+     (code (defn triple
+             "Triples arg. Don't write redundant docstrings like this in real code."
              (* 2 arg)))
-     (code (doc double))]]])
+     (code (doc triple))]]])
 
 (defn java
   []

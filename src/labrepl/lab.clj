@@ -3,7 +3,7 @@
 
 (defn all
   []
-  [:intro])
+  [:intro :names-and-places])
 
 (defn url
   [lab]
