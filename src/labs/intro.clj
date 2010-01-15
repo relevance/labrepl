@@ -30,7 +30,7 @@
       "Use the following form to define a function named triple that triples its argument."
       (code (defn triple
                [arg]
-               (* 2 arg)))]
+               (* 3 arg)))]
      [:li
       "Try defining and calling a few other functions of your choosing."]]]])
 

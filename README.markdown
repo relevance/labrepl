@@ -13,5 +13,9 @@ The use and distribution terms for this software are covered by the Eclipse Publ
 * Run `lein deps` to install dependent libs.
 * Run `script/console` to launch the labrepl.
 * Browse to localhost:8080 for instructions.
+* Press Ctrl+D to exit the repl when you are done.
  
+# Thanks for contributions and reviews from
+
+* Larry Karnowski
  

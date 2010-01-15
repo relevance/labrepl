@@ -103,7 +103,7 @@
               [sentence]
               (str sentence ", eh")))]
      [:li "From your REPL, use the new namespace:"
-      (code (use student.dialect))]
+      (code (use 'student.dialect))]
      [:li "Now try it out."
       (code (canadianize "Hello, world."))]
      [:li "Oops! We need to trim the period off the end of the input. Fortunately, " [:code "clojure.contrib.str-utils2"] " provides " [:code "chop"] ". Go back to " [:code "student/dialect.clj"] " and add require in " [:code "clojure.contrib.str-utils2"] ": "
