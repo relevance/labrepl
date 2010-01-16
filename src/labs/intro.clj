@@ -1,5 +1,5 @@
 (ns labs.intro
-  (:use clojure.contrib.pprint labs.util))
+  (:use labs.util))
 
 (defn overview
   []
