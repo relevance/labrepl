@@ -1,8 +1,3 @@
 #!/bin/sh
-CLASSPATH=src:test
-
-for f in lib/*.jar; do
-    CLASSPATH=$CLASSPATH:$f
-done
-
-java -cp $CLASSPATH clojure.main -e "(use '[clojure.contrib def duck-streams ns-utils pprint repl-utils shell-out]) (require '[clojure.contrib.str-utils2 :as s]) (require 'swank.swank) (swank.swank/start-repl 4005)" -r
+export LABREPL_SWANK="(require 'swank.swank) (swank.swank/start-repl 4005)"
+script/console

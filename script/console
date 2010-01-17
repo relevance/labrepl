@@ -1,8 +1,8 @@
 #!/bin/sh
-CLASSPATH=src:test
+CLASSPATH=src:test:data
 
 for f in lib/*.jar; do
     CLASSPATH=$CLASSPATH:$f
 done
 
-java -cp $CLASSPATH jline.ConsoleRunner clojure.main -e "(use '[clojure.contrib def duck-streams ns-utils pprint repl-utils shell-out]) (require '[clojure.contrib.str-utils2 :as s])(require 'labrepl) (labrepl/-main)" -r
+java -Xmx1GB -cp $CLASSPATH jline.ConsoleRunner clojure.main -e "(use '[clojure.contrib.duck-streams :only (spit read-lines reader writer)] '[clojure.contrib def ns-utils pprint repl-utils shell-out]) (require '[clojure.contrib.str-utils2 :as s])(require 'labrepl) (labrepl/-main)$LABREPL_SWANK" -r
