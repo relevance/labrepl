@@ -1,6 +1,6 @@
 (ns
     #^{:author "Stu Halloway"
-       :doc "Improved version of accounts example. total-balance reads consistently. Still could do identity better."}
+       :doc "Improved version of accounts example. total-balance reads consistently."}
   solutions.accounts-2
   (:use [clojure.contrib.seq-utils :only (rand-elt)]))
 
@@ -35,11 +35,11 @@
   "Perform a random tranfer between two accounts in accounts.
    Both accounts might be same account, we don't care."
   [accounts]
-  (let [[id-1 id-2] (random-account-ids accounts)
-        amount (rand-int (balance accounts id-1))]
+  (let [[from-id to-id] (random-account-ids accounts)
+        amount (rand-int (balance accounts from-id))]
     (transfer {:accounts accounts
-               :from id-1
-               :to id-2
+               :from from-id
+               :to to-id
                :amount amount})))
 
 (defn bunch-o-txes
