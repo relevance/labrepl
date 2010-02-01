@@ -1,11 +1,27 @@
 (ns labrepl
-  (:use compojure)
+  (:use compojure clojure.contrib.logging)
   (:require [labrepl.lab :as lab]))
+
+(defn with-logging [handler]
+  (fn [request]
+    (log :info (str (:uri request) " [" (:request-method request) "]"
+                    "\n\tParameters " (:params request)
+                    "\n\tSession " (:session request)))
+    (handler request)))
 
 (defn reloading [handler]
   (fn [request]
     (require :reload-all '[labrepl lab])
     (handler request)))
+
+(defn layout [title & body]
+  (html
+    [:head
+      [:title title]
+      (include-css "/stylesheets/application.css")]
+    [:body
+      [:h2 title]
+      body]))
 
 (defroutes lab-routes
   (GET "/"
@@ -15,9 +31,14 @@
          (map
           (fn [lab] [:li (lab/url lab)])
           (lab/all))]))
-  (GET "/labs/:name" (html (lab/instructions (params :name)))))
+  (GET "/labs/:name"
+       (html
+        (layout
+         (params :name)
+         (lab/instructions (params :name)))))
+  (GET "/*" (or (serve-file (params :*)) :next)))
 
-(decorate lab-routes reloading)
+(decorate lab-routes reloading with-logging)
 
 (defroutes app
   (routes lab-routes))

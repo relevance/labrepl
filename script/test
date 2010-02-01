@@ -1,5 +1,5 @@
 #!/bin/sh
-CLASSPATH=test:src:classes:features
+CLASSPATH=test:src:config:classes:features
 
 for f in lib/*.jar; do
     CLASSPATH=$CLASSPATH:$f
