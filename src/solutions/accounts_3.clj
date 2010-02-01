@@ -1,7 +1,8 @@
 (ns
     #^{:author "Stu Halloway"
        :doc "Improved version of accounts example. total-balance reads consistently. Uses one identity for accounts"}
-  solutions.accounts-3)
+  solutions.accounts-3
+  (:use [clojure.contrib.seq-utils :only (rand-elt)]))
 
 (defn make-accounts
   "Create a map of account-num->:initial-balance for :count numbered
@@ -10,8 +11,8 @@
   (ref (zipmap (range count) (repeat initial-balance))))
 
 (defn total-balance
-  [accounts]
   "Total balance of all accounts"
+  [accounts]
   (apply + (vals @accounts)))
 
 (defn transfer
@@ -25,21 +26,26 @@
           (update-in [to] #(+ % amount)))))))
 
 (defn balance
-  [accounts account-number]
-  (@accounts account-number))
+  [accounts account-id]
+  (@accounts account-id))
+
+(defn random-account-ids
+  "Return a lazy seq of random account ids from accounts"
+  [accounts]
+  (let [ids (keys @accounts)]
+    (repeatedly (fn [] (rand-elt ids)))))
 
 (defn random-transfer
   "Perform a random tranfer between two accounts in accounts.
    Both accounts might be same account, we don't care."
   [accounts]
-  (let [no-of-accounts (count @accounts)
-        a1 (rand-int no-of-accounts)
-        a2 (rand-int no-of-accounts)
-        amount (rand-int (balance accounts a1))]
+  (let [[id-1 id-2] (random-account-ids accounts)
+        amount (rand-int (balance accounts id-1))]
     (transfer {:accounts accounts
-               :from a1
-               :to a2
+               :from id-1
+               :to id-2
                :amount amount})))
+
 (defn bunch-o-txes
   "Return n futures doing iterations random transactions
    against accounts, spread equally across n threads."
