@@ -1,34 +1,38 @@
 (ns
     #^{:author "Stu Halloway"
-       :doc "Improved version of accounts example. total-balance reads consistently. Still could do identity better."}
-  solutions.accounts-2)
+       :doc "Improved version of accounts example. total-balance reads consistently. Uses one identity for accounts"}
+  solutions.accounts-3)
 
 (defn make-accounts
   "Create a map of account-num->:initial-balance for :count numbered
   accounts."
   [{:keys [count initial-balance]}]
-  (zipmap (range count) (repeatedly (partial ref initial-balance))))
+  (ref (zipmap (range count) (repeat initial-balance))))
 
 (defn total-balance
   [accounts]
   "Total balance of all accounts"
-  (dosync (apply + (map deref (vals accounts)))))
+  (apply + (vals @accounts)))
 
 (defn transfer
   [{:keys [accounts from to amount]}]
   (dosync
-   (alter (accounts from) - amount)
-   (alter (accounts to) + amount)))
+   (alter
+    accounts
+    (fn [accounts]
+      (-> accounts
+          (update-in [from] #(- % amount))
+          (update-in [to] #(+ % amount)))))))
 
 (defn balance
   [accounts account-number]
-  @(accounts account-number))
+  (@accounts account-number))
 
 (defn random-transfer
   "Perform a random tranfer between two accounts in accounts.
    Both accounts might be same account, we don't care."
   [accounts]
-  (let [no-of-accounts (count accounts)
+  (let [no-of-accounts (count @accounts)
         a1 (rand-int no-of-accounts)
         a2 (rand-int no-of-accounts)
         amount (rand-int (balance accounts a1))]
