@@ -3,7 +3,7 @@
 
 (defn all
   []
-  [:intro :names-and-places :its-all-data])
+  [:intro :names-and-places :its-all-data :zero-sum])
 
 (defn url
   [lab]
@@ -13,5 +13,5 @@
 (defn instructions
   [lab]
   (let [lab-ns (symbol (str "labs." (as-str lab)))]
-    (require :reload lab-ns)
+    (require :reload-all lab-ns)
     ((ns-resolve lab-ns 'instructions))))
