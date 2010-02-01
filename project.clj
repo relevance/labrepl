@@ -15,4 +15,9 @@
                  [jline
                   "0.9.94"]
                  [circumspec
-                  "0.0.1"]])
+                  "0.0.4"]
+                 [org.clojure/clojure
+                  "1.1.0"]
+                 [org.clojure/clojure-contrib
+                  "1.1.0"]]
+  :repositories {"clojure-releases" "http://build.clojure.org/releases"})
