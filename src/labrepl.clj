@@ -17,11 +17,13 @@
 (defn layout [title & body]
   (html
     [:head
-      [:title title]
-      (include-css "/stylesheets/application.css")]
+     [:title title]
+     (include-css "/stylesheets/application.css")
+     (include-js "/javascripts/jquery.js"
+                 "/javascripts/application.js")]
     [:body
-      [:h2 title]
-      body]))
+     [:h2 title]
+     body]))
 
 (defroutes lab-routes
   (GET "/"

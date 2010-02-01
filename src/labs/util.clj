@@ -20,4 +20,7 @@
 
 (defmacro cite
   [sym]
-  `[:pre [:code ~(get-source sym)]])
+  `[:div {:class "toggle"} 
+    [:div [:a {:href "javascript:void(null)"} "Show Code"]]
+    [:div {:style "display:none;"} [:a {:href "javascript:void(null)"} "Hide Code"] 
+     [:pre [:code ~(get-source sym)]]]])
