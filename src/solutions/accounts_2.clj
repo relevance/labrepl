@@ -14,19 +14,28 @@
   "Total balance of all accounts"
   (dosync (apply + (map deref (vals accounts)))))
 
-(defn random-transaction
-  "Perform a random transaction between two accounts in accounts.
+(defn transfer
+  [{:keys [accounts from to amount]}]
+  (dosync
+   (alter (accounts from) - amount)
+   (alter (accounts to) + amount)))
+
+(defn balance
+  [accounts account-number]
+  @(accounts account-number))
+
+(defn random-transfer
+  "Perform a random tranfer between two accounts in accounts.
    Both accounts might be same account, we don't care."
   [accounts]
-  (let [balances (vals accounts)
-        no-of-accounts (count balances)
-        a1 (nth balances (rand-int no-of-accounts))
-        a2 (nth balances (rand-int no-of-accounts))
-        amount (rand-int @a1)]
-    (dosync
-     (alter a1 - amount)
-     (alter a2 + amount))))
-
+  (let [no-of-accounts (count accounts)
+        a1 (rand-int no-of-accounts)
+        a2 (rand-int no-of-accounts)
+        amount (rand-int (balance accounts a1))]
+    (transfer {:accounts accounts
+               :from a1
+               :to a2
+               :amount amount})))
 (defn bunch-o-txes
   "Return n futures doing iterations random transactions
    against accounts, spread equally across n threads."
@@ -35,7 +44,7 @@
            (fn []
              (future
               (dotimes [_ (/ iterations n)]
-                (random-transaction accounts)))))))
+                (random-transfer accounts)))))))
 
 (defn trial
   "Creates :no-of-accounts accounts with :initial-balance.
