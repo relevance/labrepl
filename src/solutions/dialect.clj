@@ -1,4 +1,7 @@
-(ns solutions.dialect
+(ns
+    #^{:author "Stu Halloway"
+       :doc "Trivial examples used by the names-and-places lab."}
+    solutions.dialect
   (:require [clojure.contrib.str-utils2 :as s]))
 
 (defn canadianize

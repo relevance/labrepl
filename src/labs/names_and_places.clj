@@ -1,4 +1,4 @@
-(ns labs.names-and-places
+(ns #^{:skip-wiki true} labs.names-and-places
   (:use labs.util))
 
 (defn overview

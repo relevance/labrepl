@@ -1,4 +1,7 @@
-(ns labs.util
+(ns
+    #^{:author "Stu Halloway"
+       :doc "Utilities for creating lab instruction pages."}
+    labs.util
   (:use clojure.contrib.pprint
         [clojure.contrib.repl-utils :only (get-source)])
   (:require [clojure.contrib.str-utils2 :as s]))

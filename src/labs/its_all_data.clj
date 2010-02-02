@@ -1,4 +1,4 @@
-(ns labs.its-all-data
+(ns #^{:skip-wiki true} labs.its-all-data
   (:use labs.util))
 
 (defn some-data-types

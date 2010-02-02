@@ -1,5 +1,6 @@
 ;; build clojure and contrib from source for now
 (defproject labrepl "0.0.1"
+  :description "Clojure exercises, with integrated repl and webapp"
   :dependencies [[org.clojars.liebke/compojure
                   "0.3.1-master"]
                  [org.clojure/swank-clojure
@@ -20,4 +21,5 @@
                   "1.1.0"]
                  [org.clojure/clojure-contrib
                   "1.1.0"]]
+  :dev-dependencies [[autodoc "0.7.0"]]
   :repositories {"clojure-releases" "http://build.clojure.org/releases"})

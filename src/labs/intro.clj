@@ -1,4 +1,4 @@
-(ns labs.intro
+(ns #^{:skip-wiki true} labs.intro
   (:use labs.util))
 
 (defn overview

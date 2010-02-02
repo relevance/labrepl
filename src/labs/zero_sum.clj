@@ -1,4 +1,4 @@
-(ns labs.zero-sum
+(ns #^{:skip-wiki true} labs.zero-sum
   (:use labs.util)
   (:require [solutions
              [accounts-1 :as accounts-1]

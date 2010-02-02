@@ -1,4 +1,7 @@
-(ns labrepl
+(ns
+    #^{:author "Stu Halloway"
+       :doc "Compojure app that displays lab instructions."}
+    labrepl
   (:use compojure clojure.contrib.logging)
   (:require [labrepl.lab :as lab]))
 
