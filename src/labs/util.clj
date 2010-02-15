@@ -89,7 +89,11 @@
       (with-out-str (pprint '~form))
       (output-indent (returning-exceptions ~form)))))
 
-(defmacro repl
+(defmacro repl-code
+  [form]
+  `(code* (repl* ~form)))
+
+(defmacro repl-showme
   [form]
   `(showme* (repl* ~form)))
 

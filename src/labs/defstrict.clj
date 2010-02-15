@@ -4,6 +4,11 @@
 (defn overview-ins
   []
   [[:h3 "Overview"]
+   [:p "Clojure macros make it easy to extend Clojure itself. Indeed, many of Clojure's own core features are implemented as macros. In this exercise, you will use macros to add a special " (c defn) " variant named " (c defstrict) " that unifies type tagging and preconditions."]])
+
+(defn the-problem-ins
+  []
+  [[:h3 "Introducing defstrict"]
    [:p "Static typing provides (at least!) three benefits:"
     [:ul
      [:li "Invocation can be optimized, as no reflection against the object is necessary."]
@@ -13,7 +18,7 @@
     [:ul
      [:li "Type tags allow the clojure compiler to inject class casts and avoid the overhead of reflective invocation."]
      [:li "Preconditions can verify the type of arguments at runtime. (In fact, they can do much more, testing any function against any combination of the argument list.)"]]]
-   [:p "Neither type tags nor preconditions are idiomatic in general Clojure code. In this exercise, we will postulate that we are in a domain where we want to use both of these features on every argument to every function, and use macros to make our domain idiom easier to use."]]
+   [:p "Code and use type tags and preconditions in any combination, and many Clojure programs use neither. In this exercise, we will imagine an unusual project that wants both of these features on every argument to every function. We will define a " (c defstrict) " macro to capture this idiom."]]
   )
 
 (defn shout-ins
@@ -37,12 +42,19 @@
   []
   [[:h3 "arg-type-preconditions"]
    [:p "To build " (c defstrict) " we will start with a helper function " (c arg-type-preconditions) " that converts " (c defstrict) " argument specifiers into precondition forms. For example:"
-    (repl (arg-type-preconditions '[String s Integer/TYPE i])) "We'll build it inside-out from the REPL."]
+    (repl-code (arg-type-preconditions '[String s Integer/TYPE i])) "We'll build it inside-out from the REPL."]
    [:ol
     [:li "First, use " (c partition) " to take the argument list two elements at a time"
-     (repl (partition 2 '[String s Integer/TYPE i]))]
+     (repl-showme (partition 2 '[String s Integer/TYPE i]))]
     [:li "Next, map the pairs over a function that returns the source code for the instance check:"
-]]])
+     (repl-showme
+"(map
+ (fn [[type name]]
+   `(instance? ~type ~name))
+ (partition 2 '[String s Integer/TYPE i]))")
+     ]
+    [:li "Now, all that's left to do is wrap the result in a vector, and put the vector in a map keyed by " (c :pre) "."
+     (showme arg-type-preconditions)]]])
 
 (defn type-tagged-args-ins
   []
@@ -57,21 +69,43 @@
     [:li "Almost done! Write a " (c type-tagged-args) " function that maps " (c type-tagged-arg) " over an arglist taken two at a time, and puts the result into a vector."
      (showme type-tagged-args)]
     [:li "Use the REPL to verify that the variable names come back correctly:"
-     (repl "(type-tagged-args '[String s Integer/TYPE i])")]
+     (repl-showme "(type-tagged-args '[String s Integer/TYPE i])")]
     [:li "And check the metadata:"
-     (repl (map meta (type-tagged-args '[String s Integer/TYPE i])))]]])
+     (repl-showme (map meta (type-tagged-args '[String s Integer/TYPE i])))]]])
 
 (defn defstrict-ins
   []
-  )
+  [[:h3 "defstrict"]
+   [:ol
+    [:li "With the building blocks in place, " (c defstrict) " itself is simple. It takes a name, an arglist, and a variable number of body forms, and then it emits:"
+     [:ol
+      [:li "a " (c defn)]
+      [:li "the name"]
+      [:li "the (type-tagged) argument list, using " (c type-tagged-args)]
+      [:li "the preconditions, using " (c arg-type-preconditions)]
+      [:li "the body forms"]]
+     (showme defstrict)]
+    [:li "Test " (c defstrict) " using " (c macroexpand-1) "."]
+    [:li "Test " (c defstrict) " by defining a strict function and calling it."
+     (showme shout)]]])
+
+(defn bonus
+  []
+  [[:h3 "Bonus"]
+   [:ol
+    [:li "What happens if you pass a function call instead of a class literal to " (c defstrict) "? How would you improve upon this?"]
+    [:li (c defstrict) " breaks the contract of " (c defn) " in several ways. What are they, and how would you fix them?"]
+    [:li "Is multiple evaluation as possible problem for any of the arguments to " (c defstrict) "? Why or why not?"]]])
 
 (defn instructions
   []
   (concat
    (overview-ins)
+   (the-problem-ins)
    (shout-ins)
    (arg-type-preconditions-ins)
    (type-tagged-args-ins)
-   (defstrict-ins)))
+   (defstrict-ins)
+   (bonus)))
 
 
