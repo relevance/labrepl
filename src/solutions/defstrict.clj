@@ -18,13 +18,16 @@
   {:pre [(instance? String s)]}
   (.toUpperCase s))
 
+(defn type-tagged-arg
+  [[type name]]
+  (with-meta name {:tag type}))
+
 (defn type-tagged-args
   [arglist]
   (apply
    vector
    (map
-    (fn [[type name]]
-      (with-meta name {:tag type}))
+    type-tagged-arg
     (partition 2 arglist))))
 
 (defn arg-type-preconditions
@@ -44,6 +47,6 @@
      ~(arg-type-preconditions arglist)
      ~@body))
 
-(defstrict shout-5
+(defstrict shout
   [String s]
   (.toUpperCase s))

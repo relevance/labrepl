@@ -19,11 +19,16 @@
 
 (defmacro c
   [code]
-  `[:code ~(s/chop (with-out-str (pprint code)))])
+  (let [code (if (string? code) (symbol code) code)]
+    `[:code ~(s/chop (with-out-str (pprint code)))]))
+
+(defmacro demo
+  [sym]
+  `[:pre [:code ~(get-source sym)]])
 
 (defmacro cite
   [sym]
   `[:div {:class "toggle"} 
     [:div [:a {:href "javascript:void(null)"} "Show Code"]]
     [:div {:style "display:none;"} [:a {:href "javascript:void(null)"} "Hide Code"] 
-     [:pre [:code ~(get-source sym)]]]])
+     (demo ~sym)]])
