@@ -37,12 +37,12 @@
   (map (partial map meta) (:arglists (meta var))))
 
 (testing "defstrict"
-  (should (= '(clojure.core/defn shout-5
+  (should (= '(clojure.core/defn shout
                 [s]
                 {:pre [(clojure.core/instance? String s)]}
                 (.toUpperCase s))
              (macroexpand-1
-              '(solutions.defstrict/defstrict shout-5 [String s]
+              '(solutions.defstrict/defstrict shout [String s]
                  (.toUpperCase s)))))
   (should (= '(({:tag String}))
-             (argument-metadata #'shout-5))))
+             (argument-metadata #'shout))))

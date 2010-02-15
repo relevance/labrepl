@@ -64,6 +64,7 @@
      " includes a string before the arguments. This is how  you define docstrings. Try it with your own functions: "
      (code (defn triple
              "Triples arg. Don't write redundant docstrings like this in real code."
+             [arg]
              (* 2 arg)))
      (code (doc triple))]]])
 
@@ -73,7 +74,7 @@
    [:ol
     [:li
      "Clojure provides direct, unproxied access to Java. To call a static function use a form like "
-     (code (ClassName/function & args))
+     (code "(ClassName/function & args)")
      "(The "
      [:code "& args"]
      " is shorthand for zero or more arguments.) Try calling"
