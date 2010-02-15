@@ -1,4 +1,3 @@
-;; build clojure and contrib from source for now
 (defproject labrepl "0.0.1"
   :description "Clojure exercises, with integrated repl and webapp"
   :dependencies [[org.clojars.liebke/compojure
@@ -16,7 +15,7 @@
                  [jline
                   "0.9.94"]
                  [circumspec
-                  "0.0.4"]
+                  "0.0.6"]
                  [org.clojure/clojure
                   "1.1.0"]
                  [org.clojure/clojure-contrib

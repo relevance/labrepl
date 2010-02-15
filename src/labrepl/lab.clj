@@ -3,7 +3,7 @@
 
 (defn all
   []
-  [:intro :names-and-places :its-all-data :zero-sum])
+  [:intro :names-and-places :its-all-data :zero-sum :macros])
 
 (defn url
   [lab]
