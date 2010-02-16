@@ -41,7 +41,8 @@
         (layout
          (params :name)
          (lab/instructions (params :name)))))
-  (GET "/*" (or (serve-file (params :*)) :next)))
+  (GET "/*" (or (serve-file (params :*)) :next))
+  (ANY "*" (page-not-found)))
 
 (decorate lab-routes reloading with-logging)
 
