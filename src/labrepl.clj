@@ -20,15 +20,16 @@
 (defroutes lab-routes
   (GET "/"
        (html
-        (lab/layout "Labs"
-                [:ul
-                 (map
-                  (fn [lab] [:li (lab/url lab)])
-                  (lab/all))])))
+        (lab/layout
+         [:h2 {:class "logo"} "Clojure Labs"]
+         [:ul
+          (map
+           (fn [lab] [:li (lab/url lab)])
+           (lab/all))])))
   (GET "/labs/:name"
        (html
         (lab/layout
-         (params :name)
+         [:h2 (params :name)]
          (lab/instructions (params :name)))))
   (GET "/*" (or (serve-file (params :*)) :next))
   (ANY "*" (page-not-found)))

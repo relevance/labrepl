@@ -18,9 +18,10 @@
     ((ns-resolve lab-ns 'instructions))))
 
 (defn layout [title & body]
+  {:pre [(string? (last title))]}
   (html
     [:head
-     [:title title]
+     [:title (last title)]
      (include-css "/stylesheets/shCore.css"
                   "/stylesheets/shThemeDefault.css"
                   "/stylesheets/application.css")
@@ -30,7 +31,7 @@
                  "/javascripts/shBrushClojure.js")]
     [:body
      [:div {:id "header"}
-      [:h2 title]]
+      title]
      [:div {:id "content"}
       body]
      [:div {:id "footer"}

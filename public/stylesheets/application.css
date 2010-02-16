@@ -96,7 +96,7 @@ ol li { list-style-type: decimal; margin-left: 20px; }
 
 /* Header styles */
 #header { padding: 10px 0 0; }
-
+h2.logo { padding-left: 100px; height: 82px; background: url(clojure_logo.jpg) top left no-repeat; line-height: 82px;}
 
 /* Content styles */
 #content { padding: 0 0 10px; }
