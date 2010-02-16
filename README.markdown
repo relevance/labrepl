@@ -11,7 +11,7 @@ The use and distribution terms for this software are covered by the Eclipse Publ
 * Make sure you have Java installed.
 * Make sure you have leiningen installed (http://github.com/technomancy/leiningen).
 * Run `lein deps` to install dependent libs.
-* Run `script/console` to launch the labrepl.
+* Run `script/repl` to launch the labrepl.
 * Browse to localhost:8080 for instructions.
 * Press Ctrl+D to exit the repl when you are done.
  
