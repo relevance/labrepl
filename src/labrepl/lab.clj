@@ -21,9 +21,13 @@
   (html
     [:head
      [:title title]
-     (include-css "/stylesheets/application.css")
+     (include-css "/stylesheets/shCore.css"
+                  "/stylesheets/shThemeDefault.css"
+                  "/stylesheets/application.css")
      (include-js "/javascripts/jquery.js"
-                 "/javascripts/application.js")]
+                 "/javascripts/application.js"
+                 "/javascripts/shCore.js"
+                 "/javascripts/shBrushClojure.js")]
     [:body
      [:div {:id "header"}
       [:h2 title]]

@@ -16,8 +16,8 @@
   [[:h3 "Require"]
    [:ol
     [:li "You can load the code for any clojure library with "
-     [:code "(require libname)"]
-     ". Try it with clojure.contrib.math"
+     (c "(require libname)")
+     ". Try it with " (c clojure.contrib.math) ":"
      (code (require 'clojure.contrib.math))]
     [:li "Then print the directory of names available in the namespace"
      (code (dir clojure.contrib.math))]

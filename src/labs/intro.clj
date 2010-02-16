@@ -12,12 +12,12 @@
   [[:h3 "Functions"]
    [:ol
     [:li "Find your labrepl window, which should have a prompt like "
-     [:pre [:code "user=> "]]
+     (code "user=> ")
      "This prompt tells you that you are currently working in the user namespace, which is a scratch namespace for experimenting. From the prompt, you can call functions with forms like this:"
-     [:pre [:code "(funcname arg1 arg2 ...)"]]
+     (code  "(funcname arg1 arg2 ...)")
      [:li 
       "Go ahead and try \"hello world.\""
-      [:pre [:code "(println \"hello world\")"]]]
+      (code "(println \"hello world\")")]
      [:li
       "Function names do not have to be words. Try some math functions:"
       (code (+ 1 2))
@@ -29,8 +29,8 @@
       [:code "defn"]
       "Use the following form to define a function named triple that triples its argument."
       (code (defn triple
-               [arg]
-               (* 3 arg)))]
+              [arg]
+              (* 3 arg)))]
      [:li
       "Try defining and calling a few other functions of your choosing."]]]])
 

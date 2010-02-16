@@ -16,10 +16,20 @@
                   (with-out-str (pprint code))))
               codes)))
 
+(defn one-liner?
+  [s]
+  (if s
+    (< (count (remove empty? (s/split s #"\s*\n\s*"))) 2)
+    true))
+
 (defn code*
   "Show codes (literal strings or forms) in a pre/code block."
   [& codes]
-  [:pre [:code (apply format-code codes)]])
+  (let [code-string (apply format-code codes)
+        class-string "brush: clojure; toolbar: false;"
+        class-string (if (one-liner? code-string) (str class-string  " light: true;") class-string)]
+    [:script {:type "syntaxhighlighter" :class class-string}
+     (str "<![CDATA[" code-string "]]>")]))
 
 (defmacro code
   "Show codes (literal strings or forms) in a pre/code block."
@@ -30,12 +40,12 @@
   "Show code (symbol or string) literally inline."
   [code]
   (let [code (if (string? code) (symbol code) code)]
-    `[:code (s/chop (with-out-str (pprint '~code)))]))
+    `[:code {:class "inline-syntax"} (s/chop (with-out-str (pprint '~code)))]))
 
 (defmacro source
   "Show source code in a pre block."
   [sym]
-  `[:pre [:code ~(get-source sym)]])
+  `(code ~(get-source sym)))
 
 (defn showme*
   [code-string]

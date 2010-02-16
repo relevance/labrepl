@@ -1,5 +1,6 @@
 $(function() {
-  $(".toggle").click(function(e) {
-    $(this).children().toggle();
+  SyntaxHighlighter.all();
+  $(".toggle a").click(function(e) {
+    $(this).parents(".toggle").children().toggle();
   });
 });

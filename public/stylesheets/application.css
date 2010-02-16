@@ -65,7 +65,7 @@ h4 { font-size: 18px; margin: 0.5em 0; }
 
 a { color: #3D5A96; }
 a:visited { color: #5881D8;}
-a:hover { color: #35673f; }
+a:hover { color: #90B4FE; }
 
 p { margin: 0.33em 0pt 1em; }
 
@@ -84,6 +84,8 @@ em {
 	font-style: italic;
 }
 
+code.inline-syntax { color: #4C5770; font-family: "Consolas","Bitstream Vera Sans Mono","Courier New",Courier,monospace; font-weight: 700; font-size: 14px; padding: 0 2px;}
+
 ol li { list-style-type: decimal; margin-left: 20px; }
 
 #header, #footer, #content {
@@ -98,6 +100,10 @@ ol li { list-style-type: decimal; margin-left: 20px; }
 
 /* Content styles */
 #content { padding: 0 0 10px; }
+
+/* Syntax Highlighter Styles */
+div.syntaxhighlighter { border: 1px solid #ddd !important; padding: 0.6em !important; margin: 0.6em !important; font-size: 14px !important; }
+div.syntaxhighlighter.nogutter div.line { background-color: #F8F8F8 !important; }
 
 /* Footer styles */
 #footer { padding: 10px 0; color: #a09b97; border-top: solid 1px #ddd; }

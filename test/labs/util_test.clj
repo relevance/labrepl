@@ -13,7 +13,9 @@
   ('(+ c d) -> "(+ c d)\n"))
 
 (testing "code"
-  (should (= [:pre [:code "(new ClassName foo)\n"]]
+  (should (= [:script
+              {:type "syntaxhighlighter", :class "brush: clojure; light: true;"}
+              "<![CDATA[(new ClassName foo)\n]]>"]
              (code (new ClassName foo)))))
 
 (testing "c"
@@ -22,7 +24,9 @@
 
 (def foo [])
 (testing "source"
-  (should (= [:pre [:code "(def foo [])"]]
+  (should (= [:script
+              {:type "syntaxhighlighter", :class "brush: clojure; light: true;"}
+              "<![CDATA[(def foo [])\n]]>"]
              (source foo))))
 
 (testing "repl*"
@@ -30,3 +34,10 @@
              (repl* (+ 1 2))))
   (should (= "( + 3 4 )\n-> 7"
              (repl* "( + 3 4 )"))))
+
+(testing-fn one-liner?
+  (nil -> true)
+  ("foo" -> true)
+  ("foo\n" -> true)
+  ("foo\n  " -> true)
+  ("foo\nbar\n" -> false))
