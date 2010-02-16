@@ -1,7 +1,7 @@
 (defproject labrepl "0.0.1"
   :description "Clojure exercises, with integrated repl and webapp"
-  :dependencies [[org.clojars.liebke/compojure
-                  "0.3.1-master"]
+  :dependencies [[compojure
+                  "0.3.2"]
                  [org.clojure/swank-clojure
                   "1.0"]
                  [postgresql
