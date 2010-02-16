@@ -17,28 +17,17 @@
     (require :reload-all '[labrepl lab])
     (handler request)))
 
-(defn layout [title & body]
-  (html
-    [:head
-     [:title title]
-     (include-css "/stylesheets/application.css")
-     (include-js "/javascripts/jquery.js"
-                 "/javascripts/application.js")]
-    [:body
-     [:h2 title]
-     body]))
-
 (defroutes lab-routes
   (GET "/"
        (html
-        [:h2 "Labs"]
-        [:ul
-         (map
-          (fn [lab] [:li (lab/url lab)])
-          (lab/all))]))
+        (lab/layout "Labs"
+                [:ul
+                 (map
+                  (fn [lab] [:li (lab/url lab)])
+                  (lab/all))])))
   (GET "/labs/:name"
        (html
-        (layout
+        (lab/layout
          (params :name)
          (lab/instructions (params :name)))))
   (GET "/*" (or (serve-file (params :*)) :next))

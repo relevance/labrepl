@@ -1,6 +1,105 @@
+/* Eric Meyer's Resetting Again */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* Default Styles */
+
+body {
+  border-top:4px solid #B3CCFE;
+  margin: 0;
+  padding: 0;
+	font-family: arial, sans-serif;
+	font-size: 13px;
+	color: #231f14;
+	line-height: 1.6em;
+}
+
+h2, h3, h4, h5, h6 { color: #3D5A96; }
+h2 { font-size: 28px; margin-bottom: 0.4em; letter-spacing: -1px; line-height: 32px; }
+h3 { font-size: 20px; margin: 0.8em 0;	}
+h4 { font-size: 18px; margin: 0.5em 0; }
+
+a { color: #3D5A96; }
+a:visited { color: #5881D8;}
+a:hover { color: #35673f; }
+
+p { margin: 0.33em 0pt 1em; }
+
 pre {
         border: 1px solid gray;
         background-color: #ffffcc;
         padding: .6em;
         margin: .6em;
 }
+
+strong {
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+ol li { list-style-type: decimal; margin-left: 20px; }
+
+#header, #footer, #content {
+  width: 740px;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+/* Header styles */
+#header { padding: 10px 0 0; }
+
+
+/* Content styles */
+#content { padding: 0 0 10px; }
+
+/* Footer styles */
+#footer { padding: 10px 0; color: #a09b97; border-top: solid 1px #ddd; }
+#footer a { color: #6f6c69; }
+#footer a:hover { color: #514e4c; }
