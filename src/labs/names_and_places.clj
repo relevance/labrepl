@@ -1,5 +1,5 @@
 (ns #^{:skip-wiki true} labs.names-and-places
-  (:use labs.util))
+  (:use labrepl.util))
 
 (defn overview
   []

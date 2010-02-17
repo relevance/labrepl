@@ -1,5 +1,5 @@
-(ns labs.util-test
-  (:use labs.util circumspec))
+(ns labrepl.util-test
+  (:use labrepl.util circumspec))
 
 (testing-fn deindent
   (nil -> nil)

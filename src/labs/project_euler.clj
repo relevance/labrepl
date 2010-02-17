@@ -1,5 +1,5 @@
 (ns #^{:skip-wiki true} labs.project-euler
-    (:use labs.util solutions.project-euler))
+    (:use labrepl.util solutions.project-euler))
 
 (defn overview
   []

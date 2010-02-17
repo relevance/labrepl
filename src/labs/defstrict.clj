@@ -1,5 +1,5 @@
 (ns #^{:skip-wiki true} labs.defstrict
-    (:use labs.util solutions.defstrict))
+    (:use labrepl.util solutions.defstrict))
 
 (defn overview-ins
   []

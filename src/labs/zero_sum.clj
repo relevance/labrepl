@@ -1,5 +1,5 @@
 (ns #^{:skip-wiki true} labs.zero-sum
-  (:use labs.util)
+  (:use labrepl.util)
   (:require [solutions
              [accounts-1 :as accounts-1]
              [accounts-2 :as accounts-2]

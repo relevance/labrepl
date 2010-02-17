@@ -1,5 +1,5 @@
-(ns solutions.browser
-  (:use compojure labs.util)
+(ns solutions.mini-browser
+  (:use compojure labrepl.web labrepl.util)
   (:require [clojure.contrib.str-utils2 :as str]
             [clojure.contrib.repl-utils :as repl]))
 
@@ -12,22 +12,15 @@
   (html
     [:head
      [:title "Mini-Browser"]
-     (include-css "/stylesheets/shCore.css"
-                  "/stylesheets/shThemeDefault.css"
-                  "/stylesheets/application.css")
-     (include-js "/javascripts/jquery.js"
-                 "/javascripts/application.js"
-                 "/javascripts/shCore.js"
-                 "/javascripts/shBrushClojure.js")]
-    [:body
-     {:id "browser"}
+     (apply include-css default-stylesheets)
+     (apply include-js default-javascripts)]
+    [:body {:id "browser"}
      [:div {:id "header"}
       [:h2 "Mini-Browser"]]
      [:div {:id "content"}
-      body
-      #_[:a {:href "#" :class "top-link"} "^ Top"]]
+      body]
      [:div {:id "footer"}
-      "Clojure labs are licensed under an Attribution-Share Alike 3.0 License"]]))
+      "Clojure Mini-Browser"]]))
 
 (defn namespace-names
   "Sorted list of namespace names (strings)."

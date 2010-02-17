@@ -1,5 +1,5 @@
 (ns #^{:skip-wiki true} labs.its-all-data
-  (:use labs.util))
+  (:use labrepl.util))
 
 (defn some-data-types
   []

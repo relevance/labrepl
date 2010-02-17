@@ -1,11 +1,12 @@
 (ns labrepl.lab
   (:use [clojure.contrib.java-utils :only (as-str)]
+        labrepl.web
         compojure))
 
 (defn all
   []
-  [:intro :names-and-places :its-all-data :project-euler
-   :zero-sum :defstrict])
+  [:intro :names-and-places :its-all-data :mini-browser
+   :project-euler :zero-sum :defstrict])
 
 (defn url
   [lab]
@@ -23,13 +24,8 @@
   (html
     [:head
      [:title (last title)]
-     (include-css "/stylesheets/shCore.css"
-                  "/stylesheets/shThemeDefault.css"
-                  "/stylesheets/application.css")
-     (include-js "/javascripts/jquery.js"
-                 "/javascripts/application.js"
-                 "/javascripts/shCore.js"
-                 "/javascripts/shBrushClojure.js")]
+     (apply include-css default-stylesheets)
+     (apply include-js default-javascripts)]
     [:body
      [:div {:id "header"}
       title]

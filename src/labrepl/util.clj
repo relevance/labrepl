@@ -1,7 +1,7 @@
 (ns
     #^{:author "Stu Halloway"
        :doc "Utilities for creating lab instruction pages."}
-    labs.util
+    labrepl.util
   (:use clojure.contrib.pprint
         [clojure.contrib.repl-utils :only (get-source)]
         clojure.contrib.with-ns)
