@@ -1,0 +1,13 @@
+Clojure labrepl
+Copyright 2010, Relevance, Inc.
+
+The lab solutions (files in the src/solutions directory) are licensed
+under the Eclipse Public License (see epl-v10.html).
+
+The lab platform (everything outside the lab solutions) is free for
+individual personal use. All other rights are reserved by Relevance,
+Inc. Contact Stuart Halloway (stu@thinkrelevance.com) if you have a
+question about using these materials.
+
+You must not remove this notice, or any other, from this software.
+
