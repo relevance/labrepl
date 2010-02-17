@@ -4,7 +4,8 @@
 
 (defn all
   []
-  [:intro :names-and-places :its-all-data :zero-sum :defstrict])
+  [:intro :names-and-places :its-all-data :project-euler
+   :zero-sum :defstrict])
 
 (defn url
   [lab]

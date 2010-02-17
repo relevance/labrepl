@@ -1,6 +1,34 @@
-(ns solutions.project-euler
+(ns
+    #^{:author "Stu Halloway"
+       :doc "Some Project Euler solutions. See projecteuler.net."}
+  solutions.project-euler
   (:use clojure.contrib.lazy-seqs)
   (:require [clojure.contrib.str-utils2 :as str]))
+
+(defn divides?
+  "Does divisor divide dividend evenly?"
+  [dividend divisor]
+  (zero? (rem dividend divisor)))
+
+(defn divides-any
+  "Return a predicate that tests whether its arg can be 
+   evenly divided by any of nums."
+  [& nums]
+  (fn [arg]
+    (boolean (some #(divides? arg %) nums))))
+
+(defn problem-1-recur
+  "Sum the numbers divisible by 3 or 5, from 0 to upper."
+  ([]
+     (problem-1-recur 1000))
+  ([upper]
+     (let [divisible? (divides-any 3 5)]
+       (loop [sum 0 n 1]
+         (if (>= n upper)
+           sum
+           (recur
+            (if (divisible? n) (+ sum n) sum)
+            (inc n)))))))
 
 (defn problem-1
   "Sum the numbers divisible by 3 or 5, from 0 to upper."
@@ -9,8 +37,16 @@
      (apply
       +
       (filter
-       (fn [n] (some #(zero? (rem n %)) [3 5]))
+       (divides-any 3 5)
        (range upper)))))
+
+(defn problem-1-left-to-right
+  "Sum the numbers divisible by 3 or 5, from 0 to upper."
+  ([] (problem-1-left-to-right 1000))
+  ([upper]
+     (->> (range upper)
+          (filter (divides-any 3 5))
+          (apply +))))
 
 (defn fibos
   []
@@ -62,10 +98,6 @@
                (fn [n] (every? #(zero? (rem n %)) divisors))
                (iterate inc 2))))))
 
-(defn divides
-  [dividend divisor]
-  (zero? (rem dividend divisor)))
-
 (defn unique-factors
   "Return unique factors up to max, removing factors that
    are subsumed by larger factors (e.g. if you have 4 you
@@ -73,7 +105,7 @@
   [max]
   (reduce
    (fn [result item]
-     (if (some #(divides % item) result)
+     (if (some #(divides? % item) result)
        result
        (conj result item)))
    []

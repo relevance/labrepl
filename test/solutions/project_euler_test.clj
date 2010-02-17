@@ -1,6 +1,27 @@
 (ns solutions.project-euler-test
   (:use circumspec solutions.project-euler))
 
+(testing-fn divides?
+  (10 2 -> true)
+  (10 3 -> false)
+  (10 4 -> false)
+  (10 5 -> true))
+
+(testing divides-any
+  (let [pred (divides-any 3 5)]
+    (for-these [result input] (should (= result (pred input)))
+               false 2
+               true 3
+               false 4
+               true 5
+               true 6)))
+
+(testing "various approaches to problem 1"
+  (dotimes [n 10]
+    (should (= (problem-1-recur n)
+               (problem-1 n)
+               (problem-1-left-to-right n)))))
+
 (testing-fn problem-1
   (-> 233168)
   (10 -> 23))
@@ -29,11 +50,6 @@
   (100 -> 9009)
   (1000 -> 906609))
 
-(testing-fn divides
-  (2 2 -> true)
-  (2 3 -> false)
-  (3 2 -> false))
-
 (testing-fn unique-factors
   (10 -> [10 9 8 7 6])
   (6 -> [6 5 4])
@@ -44,6 +60,6 @@
   (3 -> 6)
   (4 -> 12)
   (10 -> 2520)
-  (20 -> 232792560))
+  #_(20 -> 232792560))
 
 
