@@ -61,7 +61,7 @@ body {
 h2, h3, h4, h5, h6 { color: #3D5A96; }
 h2 { font-size: 28px; margin-bottom: 0.4em; letter-spacing: -1px; line-height: 32px; }
 h3 { font-size: 20px; margin: 0.8em 0;	}
-h4 { font-size: 18px; margin: 0.5em 0; }
+h4 { font-size: 16px; margin: 0.5em 0; }
 
 a { color: #3D5A96; }
 a:visited { color: #5881D8;}
@@ -70,10 +70,10 @@ a:hover { color: #90B4FE; }
 p { margin: 0.33em 0pt 1em; }
 
 pre {
-        border: 1px solid gray;
-        background-color: #ffffcc;
-        padding: .6em;
-        margin: .6em;
+  border: 1px solid gray;
+  background-color: #F8F8F8;
+  padding: .6em;
+  margin: .6em;
 }
 
 strong {
@@ -93,6 +93,9 @@ ol li { list-style-type: decimal; margin-left: 20px; }
   padding: 0 10px;
   margin: 0 auto;
 }
+#browser #header, #browser #footer, #browser #content {
+  width: 940px;
+}
 
 /* Header styles */
 #header { padding: 10px 0 0; }
@@ -101,8 +104,16 @@ h2.logo { padding-left: 100px; height: 82px; background: url(clojure_logo.jpg) t
 /* Content styles */
 #content { padding: 0 0 10px; }
 
+div.browse-list { height: 200px; overflow: scroll; overflow-x: auto; width: 50%; display:inline-block; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; }
+div.browse-list ul li:nth-child(odd) { background-color: #EDF3FE; }
+div.browse-list ul li a { padding: 2px 5px; display: block; }
+div.browse-list ul li a:hover { background-color: #eee; color: #3881D8;}
+
+a.top-link { margin: 10px 0; display: block; }
+
 /* Syntax Highlighter Styles */
 div.syntaxhighlighter { border: 1px solid #ddd !important; padding: 0.6em !important; margin: 0.6em !important; font-size: 14px !important; }
+#browser div.syntaxhighlighter { width: auto !important; }
 div.syntaxhighlighter.nogutter div.line { background-color: #F8F8F8 !important; }
 
 /* Footer styles */
