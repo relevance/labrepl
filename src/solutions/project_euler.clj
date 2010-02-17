@@ -48,3 +48,35 @@
       (for [x (range upper) y (range x upper) :when (let [s (str (* x y))]
                                                     (= s (str/reverse s)))]
         (* x y)))))
+
+(defn problem-5
+  "2520 is the smallest number that can be divided by each of the numbers
+   from 1 to 10 without any remainder.
+
+   What is the smallest number that is evenly divisible by all of the numbers
+   from 1 to 20?"
+  ([] (problem-5 20))
+  ([upper]
+     (first (let [divisors (range 2 (inc upper))]
+              (filter
+               (fn [n] (every? #(zero? (rem n %)) divisors))
+               (iterate inc 2))))))
+
+(defn divides
+  [dividend divisor]
+  (zero? (rem dividend divisor)))
+
+(defn unique-factors
+  "Return unique factors up to max, removing factors that
+   are subsumed by larger factors (e.g. if you have 4 you
+   don't need 2.)"
+  [max]
+  (reduce
+   (fn [result item]
+     (if (some #(divides % item) result)
+       result
+       (conj result item)))
+   []
+   (range max 2 -1)))
+
+
