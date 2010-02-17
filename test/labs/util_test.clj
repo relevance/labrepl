@@ -14,19 +14,19 @@
 
 (testing "code"
   (should (= [:script
-              {:type "syntaxhighlighter", :class "brush: clojure; light: true;"}
+              {:type "syntaxhighlighter", :class "brush: clojure; toolbar: false; light: true;"}
               "<![CDATA[(new ClassName foo)\n]]>"]
              (code (new ClassName foo)))))
 
 (testing "c"
-  (should (= [:code "(new ClassName foo)"]
+  (should (= [:code {:class "inline-syntax"} "(new ClassName foo)"]
              (c (new ClassName foo)))))
 
 (def foo [])
 (testing "source"
   (should (= [:script
-              {:type "syntaxhighlighter", :class "brush: clojure; light: true;"}
-              "<![CDATA[(def foo [])\n]]>"]
+       {:type "syntaxhighlighter", :class "brush: clojure; toolbar: false; light: true;"}
+       "<![CDATA[(def foo [])\n]]>"]
              (source foo))))
 
 (testing "repl*"
