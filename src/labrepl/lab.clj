@@ -8,10 +8,14 @@
   [:intro :names-and-places :its-all-data :mini-browser
    :project-euler :zero-sum :defstrict])
 
+(defn lab-url
+  [lab-name]
+  (str "/labs/" (as-str lab-name)))
+
 (defn url
   [lab]
   (let [lab-name (as-str lab)]
-    [:a {:href (str "/labs/" lab-name)} lab-name]))
+    [:a {:href (lab-url lab)} lab-name]))
 
 (defn instructions
   [lab]
