@@ -32,5 +32,5 @@
      [:div {:id "content"}
       body]
      [:div {:id "footer"}
-      "Clojure labs are licensed under an Attribution-Share Alike 3.0 License"]]))
+      "Clojure labrepl. Copyright 2010 Relevance Inc. All Rights Reserved."]]))
 

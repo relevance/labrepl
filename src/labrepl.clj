@@ -3,7 +3,8 @@
        :doc "Compojure app that displays lab instructions."}
     labrepl
   (:use compojure clojure.contrib.logging)
-  (:require [labrepl.lab :as lab]))
+  (:require [labrepl.lab :as lab]
+            [solutions.mini-browser :as mini-browser]))
 
 (defn with-logging [handler]
   (fn [request]
@@ -30,16 +31,19 @@
        (html
         (lab/layout
          [:h2 (params :name)]
-         (lab/instructions (params :name)))))
+         (lab/instructions (params :name))))))
+
+(defroutes static-routes
   (GET "/*" (or (serve-file (params :*)) :next))
   (ANY "*" (page-not-found)))
 
 (decorate lab-routes reloading with-logging)
 
 (defroutes app
-  (routes lab-routes))
+  (routes lab-routes static-routes))
 
 (defn -main [& args]
+  (mini-browser/-main)
   (run-server
    {:port 8080}
    "/*"

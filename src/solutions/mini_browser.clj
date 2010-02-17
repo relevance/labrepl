@@ -3,9 +3,49 @@
   (:require [clojure.contrib.str-utils2 :as str]
             [clojure.contrib.repl-utils :as repl]))
 
+(defn namespace-names
+  "Sorted list of namespace names (strings)."
+  []
+  (->> (all-ns)
+       (map #(.name %))
+       (sort)))
+
+(defn namespace-vars
+  "Sorted list of var names in a namespace (symbols)."
+  [ns]
+  (when-let [ns (find-ns (symbol ns))]
+    (sort (keys (ns-publics ns)))))
+
+(defn namespace-link
+  [ns-name]
+  [:a {:href (str "/browse/" ns-name)} ns-name])
+
+(defn namespace-browser
+  [ns-names]
+  [:div
+   {:class "browse-list"}
+   [:ul
+    (map
+     (fn [ns] [:li (namespace-link ns)])
+     ns-names)]])
+
+(defn var-link
+  [ns-name var-name]
+  [:a {:href (str "/browse/" ns-name "/" var-name)} var-name])
+
+(defn var-browser
+  [ns]
+  (html
+   [:div
+    {:class "browse-list variables"}
+    [:ul
+     (map
+      (fn [var] [:li (var-link ns var)])
+      (namespace-vars ns))]]))
+
 (defn reloading [handler]
   (fn [request]
-    (require :reload-all '[solutions.browser])
+    (require :reload-all '[solutions.mini-browser])
     (handler request)))
 
 (defn layout [& body]
@@ -21,38 +61,6 @@
       body]
      [:div {:id "footer"}
       "Clojure Mini-Browser"]]))
-
-(defn namespace-names
-  "Sorted list of namespace names (strings)."
-  []
-  (->> (all-ns)
-       (map #(.name %))
-       (sort)))
-
-(defn namespace-vars
-  "Sorted list of var names in a namespace (symbols)."
-  [ns]
-  (when-let [ns (find-ns (symbol ns))]
-    (sort (keys (ns-publics ns)))))
-
-(defn namespace-browser
-  []
-  [:div
-   {:class "browse-list"}
-   [:ul
-    (map
-     (fn [ns] [:li [:a {:href (str "/ns/" ns)} ns]])
-     (namespace-names))]])
-
-(defn var-browser
-  [ns]
-  (html
-   [:div
-    {:class "browse-list variables"}
-    [:ul
-     (map
-      (fn [var] [:li [:a {:href (str "/ns/" ns "/" var)} var]])
-      (namespace-vars ns))]]))
 
 (defn view-function
   [func]
@@ -77,14 +85,14 @@
    "/"
    (html
     (layout
-     (namespace-browser)
+     (namespace-browser (namespace-names))
      [:div {:class "browse-list empty"}])))
   (GET
-   "/ns/*"
+   "/browse/*"
    (let [[ns var] (str/split (params :*) #"/")]
      (html
       (layout
-       (namespace-browser)
+       (namespace-browser (namespace-names))
        (var-browser ns)
        (var-detail ns var))))))
 
