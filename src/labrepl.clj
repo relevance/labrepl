@@ -43,7 +43,7 @@
   (routes lab-routes static-routes))
 
 (defn -main [& args]
-  (mini-browser/-main)
+  (mini-browser/main)
   (run-server
    {:port 8080}
    "/*"

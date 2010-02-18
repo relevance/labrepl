@@ -4,7 +4,7 @@
 (defn overview
   []
   [[:h3 "Overview"]
-   [:p "In this lab you will implement a simple Clojure object browser using the web framework Compojure. The browse will provide access to Clojure namespaces, vars, data, docstrings, and source code. "]])
+   [:p "In this lab you will implement a simple Clojure object browser using the web framework Compojure. The browser will provide access to Clojure namespaces, vars, data, docstrings, and source code. "]])
 
 (defn ll
   "literal link"
@@ -74,26 +74,53 @@
 (defn making-it-live
   []
   [[:h3 "Making It Live"]
-   [:li "Now we are ready to bring the UI to life. First, we need a function to get a list of namespace names. " (c all-ns) " returns the ns objects, from there you can get their " (c .name) "s and " (c sort) " them. Create a " (c namespace-names) " function that does this."
-    (showme namespace-names)]
-   [:li "Test " (c namespace-names) "."
-    (repl-showme (namespace-names))]
-   [:li "Next we need function " (c var-names) " that returns the var names given a namespace name. To build it you will need to call" (c symbol) ", " (c find-ns) ", " (c ns-publics) ", and " (c keys) "."
-    (showme var-names)]
-   [:li "Let's leave the mockup behind, and create new routes and a servlet for the live data. First, create a " (c layout) " function that looks like the mockups, but lets you pass in the body forms to fill the content div:"
-    (showme layout)]
-   [:li "Next, create " (c browser-routes) " so that a GET of / returns the " (c (namespace-names) ) " wrapped in a " (c namespace browser) " in a " (c layout) "."
-    (showme* '(defroutes browser-routes
-  (GET
-   "/"
-   (html
-    (layout
-     (namespace-browser (namespace-names)))))))]
+   [:ol
+    [:li "Let's leave the mockup behind, and create new routes and a servlet for live data. First, create a " (c layout) " function that looks like the mockups, but lets you pass in the body forms to fill the content div:"
+     (showme layout)]
+    [:li "We need a function to get the real list of namespace names. " (c all-ns) " returns the ns objects, from there you can get their " (c .name) "s and " (c sort) " them. Create a " (c namespace-names) " function that does this."
+     (showme namespace-names)]
+    [:li "Test " (c namespace-names) "."
+     (repl-showme (namespace-names))]
+    [:li "Next, create " (c browser-routes) " so that a GET of / returns the " (c (namespace-names)) " wrapped in a " (c namespace-browser) " in a " (c layout) "."
+     (showme* '(defroutes browser-routes
+                 (GET
+                  "/"
+                  (html
+                   (layout
+                    (namespace-browser (namespace-names)))))))]
+    [:li "Create a separate " (c static-routes) " for static content."
+     (c static-routes)]
+    [:li "Create " (c app-routes) " to combine browser routes and static routes."]
+    [:li "Create a " (c main) " function to launch the browser on port 9000."
+     (c main)]
+    [:li "Run " (c main) " and browse to " (ll "http://localhost:9000") " to see the live namespaces."]
    
-   
-   ])
+    [:li "Next we need a function " (c var-names) " that returns the var names given a namespace name. To build it you will need to call" (c symbol) ", " (c find-ns) ", " (c ns-publics) ", and " (c keys) "."
+     (showme var-names)]
+    [:li "Test " (c var-names) "."
+     (repl-showme (var-names "clojure.xml"))]
+    [:li "Now for the var details. First, we need a simple " (c var-symbol) "helper that manufactures a fully-qualified var symbol, given the namespace and var as strings:"
+     (showme var-symbol)]
+    [:li "The " (c var-detail) " function should return markup:"
+     [:ul
+      [:li "The var symbol in an h3 tag"]
+      [:li "The docstring in a " (c "pre code") "block. You can combine " (c print-doc) " and " (c with-out-str) " to get the docstring"]
+      [:li "The source code itself. You will need to use" (c find-var) ", " (c clojure.contrib.repl-utils/get-source) ", and " (c labrepl.util/code*) ", which will wrap the code in html tags for you."]]
+     (showme var-detail)]
+    [:li "Test " (c var-detail) " from the repl."
+     (repl-showme (var-detail "clojure.core" "and"))]
+    [:li "Update the " (c browser-routes) " to include a " (c "/browse/*") " route. It should extract the namespace and var names from the params, and then call " (c namespace-browser) ", " (c var-browser) ", and " (c var-detail) " to produce the html response."
+     (showme browser-routes)]
+    [:li "Run the browser with the new routes, and try it out at " (ll "http://localhost:9000") "."]]])
+
 (defn bonus
-  [])
+  []
+  [[:h3 "Bonus"]
+   [:ol
+    [:li "The 'everything is a function' approach makes testing easy. Routes are just functions--try alling one of your routed directly:"
+     (repl-showme (mockup-routes {:uri "/m1"}))]
+    [:li "The syntax highligher isn't perfect--it sometimes highlights parts of words. What is the issue, and what is the fix?"]
+    [:li "The lab you are reading is itself a Compojure app. Use your browse to explore the namespaces starting with " (c labrepl) "."]]])
 
 (defn instructions
   []

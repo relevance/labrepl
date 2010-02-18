@@ -67,18 +67,22 @@
   (html
    [:h3 (find-var (symbol func))]))
 
+(defn var-symbol
+  "Create a var-symbol, given the ns and var names as strings."
+  [ns var]
+  (symbol (str ns "/" var)))
+
 (defn var-detail
   [ns var]
   (when var
-    (let [fqn-str (str ns "/" var)
-          fqn-sym (symbol fqn-str)
-          var (find-var fqn-sym)]
-      (html [:h3 fqn-str]
+    (let [sym (var-symbol ns var)
+          var (find-var sym)]
+      (html [:h3 sym]
             [:h4 "Docstring"]
             [:pre [:code
                    (with-out-str (print-doc var))]]
             [:h4 "Source"]
-            (code* (repl/get-source fqn-sym))))))
+            (code* (repl/get-source sym))))))
 
 (defroutes browser-routes
   (GET
@@ -93,7 +97,7 @@
      (html
       (layout
        (namespace-browser (namespace-names))
-       (var-browser ns (var-names))
+       (var-browser ns (var-names ns))
        (var-detail ns var))))))
 
 (defroutes static-routes
@@ -101,11 +105,11 @@
 
 (decorate browser-routes reloading)
 
-(defroutes app
+(defroutes app-routes
   (routes browser-routes static-routes))
 
-(defn -main [& args]
+(defn main []
   (run-server
    {:port 9000}
    "/*"
-   (servlet app)))
+   (servlet app-routes)))
