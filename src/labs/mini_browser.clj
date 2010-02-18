@@ -56,10 +56,42 @@
 (defn static-mockup
   []
   [[:h3 "Static Mockup"]
-   [:p "The mini-browser will show a list of namespaces, a list of vars in the currently-selected namespace, and the docstring and source code for the currently-selected var. In this section we will get the UI working with fake data."]
+   [:p "The mini-browser will show a list of namespaces, a list of vars in the currently-selected namespace, and the docstring and source code for the currently-selected var. In this section we will get the UI working with fake data. As you write each function, test its output."]
    [:ol
     [:li "The browser will use the url /browse/foo for browsing the namespace foo. Create a " (c namespace-link) " function that returns an anchor tag linking to the passed in namespace name."
-     (showme namespace-link)]]])
+     (showme namespace-link)]
+    [:li "Create a " (c namespace-browser) " function that takes a collection of namespace names, aand creates a " (c div.browse-list) " around an unordered list of links from" (c namespace-link) "."
+     (showme namespace-browser)]
+    [:li "We will use the url " (c "/browse/com.foo/bar") " for browsing the var" (c bar) " in the " (c com.foo) " namespace. Create a " (c var-link) " function that takes a namespace name and a var name and builds a link."
+     (showme var-link)]
+    [:li "Create a " (c var-browser) " function that puts a " (c div.browse-list) (c variables) " around an unorderd list of var links:"
+     (showme var-browser)]
+    [:li "Create a " (c mockup-4) " that is like " (c mockup-3) ", but add a " (c namespace-browser) " and a " (c var-browser) " to the content div. (Make up some fake namespace and var names to populate the data."
+     (showme mockup-4)]
+    [:li "Create a route to " (c mockup-4) " and test it in the browser at " (ll "http://localhost:8999/m4") "."]
+    ]])
+
+(defn making-it-live
+  []
+  [[:h3 "Making It Live"]
+   [:li "Now we are ready to bring the UI to life. First, we need a function to get a list of namespace names. " (c all-ns) " returns the ns objects, from there you can get their " (c .name) "s and " (c sort) " them. Create a " (c namespace-names) " function that does this."
+    (showme namespace-names)]
+   [:li "Test " (c namespace-names) "."
+    (repl-showme (namespace-names))]
+   [:li "Next we need function " (c var-names) " that returns the var names given a namespace name. To build it you will need to call" (c symbol) ", " (c find-ns) ", " (c ns-publics) ", and " (c keys) "."
+    (showme var-names)]
+   [:li "Let's leave the mockup behind, and create new routes and a servlet for the live data. First, create a " (c layout) " function that looks like the mockups, but lets you pass in the body forms to fill the content div:"
+    (showme layout)]
+   [:li "Next, create " (c browser-routes) " so that a GET of / returns the " (c (namespace-names) ) " wrapped in a " (c namespace browser) " in a " (c layout) "."
+    (showme* '(defroutes browser-routes
+  (GET
+   "/"
+   (html
+    (layout
+     (namespace-browser (namespace-names)))))))]
+   
+   
+   ])
 (defn bonus
   [])
 
@@ -69,4 +101,5 @@
    (overview)
    (defining-layout)
    (static-mockup)
+   (making-it-live)
    (bonus)))

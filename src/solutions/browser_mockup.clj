@@ -45,7 +45,8 @@
      [:div {:id "header"}
       [:h2 "Mini-Browser"]]
      [:div {:id "content"}
-      (namespace-browser ["fake-ns1" "fake-ns2"])]
+      (namespace-browser ["fake-ns1" "fake-ns2"])
+      (var-browser "fake-ns1" ["some-var-1" "some-var-2"])]
      [:div {:id "footer"}
       "Clojure Mini-Browser"]]) )
 
@@ -53,6 +54,7 @@
   (GET "/m1" (mockup-1))
   (GET "/m2" (mockup-2))
   (GET "/m3" (mockup-3))
+  (GET "/m4" (mockup-4))
   (GET "/*" (or (serve-file (params :*)) :next)))
 
 (defn mockup-server []

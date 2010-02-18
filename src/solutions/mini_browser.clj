@@ -10,7 +10,7 @@
        (map #(.name %))
        (sort)))
 
-(defn namespace-vars
+(defn var-names
   "Sorted list of var names in a namespace (symbols)."
   [ns]
   (when-let [ns (find-ns (symbol ns))]
@@ -34,14 +34,14 @@
   [:a {:href (str "/browse/" ns-name "/" var-name)} var-name])
 
 (defn var-browser
-  [ns]
+  [ns vars]
   (html
    [:div
     {:class "browse-list variables"}
     [:ul
      (map
       (fn [var] [:li (var-link ns var)])
-      (namespace-vars ns))]]))
+      vars)]]))
 
 (defn reloading [handler]
   (fn [request]
@@ -93,7 +93,7 @@
      (html
       (layout
        (namespace-browser (namespace-names))
-       (var-browser ns)
+       (var-browser ns (var-names))
        (var-detail ns var))))))
 
 (defroutes static-routes
