@@ -12,13 +12,14 @@
     (should (throws? ClassCastException (shout-2 :foo))))
   (testing "shout-3 uses precondition to guarantee string input"
     (should (= "FOO" (shout-3 "foo")))
-    (should (throws? AssertionError (shout-3 nil)))
-    (should (throws? AssertionError (shout-3 :foo))))
+    (should (throws? Throwable #"Assert failed" (shout-3 nil)))
+    (should (throws? Throwable #"Assert failed" (shout-3 :foo))))
   (testing "shout-4 works like shout-3"
     (should (= "FOO" (shout-4 "foo")))
-    (should (throws? AssertionError (shout-4 :bar)))
-    (should (throws? AssertionError (shout-4 :foo)))))
+    (should (throws? Throwable #"Assert failed" (shout-4 :bar)))
+    (should (throws? Throwable #"Assert failed" (shout-4 :foo)))))
 
+(watch)
 (testing type-tagged-args
   (let [tagged (type-tagged-args '[String a Integer/TYPE b])]
     (should (= '[a b] tagged))

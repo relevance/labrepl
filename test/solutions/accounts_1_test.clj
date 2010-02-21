@@ -20,6 +20,6 @@
   (let [accounts (make-accounts {:initial-balance 100
                                  :count 10})]
     (should (throws?
-             AssertionError
+             Throwable
              #"Assert failed: \(= expected-balance \(total-balance accounts\)\)"
              (trial)))))
