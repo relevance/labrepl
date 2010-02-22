@@ -43,8 +43,30 @@
     [:li "Make sure your functions are defined in the correct order, or declared before use."]
     [:li "Call " (c launch-2) ", and you should see one still frame from a cellular automaton."]]])
 
+(defn let-er-rip
+  []
+  [[:h3 "Let 'Er Rip"]
+   [:ol
+    [:li "Each cell's state in the next step depends on the current state of its eight immediate neighbors. Clojure destructuring makes it easy to extract these neighbors from a list of lists. Write an " (c active-neighbors) " function that counts all the neighbors in the on state:"
+     (showme active-neighbors)]
+    [:li "Test " (c active-neighbors) " against a board that is all on:"
+     (repl-showme (active-neighbors (repeat (repeat :on))))]
+    [:li "The updates rules for a cell in Brian's Brain are:"
+     [:ol
+      [:li "An " (c :on) " cell goes to " (c :dying)]
+      [:li "A " (c :dying) " cell goes to " (c :off)]
+      [:li "An " (c :off) " cell with two active (" (c :on) ") neighbors goes to " (c :on)]
+      [:li "All other cells go to off"]]
+     "Implement " (c brians-brain-rules) "."
+     (showme brians-brain-rules)]
+    [:li "Test the rules at the REPL. The examples below are gratuitously cute in that they take advante of the assumption that unspecified==off."
+     (repl-showme (brians-brain-rules nil))
+     (repl-showme (brians-brain-rules (repeat (repeat :on))))
+     (repl-showme (brians-brain-rules [[:on :on]]))]]])
+
 (defn instructions
   []
   (concat
    (groundwork)
-   (swing-gui)))
+   (swing-gui)
+   (let-er-rip)))

@@ -25,6 +25,41 @@
   (for [row board]
     (for [[state] row] state)))
 
+(defn active-neighbors
+  "Count the active (:on) neighbors one cell away from me in
+   any direction. Maximum of 8."
+  [[[nw n ne][w _ e] [sw s se]]]
+  (count
+   (filter
+    #{:on}
+    (concat [nw n ne w e sw s se]))))
+
+(defn brians-brain-rules
+  "Determine the cell's next state based on its current
+   state and number of active neighbors."
+  [[_ [_ cell] :as board]]
+  (cond
+   (= :on    cell)                              :dying
+   (= :dying cell)                              :off  
+   (= 2 (active-neighbors board))               :on   
+   :else                                        :off  ))
+
+(defn torus-window
+  "The torus window is a cursor over the board, with each item
+   containining a cell and all its immediate neighbors."
+  [coll]
+  (partition 3 1 (concat [(last coll)] coll [(first coll)])))
+
+(defn step
+  "Advance the automation by one step, updating all cells."
+  [board]
+  (doall
+   (pmap (fn [window]
+          (apply #(apply map brians-brain-rules %&)
+                 (doall (map torus-window window))))
+        (torus-window board))))
+
+
 (defn update-board
   "Update the automaton"
   [board]
@@ -102,10 +137,4 @@
     (future (activity-loop panel board))
     board))
 
-(defn immediate-neighbors
-  [[above [left _ right] below]]
-  {:above above
-   :left left
-   :right right
-   :below below})
 
