@@ -19,7 +19,6 @@
     (should (throws? Throwable #"Assert failed" (shout-4 :bar)))
     (should (throws? Throwable #"Assert failed" (shout-4 :foo)))))
 
-(watch)
 (testing type-tagged-args
   (let [tagged (type-tagged-args '[String a Integer/TYPE b])]
     (should (= '[a b] tagged))

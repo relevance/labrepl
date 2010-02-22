@@ -28,7 +28,9 @@
 (defn active-neighbors
   "Count the active (:on) neighbors one cell away from me in
    any direction. Maximum of 8."
-  [[[nw n ne][w _ e] [sw s se]]]
+  [[[nw n ne]
+    [w  _ e ]
+    [sw s se]]]
   (count
    (filter
     #{:on}
@@ -37,11 +39,11 @@
 (defn brians-brain-rules
   "Determine the cell's next state based on its current
    state and number of active neighbors."
-  [[_ [_ cell] :as board]]
+  [above [_ cell _ :as row] below]
   (cond
    (= :on    cell)                              :dying
    (= :dying cell)                              :off  
-   (= 2 (active-neighbors board))               :on   
+   (= 2 (active-neighbors [above row below]))   :on   
    :else                                        :off  ))
 
 (defn torus-window
@@ -54,16 +56,15 @@
   "Advance the automation by one step, updating all cells."
   [board]
   (doall
-   (pmap (fn [window]
+   (map (fn [window]
           (apply #(apply map brians-brain-rules %&)
                  (doall (map torus-window window))))
         (torus-window board))))
 
-
 (defn update-board
   "Update the automaton"
-  [board]
-  board)
+  [board-ref]
+  (swap! board-ref step))
 
 (def state->color {:on Color/WHITE :off Color/BLACK :dying Color/GRAY})
 
@@ -87,11 +88,11 @@
         (render-cell background-graphics cell)))
     (.drawImage graphics img 0 0 nil)))
 
-(defn activity-loop [surface board]
+(defn activity-loop [panel board]
   (while
-   true
+   @board
    (update-board board)
-   (.repaint surface)))
+   (.repaint panel)))
 
 (defn launch-1 [] 
   (let [[screen-x screen-y] dim-screen

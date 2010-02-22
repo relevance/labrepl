@@ -1,6 +1,11 @@
 (ns labs.cellular-automata
   (:use solutions.automaton labrepl.util))
 
+(defn overview
+  []
+  [[:h3 "Overview"]
+   [:p "In this exercise, you will build a Swing GUI for displaying cellular automata such as " [:a {:href "http://en.wikipedia.org/wiki/Brian%27s_Brain"} "Brian's Brain"] " and " [:a {:href "http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life"} "Conway's Game of Life"] ". The code is inspired by blog examples by " [:a {:href "http://www.bestinclass.dk/index.php/2009/10/brians-functional-brain/"} "Lau Jensen"] " and " [:a {:href "http://blog.thinkrelevance.com/2009/10/7/brians-functional-brain-take-1-5"} "Stu Halloway" ] ". If you have never created an automaton before, read through the links above before you begin."]])
+  
 (defn groundwork
   []
   [[:h3 "Groundwork"]
@@ -57,16 +62,39 @@
       [:li "A " (c :dying) " cell goes to " (c :off)]
       [:li "An " (c :off) " cell with two active (" (c :on) ") neighbors goes to " (c :on)]
       [:li "All other cells go to off"]]
-     "Implement " (c brians-brain-rules) "."
+     "Implement " (c brians-brain-rules) " as a function of three rows."
      (showme brians-brain-rules)]
-    [:li "Test the rules at the REPL. The examples below are gratuitously cute in that they take advante of the assumption that unspecified==off."
+    [:li "Test the rules at the REPL. The examples below are gratuitously cute in that they take advantage of the assumption that unspecified==off."
      (repl-showme (brians-brain-rules nil))
      (repl-showme (brians-brain-rules (repeat (repeat :on))))
-     (repl-showme (brians-brain-rules [[:on :on]]))]]])
+     (repl-showme (brians-brain-rules [[:on :on]]))]
+    [:li "In order to apply the rules, we need to take the entire board in 3x3 units. This is easy to visualize in one dimension, using Clojure's partition function:"
+     (repl-code (partition 3 1 [:a :b :c :d :e]))
+     "Using this idiom, implement a function " (c torus-window) ", so called because it 'wraps around' by prepending the last row and appending the first row:"
+     (showme torus-window)]
+    [:li "The most interesting function to write is " (c step) ", which calls " (c brians-brain-rules) " once for each cell, via a combination of " (c torus-window) ", " (c map) ", and " (c apply) ":"
+     (showme step)]
+    [:li "The stateful part of the application is simple. We will use an atom to reference the board. Write an " (c update-board) " function that takes an atom and updates it via " (c step) ":"
+     (showme update-board)]
+    [:li "Almost there. Create an " (c activity-loop) " function of " (c panel) " and " (c board) " that loops as long as the " (c board) " does not refer to nil, calling " (c update-board) " and then " (c .repaint) ":"
+     (showme activity-loop)]
+    [:li "Finally, we need the completed " (c launch) " function. " (c launch) " builds on the previous iteratations, adding a call to " (c future) " that kicks off the " (c activity-loop) " before returning the board."
+     (showme launch)]
+    [:li "You are reayd to go! " (c launch) " your automaton and watch it go. When you (or your CPU) grow tired, you can stop it by setting the returned atom to " (c nil) ", or by simply killing the JVM."]]])
+
+(defn bonus
+  []
+  [[:h3 "Bonus"]
+   [:li "Load your code with " (c *warn-on-reflection*) " set to true, and then add type hints until your code is non-reflective."]
+   [:li "What other things might make this code faster. Think about it a bit, and then read about " [:a {:href "http://www.bestinclass.dk/index.php/2009/10/brians-transient-brain/"} "Lau's experiences optimizing Brian's Brain."]]
+   [:li "Add support for Conway's Game of Life. Hint: only one function needs to change."]
+   [:li "Add a menu to switch between Conway and Brian mid-simulation."]])
 
 (defn instructions
   []
   (concat
+   (overview)
    (groundwork)
    (swing-gui)
-   (let-er-rip)))
+   (let-er-rip)
+   (bonus)))
