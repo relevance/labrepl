@@ -6,7 +6,8 @@
 (defn all
   []
   [:intro :names-and-places :its-all-data :mini-browser
-   :project-euler :cellular-automata :zero-sum :defstrict])
+   :project-euler :unified-update-model :zero-sum  :cellular-automata
+   :defstrict])
 
 (defn lab-url
   [lab-name]
