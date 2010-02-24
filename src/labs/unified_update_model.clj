@@ -1,5 +1,8 @@
 (ns labs.unified-update-model
-  (:use labrepl.util)
+  (:use labrepl.util
+        [clojure.contrib.json.read :only (read-json)]
+        [clojure.http.client :only (request url-encode)]
+        solutions.fight)
   (:require [solutions.atom-cache :as ac]
             [solutions.ref-cache :as rc]))
 
@@ -83,6 +86,34 @@
      ]
     [:li "The mechanics of " (c commute) " are simple, but the implication require some thought. Is " (c commute) " actually appropriate for a cache? For a counter?"]]])
 
+(defn futures
+  []
+  [[:h3 "Futures"]
+   [:p "A future represents work to be done off the current thread. To see futures in action, let's create something slow: a program that compares the estimated google results for two search terms. You will need to include the following namespaces:"
+    (code "(:use [clojure.http.client :only (request url-encode)]
+      [clojure.contrib.json.read :only (read-json)])")]
+   [:ol
+    [:li "The " (c request) " function takes a URL string and returns a map of response data. Try it a the REPL to see how it works."]
+    [:li "To get google search results, you will need the following URL prefix:"
+     (source google-search-base)]
+    [:li "Since some interesting searches are multiword, you will want to " (c url-encode) " them: "
+     (repl-showme (url-encode "two words"))]
+    [:li "The search results are returned as JSON. The" (c read-json) " function converts JSON into Clojure data. Test it at the REPL:"
+     (repl-showme (read-json "{\"foo\" : [1, 2]}"))]
+    [:li "Using the functions " (c request) ", " (c url-encode) ", and " (c read-json) ", you can write an " (c estimated-hits-for) " function that returns the estimated hits for a search term:"
+     (showme estimated-hits-for)]
+    [:li "Try calling " (c estimated-hits-for) ". Note the (hopefully brief) latency as the request goes out to Google and back."
+     (let [estimated-hits-for (fn [&_] "some big number")]
+       (repl-showme (estimated-hits-for "clojure")))]
+    [:li "At the REPL, wrap the call to " (c estimated-hits-for) " in a future so that control returns immediately and the work proceeds on a background thread:"
+     (repl-showme (let [estimated-hits-for (fn [&_] "number getting bigger all the time")]
+                    (def clojure-result (future (estimated-hits-for "clojure")))))]
+    [:li "Whenver you are ready, you can block waiting for a result by dereferencing the future:"
+     (repl-showme @clojure-result)]
+    [:li "Write a " (c fight) " function that takes two search terms. It should start one future to search for each term, and then a third future that waits on the first two:"
+     (showme fight)]
+    [:li "Use " (c fight) " to prove your deeply held biases. Thanks, Internet!"]]])
+
 (defn bonus
   []
   [[:h3 "Bonus"]
@@ -95,5 +126,6 @@
    (overview)
    (atoms)
    (refs)
+   (futures)
    (bonus)))
 
