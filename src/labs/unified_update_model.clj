@@ -1,10 +1,10 @@
 (ns labs.unified-update-model
   (:use labrepl.util
         [clojure.contrib.json.read :only (read-json)]
-        [clojure.http.client :only (request url-encode)]
-        solutions.fight)
+        [clojure.http.client :only (request url-encode)])
   (:require [solutions.atom-cache :as ac]
-            [solutions.ref-cache :as rc]))
+            [solutions.ref-cache :as rc]
+            [solutions.fight :as fight]))
 
 (defn overview
   []
@@ -86,6 +86,17 @@
      ]
     [:li "The mechanics of " (c commute) " are simple, but the implication require some thought. Is " (c commute) " actually appropriate for a cache? For a counter?"]]])
 
+
+(defn estimated-hits-for
+  "Hack so the lab code does not call out over internet."
+  [term]
+  (* 1000 (rand-int 10000)))
+
+(defn add-estimate
+  "Hack so the lab code does not call out over internet."
+  [estimates term]
+  (assoc estimates term (estimated-hits-for term)))
+
 (defn futures
   []
   [[:h3 "Futures"]
@@ -101,24 +112,47 @@
     [:li "The search results are returned as JSON. The" (c read-json) " function converts JSON into Clojure data. Test it at the REPL:"
      (repl-showme (read-json "{\"foo\" : [1, 2]}"))]
     [:li "Using the functions " (c request) ", " (c url-encode) ", and " (c read-json) ", you can write an " (c estimated-hits-for) " function that returns the estimated hits for a search term:"
-     (showme estimated-hits-for)]
+     (showme fight/estimated-hits-for)]
     [:li "Try calling " (c estimated-hits-for) ". Note the (hopefully brief) latency as the request goes out to Google and back."
-     (let [estimated-hits-for (fn [&_] "some big number")]
-       (repl-showme (estimated-hits-for "clojure")))]
+     (repl-showme (estimated-hits-for "clojure"))]
     [:li "At the REPL, wrap the call to " (c estimated-hits-for) " in a future so that control returns immediately and the work proceeds on a background thread:"
-     (repl-showme (let [estimated-hits-for (fn [&_] "number getting bigger all the time")]
-                    (def clojure-result (future (estimated-hits-for "clojure")))))]
+     (repl-showme (def clojure-result (future (estimated-hits-for "clojure"))))]
     [:li "Whenver you are ready, you can block waiting for a result by dereferencing the future:"
      (repl-showme @clojure-result)]
     [:li "Write a " (c fight) " function that takes two search terms. It should start one future to search for each term, and then a third future that waits on the first two:"
-     (showme fight)]
+     (showme fight/fight)]
     [:li "Use " (c fight) " to prove your deeply held biases. Thanks, Internet!"]]])
+
+(defn agents
+  []
+  [[:h3 "Agents"]
+   [:p "Although futures allow " (c deref) ", they do not implement the unified update model. There is no ongoing state in a future, just a one-shot off-thread result. In this section, you will see agents, which implement the unified update model off-thread, allowing multiple background updates to a piece of state. We will continue the " (c fight) " example, using an agent to track of all the results over time."]
+   [:ol
+    [:li "You can create an agent by calling " (c agent) " with initial state. At the REPL, define " (c fight-results) " as an agent with an initially empty map"
+     (repl-showme (def fight-results (agent {})))]
+    [:li "Since agents use the unified update model, you already know how to use them, except for the function name to call (it's " (c send-off) "). We will store terms as keys, and their results counts as values in the map. " (c send-off) " a function to " (c fight-results) " that will update it with the hit count for \"clojure\":"
+     (repl-showme (send-off fight-results
+                        (fn [state] (assoc state "clojure" (estimated-hits-for "clojure")))))]
+    [:li "Next, capture the update function in named function " (c add-estimate) ". Think carefully about the arguments you will need, and the order in which they need to appear:"
+     (showme fight/add-estimate)]
+    [:li "Now you are free to call " (c add-estimate) " as many times as you want:"
+     (repl-showme (doseq [term ["derek wildstar" "mark venture"]]
+                    (send-off fight-results add-estimate term)))]
+    [:li "Having sent a bunch of functions to an agent, you will often want to wait for them all to be done. You can await completion of all actions launched from the current thread with " (c await) " (no timeout) or " (c await-for) ". Use the safer of these two to make sure the work you requested is complete:"
+     (repl-showme (await-for 1000 fight-results))]
+    [:li "Dereference " (c fight-results) " to see what you got:"
+     (repl-showme @fight-results)]]])
 
 (defn bonus
   []
   [[:h3 "Bonus"]
    [:ol
-    [:li "What are the legal types for keys in the cache? How would this differ in a mutable language like Java?"]]])
+    [:li "In the section on atoms above, what are the legal types for keys in the cache? How would this differ in a mutable language like Java?"]
+    [:li "Same question, but for the reference cache. What types are legal keys?"]
+    [:li "In the fight examples, there is no error handling or recovery. What would you do to address this?"]
+    [:li "There are actually two functions for updating agents: " (c send) " and " (c send-off) ". Read their docstrings. Does the agent-based fight use the correct function?"]
+    [:li "Which functions in Clojure have names ending with bang (!), and why?"]
+    [:li "Why do the various reference types share a read function " (c deref) ", but have different update functions?"]]])
 
 (defn instructions
   []
@@ -127,5 +161,6 @@
    (atoms)
    (refs)
    (futures)
+   (agents)
    (bonus)))
 

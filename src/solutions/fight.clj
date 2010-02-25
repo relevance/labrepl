@@ -16,3 +16,11 @@
   (let [r1 (future (estimated-hits-for term1))
         r2 (future (estimated-hits-for term2))]
     (future {term1 @r1 term2 @r2})))
+
+(def fight-results
+  (agent {}))
+
+(defn add-estimate
+  [estimates term]
+  (assoc estimates term (estimated-hits-for term)))
+
