@@ -6,8 +6,6 @@
                  [org.clojure/clojure-contrib
                   "1.2.0-master-SNAPSHOT"][compojure
                   "0.3.2"]
-                 [org.clojure/swank-clojure
-                  "1.0"]
                  [postgresql
                   "8.4-701.jdbc4"]
                  [log4j
@@ -21,7 +19,8 @@
                  [jline
                   "0.9.94"]
                  [circumspec
-                  "0.0.8"]]
-  :dev-dependencies [[autodoc "0.7.0"]]
+                  "0.0.10"]]
+  :dev-dependencies [[autodoc "0.7.0"]
+                     [swank-clojure "1.1.0"]]
   :repositories {"clojure-releases" "http://build.clojure.org/releases"
                  "incanter" "http://repo.incanter.org"})
