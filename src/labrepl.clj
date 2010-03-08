@@ -22,7 +22,7 @@
   (GET "/"
        (html
         (lab/layout
-         [:h2 {:class "logo"} "Clojure Labs"]
+         [:h2.logo "Clojure Labs"]
          [:ul
           (map
            (fn [lab] [:li (lab/url lab)])

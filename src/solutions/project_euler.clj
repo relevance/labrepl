@@ -111,4 +111,21 @@
    []
    (range max 2 -1)))
 
+(defn square-of-sum
+  [x]
+  (let [sum (/ (* x (inc x)) 2)]
+    (* sum sum)))
 
+(defn sum-of-squares
+  [x]
+  (apply + (map #(* % %) (range (inc x)))))
+
+(defn problem-6
+  "sum of squares minus square of sum"
+  [x]
+  (- (square-of-sum x) (sum-of-squares x)))
+
+(defn problem-7
+  "for this to count, you need to understand how seq-utils primes works..."
+  [x]
+  (nth primes (dec x)))

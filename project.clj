@@ -4,7 +4,8 @@
                  [org.clojure/clojure
                   "1.2.0-master-SNAPSHOT"]
                  [org.clojure/clojure-contrib
-                  "1.2.0-master-SNAPSHOT"][compojure
+                  "1.2.0-master-SNAPSHOT"]
+                 [compojure
                   "0.3.2"]
                  [postgresql
                   "8.4-701.jdbc4"]

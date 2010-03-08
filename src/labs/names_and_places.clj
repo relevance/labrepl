@@ -1,5 +1,7 @@
 (ns #^{:skip-wiki true} labs.names-and-places
-  (:use labrepl.util))
+    (:use labrepl.util clojure.contrib.math clojure.contrib.ns-utils clojure.contrib.with-ns solutions.dialect) 
+    (:require [clojure.contrib.math :as m])
+    (:import [java.util Date Random]))
 
 (defn overview
   []
@@ -22,11 +24,11 @@
     [:li "Then print the directory of names available in the namespace"
      (code (dir clojure.contrib.math))]
     [:li "Show using " [:code "lcm"] " to calculate the least common multiple:"
-     (code (clojure.contrib.math/lcm 11 41))]
+     (repl-code (clojure.contrib.math/lcm 11 41))]
     [:li "Writing out the namespace prefix on every function call is a pain, so you can specify a shorter alias using " [:code "as"] ":"
      (code (require '[clojure.contrib.math :as m]))]
     [:li "Calling the shorter form is much easier:"
-     (code (m/lcm 120 1000))]
+     (repl-code (m/lcm 120 1000))]
     [:li "You can see all the loaded namespaces with"
      (code (all-ns))]]])
 
@@ -37,7 +39,7 @@
     [:li "It would be even easier to use a function with no namespace prefix at all. You can do this by " [:i "referring"] " to the name, which makes a reference to the name in the current namespace:"
      (code (refer 'clojure.contrib.math))]
     [:li "Now you can call " [:code "lcm"] " directly:"
-     (code (lcm 16 30))]
+     (repl-code (lcm 16 30))]
     [:li "If you want to load and refer all in one step, call " [:code "use"] ": "
      (code (use 'clojure.contrib.math))]
     [:li "Referring a library refers all of its names. This is often undesirable, because"
@@ -48,9 +50,10 @@
      (code (use '[clojure.contrib :only (lcm)]))
      "The " [:code ":only"] " option is available on all the namespace management forms. (There is also an " [:code ":exclude"] " which works as you might expect.)"]
     [:li "The variable " [:code "*ns*"] " always contains the current namespace, and you can see what names your current namespace refers to by calling"
-     (code (ns-refers *ns*))]
+     (ns-refers *ns*)]
     [:li "The refers map is often pretty big. If you are only interested in one symbol, pass that symbol to the result of calling " [:code "ns-refers"] ": "
-     (code ((ns-refers *ns*) 'dir))]]])
+     (with-ns 'labs.names-and-places
+       (repl-code ((ns-refers *ns*) 'dir)))]]])
 
 (defn import-section
   []
@@ -65,14 +68,14 @@
      (code (import [package Class Class]))
      "For example: "
      (code (import '[java.util Date Random]) (Date. (long (.nextInt (Random.)))))]
-    [:li "Programmers new to Lisp are often put off by the \"inside-out\" reading of forms like the one above. Starting from the inside, you "
+    [:li "Programmers new to Lisp are often put off by the \"inside-out\" reading of forms like the date creation above. Starting from the inside, you "
      [:ul
       [:li "get a new " [:code "Random"]]
       [:li "get the next random integer"]
       [:li "cast it to a long"]
       [:li "pass the long to the " [:code "Date"] " constructor"]]
      "You don't have to write inside-out code in Clojure. The " [:code "->"] " macro takes its first form, and passes it as the first argument to its next form. The result then becomes the first argument of the next form, and so on. It is easier to read than to describe:"
-     (code (-> (Random.) (.nextInt) (long) (Date.)))]]])
+     (repl-code (-> (Random.) (.nextInt) (long) (Date.)))]]])
 
 (defn load-and-reload
   []
@@ -105,7 +108,9 @@
      [:li "From your REPL, use the new namespace:"
       (code (use 'student.dialect))]
      [:li "Now try it out."
-      (code (canadianize "Hello, world."))]
+      (let [canadianize
+            #(str % ", eh")]
+        (repl-code (canadianize "Hello, world.")))]
      [:li "Oops! We need to trim the period off the end of the input. Fortunately, " [:code "clojure.contrib.str-utils2"] " provides " [:code "chop"] ". Go back to " [:code "student/dialect.clj"] " and add require in " [:code "clojure.contrib.str-utils2"] ": "
       (code (ns student.dialect
               (:require [clojure.contrib.str-utils2 :as s])))]
@@ -114,7 +119,9 @@
               [sentence]
               (str (s/chop sentence) ", eh?")))]
      [:li "If you simply retry calling " [:code "canadianize"] " from the repl, you will not see your new change, because the code was already loaded. However, you can use namespace forms with " [:code "reload"] "( or " [:code "reload-all"] ") to reload a namespace (and its dependencies)."
-      (code (use :reload 'student.dialect))]]]])
+      (code (use :reload 'student.dialect))]
+     [:li "Now you should see the new version of " (c canadianize) ": "
+      (repl-code (canadianize "Hello, world."))]]]])
 
 (defn bonus
   []
