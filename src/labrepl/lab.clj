@@ -7,7 +7,7 @@
   []
   [:intro :names-and-places :its-all-data :project-euler
    :mini-browser :unified-update-model :zero-sum  :cellular-automata
-   :defstrict])
+   :defstrict :rock-paper-scissors])
 
 (defn lab-url
   [lab-name]

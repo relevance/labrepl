@@ -5,7 +5,7 @@
  :scissors :rock
  :paper :scissors})
 
-(def choices #{:rock :paper :scissors})
+(def choices (set (keys dominates)))
 
 (defn random-choice []
  (nth (vec choices) (rand-int (count choices))))
