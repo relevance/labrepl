@@ -14,7 +14,7 @@ The first use of the labrepl will be the March 15, 2010 run of the
 Clojure Studio: (http://pragmaticstudio.com/clojure). If you are looking
 at labrepl before that date, then QA is not complete. Expect a few oddities.
 
-# Getting Started
+# Getting Started (Mac, Linux)
 
 * Make sure you have Java installed.
 * Make sure you have leiningen installed (http://github.com/technomancy/leiningen).
@@ -22,11 +22,21 @@ at labrepl before that date, then QA is not complete. Expect a few oddities.
 * Run `script/repl` to launch the labrepl.
 * Browse to localhost:8080 for instructions.
 * Press Ctrl+D to exit the repl when you are done.
+
+# Getting Started (Windows)
+
+This is minimally tested. Let me know if you have problems.
+
+* Make sure you have Java installed.
+* Make sure you have leiningen installed (http://github.com/technomancy/leiningen). Do not use `lein self-install` as Windows installation is a manual process. You will need to:
+* Download leinigen.jar and set `LEIN_JAR` to point to it.
+* Download a Clojure 1.1 clojure.jar (from clojure.org) and set `CLOJURE_JAR` to point to it.
+* Set your path to include `{your-lein-install}\bin`
+* Run `lein.bat deps` to install dependent libs
+* Run `script\repl` to launch the labrepl.
+* Browse to localhost:8080 for instructions.
+* Press Ctrl+D to exit the repl when you are done.
  
-# License
-
-See LICENSE for details
-
 # Thanks for contributions and reviews from
 
 * Aaron Bedra
