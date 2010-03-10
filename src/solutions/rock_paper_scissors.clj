@@ -1,61 +1,62 @@
-(ns solutions.rock-paper-scissors
-  (:use [clojure.contrib.seq-utils :only (rand-elt)]))
+(ns solutions.rock-paper-scissors)
 
 (def dominates
-  {:rock :paper
-   :scissors :rock
-   :paper :scissors})
+{:rock :paper
+ :scissors :rock
+ :paper :scissors})
 
-(def choices
-  [:rock :paper :scissors])
+(def choices #{:rock :paper :scissors})
+
+(defn random-choice []
+ (nth (vec choices) (rand-int (count choices))))
+
+(defn winner [p1-choice p2-choice]
+ (cond
+  (= p1-choice p2-choice) nil
+  (= (dominates p1-choice) p2-choice) p2-choice
+  :else p1-choice))
+
+(defn draw? [me you] (= me you))
+
+(defn iwon? [me you] (= (winner me you) me))
 
 (defprotocol Player
   (choose [p])
-  (update-strategy [p me you result]))
+  (update-strategy [p me you]))
 
 (deftype Random []
   :as this
   Player
-  (choose [] (rand-elt choices))
-  (update-strategy [me you result] this))
+  (choose [] (random-choice))
+  (update-strategy [me you] this))
 
 (deftype Stubborn [choice]
   :as this
   Player
   (choose [] choice)
-  (update-strategy [me you result] this))
+  (update-strategy [me you] this))
 
 (deftype Mean [last-winner]
   :as this
   Player
-  (choose [] (if last-winner last-winner (rand-elt choices)))
-  (update-strategy [me you result] (Mean. (when (= result :win) me))))
-
-(defn play
-  [p1-choice p2-choice]
-  (cond
-   (= p1-choice p2-choice) {:p1 :draw :p2 :draw}
-   (= (dominates p1-choice) p2-choice) {:p1 :lose :p2 :win}
-   (= (dominates p2-choice) p1-choice) {:p1 :win :p2 :lose}
-   :default (throw (RuntimeException. (str "Invalid play: " p1-choice ", " p2-choice)))))
+  (choose [] (if last-winner last-winner (random-choice)))
+  (update-strategy [me you] (Mean. (when (iwon? me you) me))))
 
 (defn game
-  [p1 p2 rounds]
-  (let [p1 (atom p1)
-        p2 (atom p2)]
-    (loop [p1-score 0
-           p2-score 0
-           rounds rounds]
-      (if (pos? rounds)
-        (let [p1-choice (choose @p1)
-              p2-choice (choose @p2)
-              result (play p1-choice p2-choice)]
-          (swap! p1 update-strategy p1-choice p2-choice (:p1 result))
-          (swap! p2 update-strategy p2-choice p1-choice (:p2 result))
-          (recur
-           (if (= :win (:p1 result)) (inc p1-score) p1-score)
-           (if (= :win (:p2 result)) (inc p2-score) p2-score)
-           (dec rounds)))
-        {:p1 p1-score :p2 p2-score}))))
-
-
+ [p1 p2 rounds]
+ (loop [p1 p1
+        p2 p2
+        p1-score 0
+        p2-score 0
+        rounds rounds]
+   (if (pos? rounds)
+     (let [p1-choice (choose p1)
+           p2-choice (choose p2)
+           result (winner p1-choice p2-choice)]
+       (recur
+        (update-strategy p1 p1-choice p2-choice)
+        (update-strategy p2 p2-choice p1-choice)
+        (+ p1-score (if (= result p1-choice) 1 0))
+        (+ p2-score (if (= result p2-choice) 1 0))
+        (dec rounds)))
+     {:p1 p1-score :p2 p2-score})))
