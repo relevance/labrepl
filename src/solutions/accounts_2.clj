@@ -5,8 +5,8 @@
   (:use [clojure.contrib.seq-utils :only (rand-elt)]))
 
 (defn make-accounts
-  "Create a map of account-num->:initial-balance for :count numbered
-  accounts."
+  "Create a map of account-num->(ref :initial-balance) for :count
+   numbered accounts."
   [{:keys [count initial-balance]}]
   (zipmap (range count) (repeatedly (partial ref initial-balance))))
 

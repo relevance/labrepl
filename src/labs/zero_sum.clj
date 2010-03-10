@@ -66,18 +66,30 @@
      "Now you should be able to run as long a " (c trial) " as you like without a problem."]]
    [:p "Reading from a transaction is fast, requires no locks, and never impedes writers. However, there is a way to solve this problem the avoids the read transaction, by changing the granularity we use to think about identity."]])
 
-(defn whos-who
+(defn granularity
   []
-  [[:h3 "Who's Who?"]
-   [:p "In the previous section the unit of identity was the individual account. But what if said that our identity was the set of all accounts sharing a single resource? Instead of map with values that are references, we could use a single reference to map. Let's make this change, and see how it affects each of our functions:"]
-   [:p "To Be Continued..."]])
+  [[:h3 "Granularity of Identity"]
+   [:p "So far, the unit of identity has been the individual account. But what if our unit of identity was the set of all accounts? Instead of a map with reference values, we could use a single reference to an immutable map. Let's make this change, and see how it affects each of our functions:"]
+   [:ol
+    [:li "The new version of " (c make-accounts) " should be a ref to a map, not a map whose values are refs:"
+     (showme accounts-3/make-accounts)]
+    [:li "The new version of " (c total-balance) " is simpler: it merely sumes the values of the referenced " (c accounts) " map:"
+     (showme accounts-3/total-balance)]
+    [:li "The new version of " (c transfer) " is more complex. Inside the transaction, you need to make two updates to the same map. Hint: use the " (c update-in) " function:"
+     (showme accounts-3/transfer)]
+    [:li "The new " (c balance) " function differs only in placement of parentheses, so that the dereference comes before the key lookup:"
+     (showme accounts-3/balance)]
+    [:li "That's it. The driver functions that you use to test transactions do not have to change. Verify that the new system works correctly."]]])
 
 (defn bonus
   []
   [[:h3 "Bonus"]
    [:ol
+    [:li "In the code above, you experimented with two different identities: the account and the set of all accounts. One of these approaches is the correct one. Which one, and why? Under what circumstances would the other approach make sense?"]
+    [:li "The identity-per-account version of " (c make-accounts) " used " (c repeatedly) ", but the identity-for-all-accounts version used " (c repeat) ". Why the difference?"]
     [:li "Don't let the terminology of the example trap you into dollars-and-cents thinking. If you were building a program to play Monopoly, how many places might you use this code?"]
     [:li "What does the solution do to prevent accounts from going negative? How reliable is this? Sketch out at least two other approaches."]
+    [:li "How is reading in a transaction different from reading in a lock?"]
     [:li "Could you use " (c commute) " instead of " (c alter) " to update the account balances? Read the requirements carefully."]]])
 
 (defn instructions
@@ -87,6 +99,6 @@
    (requirements)
    (simple-accounts)
    (is-it-threadsafe)
-   (whos-who)
+   (granularity)
    (bonus)))
 

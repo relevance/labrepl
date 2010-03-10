@@ -1,12 +1,12 @@
 (ns
     #^{:author "Stu Halloway"
-       :doc "Improved version of accounts example. total-balance reads consistently. Uses one identity for a groupd of accounts."}
+       :doc "Variant version of accounts example. total-balance reads consistently. Uses one identity for a group of accounts."}
   solutions.accounts-3
   (:use [clojure.contrib.seq-utils :only (rand-elt)]))
 
 (defn make-accounts
-  "Create a map of account-num->:initial-balance for :count numbered
-  accounts."
+  "Create ref to a map of account-num->:initial-balance for :count
+  numbered accounts."
   [{:keys [count initial-balance]}]
   (ref (zipmap (range count) (repeat initial-balance))))
 
