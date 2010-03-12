@@ -23,6 +23,10 @@ at labrepl before that date, then QA is not complete. Expect a few oddities.
 * Browse to localhost:8080 for instructions.
 * Press Ctrl+D to exit the repl when you are done.
 
+# Eclipse Integration
+
+* The repository includes Eclipse .project and .classpath files. If you are using the counterclockwise Eclipse plugin (http://code.google.com/p/counterclockwise/) you should be able to import the project into your workspace.
+
 # Getting Started (Windows)
 
 This is minimally tested. Let me know if you have problems.
