@@ -21,7 +21,7 @@
 (defn instructions
   [lab]
   (let [lab-ns (symbol (str "labs." (as-str lab)))]
-    (require :reload-all lab-ns)
+    (require lab-ns)
     ((ns-resolve lab-ns 'instructions))))
 
 (defn layout [title & body]
