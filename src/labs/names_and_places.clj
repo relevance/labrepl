@@ -3,6 +3,12 @@
     (:require [clojure.contrib.math :as m])
     (:import [java.util Date Random]))
 
+(System/getProperties)
+
+(defn cool
+  [])
+
+
 (defn overview
   []
   [[:h3 "Overview"]
@@ -47,7 +53,7 @@
       [:li "it does not clearly document intent to readers"]
       [:li "it brings in more names than you need, which can lead to name collisions"]]
      "Instead, use the following style to specify only those names you want:"
-     (code (use '[clojure.contrib :only (lcm)]))
+     (code (use '[clojure.contrib.math :only (lcm)]))
      "The " [:code ":only"] " option is available on all the namespace management forms. (There is also an " [:code ":exclude"] " which works as you might expect.)"]
     [:li "The variable " [:code "*ns*"] " always contains the current namespace, and you can see what names your current namespace refers to by calling"
      (ns-refers *ns*)]
