@@ -62,12 +62,12 @@
     [:li "Importing is like referring, but for Java classes instead of Clojure namespaces. Instead of "
      (code (java.io.File. "woozle"))
      " you can say "
-     (code (import java.io.File)
-           (File. "woozle"))]
+     (code (import java.io.File) (File. "woozle"))]
     [:li "You can import multiple classes in a Java package with the form "
      (code (import [package Class Class]))
      "For example: "
-     (code (import '[java.util Date Random]) (Date. (long (.nextInt (Random.)))))]
+     (code (import [java.util Date Random])
+           (Date. (long (.nextInt (Random.)))))]
     [:li "Programmers new to Lisp are often put off by the \"inside-out\" reading of forms like the date creation above. Starting from the inside, you "
      [:ul
       [:li "get a new " [:code "Random"]]
@@ -93,7 +93,7 @@
       " would look like this in a source code file:"
       (code (ns com.my-app.utils
               (:use foo.bar)
-              (:require 'baz.quux)
+              (:require baz.quux)
               (:import [java.util Date Random])))
       " Symbols become keywords, and quoting is no longer required."]
      [:li "At the time of this writing, the error messages for doing it wrong with namespaces are, well, opaque. Be careful."]]]

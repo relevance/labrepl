@@ -20,10 +20,10 @@
       (code "(println \"hello world\")")]
      [:li
       "Function names do not have to be words. Try some math functions:"
-      (code (+ 1 2))
-      (code (/ 22 7))
-      (code (/ 22.0 7))
-      (code (+ 1 2 3 4 5))]
+      (code (+ 1 2)
+            (/ 22 7)
+            (/ 22.0 7)
+            (+ 1 2 3 4 5))]
      [:li
       "You can define your own functions with "
       [:code "defn"]
@@ -92,17 +92,17 @@
      (code (def now (java.util.Date.)))]
     [:li
      "You can call instance methods like so:"
-     (code (.getMonth now))
-     (code (.toGMTString now))]
+     (code (.getMonth now)
+           (.toGMTString now))]
     [:li
      "If you can't remember all the date methods off the top of your head, you can pass either a class or an instance to "
      [:code "javadoc"]
-     (code (javadoc now))
-     (code (javadoc "java.util.Date"))]
+     (code (javadoc now)
+           (javadoc java.util.Date))]
     [:li
      "Or, to simply list method signatures, use show."
-     (code (show now))
-     (code (show "java.util.Date"))]]])
+     (code (show now)
+           (show java.util.Date))]]])
 
 (defn bonus
   []

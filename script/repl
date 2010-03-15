@@ -5,4 +5,4 @@ for f in lib/*.jar; do
     CLASSPATH=$CLASSPATH:$f
 done
 
-java -Xmx1G -cp $CLASSPATH jline.ConsoleRunner clojure.main -e "(use '[clojure.contrib.duck-streams :only (spit read-lines reader writer)] '[clojure.contrib def ns-utils pprint repl-utils shell-out]) (require '[clojure.contrib.str-utils2 :as s])(require 'labrepl) (set! *print-length* 20)(labrepl/-main)$LABREPL_SWANK" -r
+java -Xmx1G -cp $CLASSPATH jline.ConsoleRunner clojure.main -e "(use '[clojure.contrib.duck-streams :only (spit read-lines reader writer)] '[clojure.contrib def ns-utils pprint repl-utils shell-out]) (require '[clojure.contrib.str-utils2 :as s])(require 'labrepl) (set! *print-length* 100)(labrepl/-main)$LABREPL_SWANK" -r

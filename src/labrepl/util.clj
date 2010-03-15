@@ -34,7 +34,7 @@
 (defmacro code
   "Show codes (literal strings or forms) in a pre/code block."
   [& codes]
-  `(code* '~@codes))
+  `(apply code* '~codes))
 
 (defmacro c
   "Show code (symbol or string) literally inline."
