@@ -145,7 +145,7 @@
     [:li "How about a frequency distribution by the length of the word?"
      (code "(frequencies (map #(.length %) words))")]
     [:li "Frequencies are easier to visualize with a bar chart. Load the incanter charting library:"
-     (code (use 'incanter [core charts]))]
+     (code (use '[incanter core charts]))]
     [:li "The " (c bar-chart) " function expects a sequence of categories, followed by a sequene of values. Use " (c let) " to capture frequencies in a local variable, and then call " (c keys) " and " (c values) " to pass the data to " (c bar-chart) ". "
      (code (let [f (frequencies (map first words))]
              (view (bar-chart (keys f) (vals f)))))]]])
