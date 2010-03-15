@@ -117,8 +117,8 @@
      [:li "You can " (c filter) " a collection, returning only those elements that match a predicate:"
       (code (filter odd? (range 50)))]
      [:li (c reduce) " walks a collection, applying a function to pair and carrying the result. The following are equivalent:"
-      (code "(reduce + [1 2]) => (+ 1 2)")
-      (code "(reduce + [1 2 3]) => (+ (+ 1 2) 3)")]
+      (code "(reduce + [1 2]) \n-> (+ 1 2)")
+      (code "(reduce + [1 2 3]) \n-> (+ (+ 1 2) 3)")]
      [:li "Try reducing something a little bigger."
       (code (reduce + (range 101)))]
      [:li "Because all collections can be treated as sequences, it is very easy to extend Clojure's power. If you write a function that works with seqs, all data can use it. The hardest part of writing Clojure apps is often deciding if the function you want already exists. What if you wanted something like " (c reduce), ", but returning all ther intermediate steps. No problem, that is called " (c reductions) ": "

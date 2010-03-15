@@ -41,7 +41,14 @@
 (defroutes app
   (routes lab-routes static-routes))
 
+(defn load-common-libs
+  []
+  (use '[clojure.contrib.duck-streams :only (spit read-lines reader writer)]
+       '[clojure.contrib def ns-utils pprint repl-utils shell-out])
+  (require '[clojure.contrib.str-utils2 :as s]))
+
 (defn -main [& args]
+  (load-common-libs)
   (mini-browser/main)
   (run-server
    {:port 8080}
