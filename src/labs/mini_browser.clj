@@ -117,7 +117,7 @@
   []
   [[:h3 "Bonus"]
    [:ol
-    [:li "The 'everything is a function' approach makes testing easy. Routes are just functions--try alling one of your routed directly:"
+    [:li "The 'everything is a function' approach makes testing easy. Routes are just functions--try calling one of your routed directly:"
      (repl-showme (mockup-routes {:uri "/m1"}))]
     [:li "The syntax highligher isn't perfect--it sometimes highlights parts of words. What is the issue, and what is the fix?"]
     [:li "The lab you are reading is itself a Compojure app. Use your browse to explore the namespaces starting with " (c labrepl) "."]]])
