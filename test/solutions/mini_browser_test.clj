@@ -12,6 +12,7 @@
                         [:li [:a {:href "/browse/bar"} "bar"]]]]]))
 
 (testing-fn var-link
-  ("com.foo" "zap" -> [:a {:href "/browse/com.foo/zap"} "zap"]))
+  ("com.foo" "zap" -> [:a {:href "/browse/com.foo/zap"} "zap"])
+  ("com.foo" "zap?" -> [:a {:href "/browse/com.foo/zap%3F"} "zap?"]))
 
 

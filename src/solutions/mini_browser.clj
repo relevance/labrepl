@@ -31,7 +31,7 @@
 
 (defn var-link
   [ns-name var-name]
-  [:a {:href (str "/browse/" ns-name "/" var-name)} var-name])
+  [:a {:href (str "/browse/" ns-name "/" (url-encode (str var-name)))} var-name])
 
 (defn var-browser
   [ns vars]
