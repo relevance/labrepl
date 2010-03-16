@@ -20,7 +20,7 @@
     [:li "Create a simple paragraph element with some text:"
      (repl-showme (html [:p "hello world"]))]
     [:li "Use a map to add a css class of " (c awesome) ":"
-     (repl-showme (html [:p {:class "awesome"}] "hello world"))]
+     (repl-showme (html [:p {:class "awesome"} "hello world"]))]
     [:li "How about an html " (c head) " with title 'Mini-Browser, and a " (c body) " with id 'browser'?"
      (repl-showme (html [:head [:title "Mini-Browser"]] [:body {:id "browser"}]))]
     [:li "Ok, that is about enough HTML to view as a Clojure string. Let's make a server. Put the html from the previous step into a " (c mockup-1) " function:"
