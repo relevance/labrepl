@@ -101,7 +101,8 @@
        (var-detail ns var))))))
 
 (defroutes static-routes
-  (GET "/*" (or (serve-file (params :*)) :next)))
+  (GET "/*" (or (serve-file (params :*)) :next))
+  (ANY "*" (page-not-found)))
 
 (decorate browser-routes reloading)
 

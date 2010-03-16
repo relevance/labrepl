@@ -26,7 +26,7 @@
      (repl-code (def counter (atom 0)))]
     [:li "To update an atom, simply call " (c swap!) " with the atom and an update function. To increment the " (c counter) ":"
      (repl-code (swap! counter inc))]
-    [:li "If the function as arguments, simply tack them on the end. Let's update the " (c counter) " a little faster:"
+    [:li "If the function has arguments, simply tack them on the end. Let's update the " (c counter) " a little faster:"
      (repl-code (swap! counter + 1000))]
     [:li "It is really that simple, and it is thread-safe. And the atomic values can be composites:"
      (repl-code (def language (atom {:name "Clojure" :age 2})))]
@@ -39,7 +39,7 @@
     [:li "Create a " (c put-1) " function that puts an item into the cache, using " (c assoc) "."
      (showme ac/put-1)]
     [:li "Take your new cache out for a spin at the REPL:"
-     (repl-showme (let [c (ac/create)]
+     (repl-showme (let [c (ac/create-1)]
                     (ac/put-1 c :greeting "Hello, World")
                     (ac/get c :greeting)))]
     [:li "Let's make the cache a little easier for callers. Define a " (c create) " function that lets callers specify an initial map, defaulting to an empty map:"
