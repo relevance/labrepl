@@ -106,7 +106,7 @@
    [:ol
     [:li "The " (c request) " function takes a URL string and returns a map of response data. Try it a the REPL to see how it works."]
     [:li "To get google search results, you will need the following URL prefix:"
-     (source google-search-base)]
+     (source fight/google-search-base)]
     [:li "Since some interesting searches are multiword, you will want to " (c url-encode) " them: "
      (repl-showme (url-encode "two words"))]
     [:li "The search results are returned as JSON. The" (c read-json) " function converts JSON into Clojure data. Test it at the REPL:"

@@ -95,7 +95,7 @@
    [:ol
     [:li "What happens if you pass a function call instead of a class literal to " (c defstrict) "? How would you improve upon this?"]
     [:li (c defstrict) " breaks the contract of " (c defn) " in several ways. What are they, and how would you fix them?"]
-    [:li "Is multiple evaluation as possible problem for any of the arguments to " (c defstrict) "? Why or why not?"]]])
+    [:li "Is multiple evaluation a possible problem for any of the arguments to " (c defstrict) "? Why or why not?"]]])
 
 (defn instructions
   []

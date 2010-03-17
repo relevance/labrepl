@@ -19,7 +19,7 @@
     [:li "Using two nested for expressions, create a " (c new-board) " function that expects a pair of " (c [x y]) " sizes:"
      (showme new-board)]
     [:li "Test " (c new-board) " at the REPL:"
-     (repl-showme (new-board 10 10))]
+     (repl-showme (new-board [10 10]))]
     [:li "Now let's create an empty Swing GUI to work with. I can't bear to step through the tedium, so just take a look at " (c launch-1) ":"
      (showme launch-1)]
     [:li "Run " (c launch-1) " and verify that it creates an empty window and returns a board."]]])
