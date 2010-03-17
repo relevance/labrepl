@@ -60,7 +60,7 @@
    [:ol
     [:li "The browser will use the url /browse/foo for browsing the namespace foo. Create a " (c namespace-link) " function that returns an anchor tag linking to the passed in namespace name."
      (showme namespace-link)]
-    [:li "Create a " (c namespace-browser) " function that takes a collection of namespace names, aand creates a " (c div.browse-list) " around an unordered list of links from" (c namespace-link) "."
+    [:li "Create a " (c namespace-browser) " function that takes a collection of namespace names, and creates a " (c div.browse-list) " around an unordered list of links from" (c namespace-link) "."
      (showme namespace-browser)]
     [:li "We will use the url " (c "/browse/com.foo/bar") " for browsing the var" (c bar) " in the " (c com.foo) " namespace. Create a " (c var-link) " function that takes a namespace name and a var name and builds a link."
      (showme var-link)]

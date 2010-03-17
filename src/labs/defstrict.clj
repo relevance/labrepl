@@ -18,7 +18,7 @@
     [:ul
      [:li "Type tags allow the clojure compiler to inject class casts and avoid the overhead of reflective invocation."]
      [:li "Preconditions can verify the type of arguments at runtime. (In fact, they can do much more, testing any function against any combination of the argument list.)"]]]
-   [:p "Code and use type tags and preconditions in any combination, and many Clojure programs use neither. In this exercise, we will imagine an unusual project that wants both of these features on every argument to every function. We will define a " (c defstrict) " macro to capture this idiom."]]
+   [:p "Functions can use type tags and preconditions in any combination, and many Clojure programs use neither. In this exercise, we will imagine an unusual project that wants both of these features on every argument to every function. We will define a " (c defstrict) " macro to capture this idiom."]]
   )
 
 (defn shout-ins
