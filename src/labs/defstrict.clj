@@ -42,16 +42,16 @@
   []
   [[:h3 "arg-type-preconditions"]
    [:p "To build " (c defstrict) " we will start with a helper function " (c arg-type-preconditions) " that converts " (c defstrict) " argument specifiers into precondition forms. For example:"
-    (repl-code (arg-type-preconditions '[String s Integer/TYPE i])) "We'll build it inside-out from the REPL."]
+    (repl-code (arg-type-preconditions '[String s Integer i])) "We'll build it inside-out from the REPL."]
    [:ol
     [:li "First, use " (c partition) " to take the argument list two elements at a time"
-     (repl-showme (partition 2 '[String s Integer/TYPE i]))]
+     (repl-showme (partition 2 '[String s Integer i]))]
     [:li "Next, map the pairs over a function that returns the source code for the instance check:"
      (repl-showme
 "(map
  (fn [[type name]]
    `(instance? ~type ~name))
- (partition 2 '[String s Integer/TYPE i]))")
+ (partition 2 '[String s Integer i]))")
      ]
     [:li "Now, all that's left to do is wrap the result in a vector, and put the vector in a map keyed by " (c :pre) "."
      (showme arg-type-preconditions)]]])
@@ -61,17 +61,20 @@
   [[:h3 "type-tagged-args"]
    [:p "To build " (c defstrict) " we will also need a bit of code that can convert an argument list like " (c [String s]) " into the form exepcted by " (c defn) ". We can't use the reader macro syntax " (c "[#^String s]")", because the reader macro will expand before the macro itself. So, we need to expand into the same form the reader macro would emit: " (c (with-meta s {:tag String})) ". It is a little tricky to verify that this works, because metadata is semi-invisible by design: it does not print at the REPL and it does not participate in equality comparisons. So, let's do some experimenting at the REPL."]
    [:ol
-    [:li "Enter " (c "'[#^String s #^Integer/TYPE i]") " to see how the metdata does not get printed on the symbols " (c s) " and " (c i) ". "]
-    [:li "You can see the metadata by mapping " (c meta) " over the symbols:" (c "(map meta '[#^String s #^Integer/TYPE i])") ". "]
-    [:li "Now that we have a way to verify our outputs, let's turn our attention to the inputs. We will need a way to take " (c defstrict) " argument specs two at a time: " (c (partition 2 '[String s Integer/TYPE i])) ". "]
+    [:li "Enter " (c "'[#^String s #^Integer i]") " to see how the metdata does not get printed on the symbols " (c s) " and " (c i) ":"
+     (repl-showme "'[#^String s #^Integer i]")]
+    [:li "You can access the metadata by mapping " (c meta) " over the symbols:"
+     (repl-showme "(map meta '[#^String s #^Integer i])")]
+    [:li "Now that we have a way to verify our outputs, let's turn our attention to the inputs. We will need a way to take " (c defstrict) " argument specs two at a time: "
+     (repl-showme (partition 2 '[String s Integer i]))]
     [:li "Next, we need a function that takes a " (c [Classname var]) " pair, and emits " (c (with-meta var {:tag type})) "."
      (showme type-tagged-arg)]
     [:li "Almost done! Write a " (c type-tagged-args) " function that maps " (c type-tagged-arg) " over an arglist taken two at a time, and puts the result into a vector."
      (showme type-tagged-args)]
     [:li "Use the REPL to verify that the variable names come back correctly:"
-     (repl-showme "(type-tagged-args '[String s Integer/TYPE i])")]
+     (repl-showme "(type-tagged-args '[String s Integer i])")]
     [:li "And check the metadata:"
-     (repl-showme (map meta (type-tagged-args '[String s Integer/TYPE i])))]]])
+     (repl-showme (map meta (type-tagged-args '[String s Integer i])))]]])
 
 (defn defstrict-ins
   []

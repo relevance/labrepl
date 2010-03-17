@@ -24,8 +24,7 @@
 
 (defn type-tagged-args
   [arglist]
-  (apply
-   vector
+  (vec
    (map
     type-tagged-arg
     (partition 2 arglist))))
@@ -33,8 +32,7 @@
 (defn arg-type-preconditions
   [arglist]
   {:pre
-   (apply
-    vector
+   (vec
     (map
      (fn [[type name]]
        `(instance? ~type ~name))
