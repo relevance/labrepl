@@ -64,10 +64,9 @@
       [:li "All other cells go to off"]]
      "Implement " (c brians-brain-rules) " as a function of three rows."
      (showme brians-brain-rules)]
-    [:li "Test the rules at the REPL. The examples below are gratuitously cute in that they take advantage of the assumption that unspecified==off."
-     (repl-showme (brians-brain-rules nil))
-     (repl-showme (brians-brain-rules (repeat (repeat :on))))
-     (repl-showme (brians-brain-rules [[:on :on]]))]
+    [:li "Test the rules at the REPL."
+     (repl-showme (brians-brain-rules nil nil nil))
+     (repl-showme (brians-brain-rules [:on :on] nil nil))]
     [:li "In order to apply the rules, we need to take the entire board in 3x3 units. This is easy to visualize in one dimension, using Clojure's partition function:"
      (repl-code (partition 3 1 [:a :b :c :d :e]))
      "Using this idiom, implement a function " (c torus-window) ", so called because it 'wraps around' by prepending the last row and appending the first row:"
@@ -80,7 +79,7 @@
      (showme activity-loop)]
     [:li "Finally, we need the completed " (c launch) " function. " (c launch) " builds on the previous iteratations, adding a call to " (c future) " that kicks off the " (c activity-loop) " before returning the board."
      (showme launch)]
-    [:li "You are reayd to go! " (c launch) " your automaton and watch it go. When you (or your CPU) grow tired, you can stop it by setting the returned atom to " (c nil) ", or by simply killing the JVM."]]])
+    [:li "You are ready to go! " (c launch) " your automaton and watch it go. When you (or your CPU) grow tired, you can stop it by setting the returned atom to " (c nil) ", or by simply killing the JVM."]]])
 
 (defn bonus
   []
