@@ -27,7 +27,7 @@
      [:li
       "You can define your own functions with "
       [:code "defn"]
-      "Use the following form to define a function named triple that triples its argument."
+      ". Use the following form to define a function named triple that triples its argument."
       (code (defn triple
               [arg]
               (* 3 arg)))]
@@ -41,13 +41,12 @@
     [:li
      "To learn about a function, you can examine its docstring. Print the docstring for "
      [:code "println"]
-     "using the form"
+     " using the form"
      (code (doc println))]
     [:li
      "If you are not sure of the name of a function, you can search for docs with "
      [:code "find-doc"]
-     ". This can sometimes return a huge amount of information!"
-     "Try "
+     ". This can sometimes return a huge amount of information! Try "
      (code (find-doc "append"))]
     [:li
      [:code "find-doc"]
@@ -65,7 +64,7 @@
      (code (defn triple
              "Triples arg. Don't write redundant docstrings like this in real code."
              [arg]
-             (* 2 arg)))
+             (* 3 arg)))
      (code (doc triple))]]])
 
 (defn java
