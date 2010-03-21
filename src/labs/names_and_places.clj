@@ -56,7 +56,7 @@
      (code (use '[clojure.contrib.math :only (lcm)]))
      "The " [:code ":only"] " option is available on all the namespace management forms. (There is also an " [:code ":exclude"] " which works as you might expect.)"]
     [:li "The variable " [:code "*ns*"] " always contains the current namespace, and you can see what names your current namespace refers to by calling"
-     (ns-refers *ns*)]
+     (code (ns-refers *ns*))]
     [:li "The refers map is often pretty big. If you are only interested in one symbol, pass that symbol to the result of calling " [:code "ns-refers"] ": "
      (with-ns 'labs.names-and-places
        (repl-code ((ns-refers *ns*) 'dir)))]]])
@@ -124,7 +124,7 @@
       (code (defn canadianize
               [sentence]
               (str (s/chop sentence) ", eh?")))]
-     [:li "If you simply retry calling " [:code "canadianize"] " from the repl, you will not see your new change, because the code was already loaded. However, you can use namespace forms with " [:code "reload"] "( or " [:code "reload-all"] ") to reload a namespace (and its dependencies)."
+     [:li "If you simply retry calling " [:code "canadianize"] " from the repl, you will not see your new change, because the code was already loaded. However, you can use namespace forms with " [:code "reload"] " ( or " [:code "reload-all"] ") to reload a namespace (and its dependencies)."
       (code (use :reload 'student.dialect))]
      [:li "Now you should see the new version of " (c canadianize) ": "
       (repl-code (canadianize "Hello, world."))]]]])
