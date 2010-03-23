@@ -8,13 +8,14 @@ By using this software in any fashion, you are agreeing to be bound by
 the terms of this license.
 You must not remove this notice, or any other, from this software.
 
-# Breaking News
+# From the Command Line
 
-The first use of the labrepl will be the March 15, 2010 run of the
-Clojure Studio: (http://pragmaticstudio.com/clojure). If you are looking
-at labrepl before that date, then QA is not complete. Expect a few oddities.
+You will need to work at the command line long enough to install the
+dependent libs. Instructions below use leiningen. However, I have
+checked in the maven pom.xml file, so if somebody will send me pure
+maven instructions I can add a section for that as well.
 
-# Getting Started (Mac, Linux)
+## Getting Started (Mac, Linux)
 
 * Make sure you have Java installed.
 * Make sure you have leiningen installed (http://github.com/technomancy/leiningen).
@@ -23,11 +24,7 @@ at labrepl before that date, then QA is not complete. Expect a few oddities.
 * Browse to localhost:8080 for instructions.
 * Press Ctrl+D to exit the repl when you are done.
 
-# Eclipse Integration
-
-* The repository includes Eclipse .project and .classpath files. If you are using the counterclockwise Eclipse plugin (http://code.google.com/p/counterclockwise/) you should be able to import the project into your workspace.
-
-# Getting Started (Windows)
+## Getting Started (Windows)
 
 This is minimally tested. Let me know if you have problems.
 
@@ -40,7 +37,32 @@ This is minimally tested. Let me know if you have problems.
 * Run `script\repl` to launch the labrepl.
 * Browse to localhost:8080 for instructions.
 * Press Ctrl+D to exit the repl when you are done.
- 
+
+# IDE Support
+
+## NetBeans Enclojure Integration
+
+* Install NetBeans and  Enclojure (http://enclojure.org/). 
+* From NetBeans, choose File|Open Project and open the labrepl project.
+* Right-click on the project in the project pane and choose "Start Project REPL" to start your project REPL.
+
+## Eclipse CounterClockwise Integration
+
+* The repository includes Eclipse .project and .classpath files. If you are using the counterclockwise Eclipse plugin (http://code.google.com/p/counterclockwise/) you should be able to import the project into your workspace.
+
+## IDEA Integration
+
+* Help wanted here. You can create an IDEA project over existing sources, accept the defaults, and things will *partially* work. Completion will work against project code, but not against functions in clojure and clojure-contrib. If you know how to fix this, please send me a patch.
+
+## Emacs Integration
+
+If you don't know emacs you may want to pick one of the choices above. The learning curve is steep.
+
+* Install Emacs, the Emacs Starter Kit, and 
+* From within emacs, set the `inferior-lisp-program` variable to `script/swank`. 
+* Making sure your emacs working directory is the labrepl, run `inferior-lisp`.
+* If you want slime as well, run `slime-connect` and accept the defaults. You now have slime and inferior-lisp both working simultaneously.
+
 # Thanks for contributions and reviews from
 
 * Aaron Bedra
