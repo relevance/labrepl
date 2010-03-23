@@ -11,7 +11,7 @@ You must not remove this notice, or any other, from this software.
 # From the Command Line
 
 You will need to work at the command line long enough to install the
-dependent libs. Instructions below use leiningen. However, I have
+dependent libs (except on Netbeans, see below). Instructions below use leiningen. However, I have
 checked in the maven pom.xml file, so if somebody will send me pure
 maven instructions I can add a section for that as well.
 
@@ -53,9 +53,32 @@ This is minimally tested. Let me know if you have problems.
 
 ## NetBeans Enclojure Integration
 
-* Install NetBeans and  Enclojure (http://enclojure.org/). 
-* From NetBeans, choose File|Open Project and open the labrepl project.
-* Right-click on the project in the project pane and choose "Start Project REPL" to start your project REPL.
+One-time setup
+
+* Grab labrepl from git
+  * you do not need leiningen or to do the lein or any other steps above
+* If you've just installed Netbeans, activate feature Java SE
+  * Activate features is on the Start page
+  * or from Tools, Plugins, Installed
+* Install enclojure
+  * Make sure you use [the latest .nbm from 2010-march-23](http://github.com/downloads/EricThorsen/enclojure/enclojure-plugin-2010-23-mar.nbm)	
+  * Tools/Plugins/Downloaded, locate downloaded .nbm
+* Restart Netbeans w/enclojure plugin installed
+* Open project labrepl
+  * File, Open project, select directory where you pulled labrepl
+* Right click on Libraries in the project pane
+  * Download missing dependencies
+  *	wait for that to complete
+
+To run the labrepl
+
+* Right click on project in the project pane
+  * Start Project REPL
+* In the integrated REPL:
+  * `(require 'labrepl)`
+  * `(labrepl/-main)`
+* Browse to localhost:8080
+* Enjoy the labs!
 
 ## Eclipse CounterClockwise Integration
 
