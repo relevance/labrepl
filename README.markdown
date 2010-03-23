@@ -38,6 +38,17 @@ This is minimally tested. Let me know if you have problems.
 * Browse to localhost:8080 for instructions.
 * Press Ctrl+D to exit the repl when you are done.
 
+## Getting Started (Maven)
+
+* Make sure you have Java installed.
+* Make sure you have Maven (http://maven.apache.org/) installed.
+* Run `mvn clojure:repl` to launch Clojure REPL (maven will download all necessary
+  dependencies).
+* Execute `(require 'labrepl) (set! *print-length* 100) (labrepl/-main)` to launch web
+  server.
+* Browse to localhost:8080 for instructions.
+* Press Ctrl+D to exit the repl when you are done.
+
 # IDE Support
 
 ## NetBeans Enclojure Integration
