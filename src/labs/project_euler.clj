@@ -4,7 +4,7 @@
 (defn overview
   []
   [[:h3 "Overview"]
-   [:p [:a {:href "http://projecteuler.net"} "Project Euler"] " is a set of mathematical and computer programming puzzles. You can create an account on the site, read the puzzles description, and track the puzzles you have completed correctly. The puzzles are excellent for learning how to use laziness, recursion, and the sequence library in Clojure."]
+   [:p [:a {:href "http://projecteuler.net"} "Project Euler"] " is a set of mathematical and computer programming puzzles. You can create an account on the site, read the puzzle descriptions, and track the puzzles you have completed correctly. The puzzles are excellent for learning how to use laziness, recursion, and the sequence library in Clojure."]
    [:p "This lab will walk you through implementing the first Project Euler problem:"]
    [:blockquote
     [:p "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23."]
@@ -17,7 +17,7 @@
    [:ol
     [:li "One way to attack this problem is finding numbers that are evenly divisible by 3 or 5. Create a " (c divides?) " predicate that takes a dividend and a divisor, and returns true if divisor evenly divides the dividend:"
      (showme divides?)]
-    [:li "We will eventually want to filter on divisibility by more than one number, create a " (c divides-any) " function that takes a variable list of numbers, and returns a predicate that tests whether its arg can be evenly divided by any of the numbers. (Hint: work inside-out, using " (c divides) ", " (c some) ", and " (c boolean)"). "
+    [:li "We will eventually want to filter on divisibility by more than one number, so create a " (c divides-any) " function that takes a variable list of numbers, and returns a predicate that tests whether its arg can be evenly divided by any of the numbers. (Hint: work inside-out, using " (c divides) ", " (c some) ", and " (c boolean)"). "
      (showme divides-any)]]])
 
 (defn recursion-solution

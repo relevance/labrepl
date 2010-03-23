@@ -58,7 +58,7 @@
     [:li "Keywords name things in domain-space, e.g. the attributes of domain entities. Because they are not used to name code entities, they simply evaluate to themselves and do not have to be quoted. Keywords are preceded by a colon:"
      (code :first-name)
      (code :last-name)]
-    [:li "Keywords are often used to cretae map literals:"
+    [:li "Keywords are often used to create map literals:"
      (code (def me {:first-name "Stu" :last-name "Halloway"}))]
     [:li "You can extract values from a map with " (c get) ": "
      (code (get me :first-name))]
@@ -80,13 +80,13 @@
      (code '(1 2 3))]
     [:li "List support efficient insertion at the front via " (c cons) ", which is short for \"construct\"."
      (code (cons 0 '(1 2 3)))]
-    [:li "Vectors are indexed by integer, and can be created with a literal form in sqaure brackets:"
+    [:li "Vectors are indexed by integer values, and can be created with a literal form in square brackets:"
      (code ["hello" "world"])
      (code (get ["hello" "world"] 1))]
     [:li "Map literals are enclosed in " (c {}), "."
-     (code "{:country \"US\" :capitol \"Washington, D.C.\"}")]
+     (code "{:country \"US\" :capital \"Washington, D.C.\"}")]
     [:li "Commas are whitespace. You may prefer using them to delimit pairs in map literals:"
-     (code {:country "US", :capitol "Washington, D.C."})]
+     (code {:country "US", :capital "Washington, D.C."})]
     [:li "Character literals look like " (c \Z) ", and sets are delimited by " (code #{}), ", so the set of English vowels is "
      (code #{\a \e \i \o \u})]
     [:li "Vectors, maps, and sets are all associative collections. You can use them as functions to lookup values:"
@@ -112,16 +112,16 @@
       (code (take 5 (range 100)))
       (code (drop 5 (range 100)))
       "Again, try these functions against some other collection types as well."]
-     [:li "You can " (c map) " a function acorss the elements of a collection, applying the function to each:"
+     [:li "You can " (c map) " a function across the elements of a collection, applying the function to each:"
       (code (map (fn [x] (* x 2)) (range 50)))]
      [:li "You can " (c filter) " a collection, returning only those elements that match a predicate:"
       (code (filter odd? (range 50)))]
-     [:li (c reduce) " walks a collection, applying a function to pair and carrying the result. The following are equivalent:"
+     [:li (c reduce) " walks a collection, applying a function to a pair of elements and carrying the result. The following are equivalent:"
       (code "(reduce + [1 2]) \n-> (+ 1 2)")
       (code "(reduce + [1 2 3]) \n-> (+ (+ 1 2) 3)")]
      [:li "Try reducing something a little bigger."
       (code (reduce + (range 101)))]
-     [:li "Because all collections can be treated as sequences, it is very easy to extend Clojure's power. If you write a function that works with seqs, all data can use it. The hardest part of writing Clojure apps is often deciding if the function you want already exists. What if you wanted something like " (c reduce), ", but returning all ther intermediate steps. No problem, that is called " (c reductions) ": "
+     [:li "Because all collections can be treated as sequences, it is very easy to extend Clojure's power. If you write a function that works with seqs, all data can use it. The hardest part of writing Clojure apps is often deciding if the function you want already exists. What if you wanted something like " (c reduce), ", but returning all the intermediate steps. No problem, that is called " (c reductions) ": "
       (code (use '[clojure.contrib.seq-utils :only (reductions)])
             (reductions + (range 101)))]]]])
 
@@ -141,7 +141,7 @@
     [:li "Let's generalize that a bit. The " (c frequencies) " function returns a map of values to the number of times each value occurs. Build a frequencies table by initial letter"
      (code (use '[clojure.contrib.seq-utils :only (frequencies)])
            (frequencies (map first words)))
-     "(Note that hear you see one advantage of working with all the data, instead of thinking up a few examples. The results demonstrate that we need to decide how to deal with upper vs. lower case letters."]
+     "(Note that here you see one advantage of working with all the data, instead of thinking up a few examples. The results demonstrate that we need to decide how to deal with upper vs. lower case letters."]
     [:li "How about a frequency distribution by the length of the word?"
      (code "(frequencies (map #(.length %) words))")]
     [:li "Frequencies are easier to visualize with a bar chart. Load the incanter charting library:"
