@@ -77,9 +77,11 @@ If you don't know emacs you may want to pick one of the choices above. The learn
 # Thanks for contributions and reviews from
 
 * Aaron Bedra
-* Larry Karnowski
-* Jess Martin
 * Rich Hickey
+* Larry Karnowski
+* Michael Kohl
+* Jess Martin
+* Alex Ott
 
 
  

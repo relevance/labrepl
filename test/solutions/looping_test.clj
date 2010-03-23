@@ -22,11 +22,13 @@
                (apply min-3 vals)
                (apply min vals)))
     2 [6 2 4]
+    2 [6 3 2 4]
     0 [0]))
 
 (testing "minmax"
   (for-these [result vals]
     (should (= result
-               (apply minmax-1 vals)))
+               (apply minmax-1 vals)
+               (apply minmax-2 vals)))
     {:min 2 :max 7} [7 2 4]
     {:min 0 :max 0} [0]))

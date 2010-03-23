@@ -38,7 +38,7 @@
   (loop [min x
          more (seq more)]
     (if-let [x (first more)]
-      (recur (if (< x min) x min) (rest more))
+      (recur (if (< x min) x min) (next more))
       min)))
 
 (defn min-2
@@ -46,7 +46,7 @@
   (loop [min x
          [x & more] (seq more)]
     (if x
-      (recur (if (< x min) x min) (rest more))
+      (recur (if (< x min) x min) more)
       min)))
 
 (defn min-3
@@ -71,8 +71,8 @@
   [x & more]
   (reduce
    (fn [result x]
-     (-> result
-         (merge-with :min x min)
-         (merge-with :max x max)))
+     (->> result
+         (merge-with min {:min x})
+         (merge-with max {:max x})))
    {:min x :max x}
    more))
