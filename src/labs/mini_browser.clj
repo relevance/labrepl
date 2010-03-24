@@ -40,13 +40,13 @@
     [:li "Add " (c mockup-2) " to a route /m2 and browse to " (ll "http://localhost:8099/m2") " to see the second mockup."]
     [:li "Now let's add some standard styling and JavaScript. The " (c include-css) " function generates markup to pull in CSS files. Try it at the REPL:"
      (repl-showme (include-css "/stylesheets/application.css"))]
-    [:li (c include-js) " does the same thing of for JavaScript:"
+    [:li (c include-js) " does the same thing for JavaScript:"
      (repl-showme (include-js "/javascripts/application.js"))]
     [:li "The labs include a set of premade JavaScripts and CSS files. Use the namespace " (c labrepl.web) ", and you can access these files via the vars " (c default-stylesheets) " and " (c default-javascripts)": "
      (repl-showme [default-stylesheets, default-javascripts])]
-    [:li "Create a " (c mockup-3) " that adds the default CSS anad JavaScripts:"
+    [:li "Create a " (c mockup-3) " that adds the default CSS and JavaScripts:"
      (showme mockup-3)]
-    [:li "Add an m3 route to " (c mockup-3) ", and a catch-all route that serves files (The " (c serve-file) " function will server files from the " (c public) " directory by default.)"
+    [:li "Add an m3 route to " (c mockup-3) ", and a catch-all route that serves files (The " (c serve-file) " function will serve files from the " (c public) " directory by default.)"
      (showme* '(defroutes mockup-routes
                  (GET "/m1" (mockup-1))
                  (GET "/m2" (mockup-2))
@@ -62,7 +62,7 @@
      (showme namespace-link)]
     [:li "Create a " (c namespace-browser) " function that takes a collection of namespace names, and creates a " (c div.browse-list) " around an unordered list of links from" (c namespace-link) "."
      (showme namespace-browser)]
-    [:li "We will use the url " (c "/browse/com.foo/bar") " for browsing the var" (c bar) " in the " (c com.foo) " namespace. Create a " (c var-link) " function that takes a namespace name and a var name and builds a link."
+    [:li "We will use the url " (c "/browse/com.foo/bar") " for browsing the var " (c bar) " in the " (c com.foo) " namespace. Create a " (c var-link) " function that takes a namespace name and a var name and builds a link."
      (showme var-link)]
     [:li "Create a " (c var-browser) " function that puts a " (c div.browse-list) (c variables) " around an unorderd list of var links:"
      (showme var-browser)]
@@ -89,10 +89,10 @@
                    (layout
                     (namespace-browser (namespace-names)))))))]
     [:li "Create a separate " (c static-routes) " for static content."
-     (c static-routes)]
+     (showme static-routes)]
     [:li "Create " (c app-routes) " to combine browser routes and static routes."]
     [:li "Create a " (c main) " function to launch the browser on port 9000."
-     (c main)]
+     (showme main)]
     [:li "Run " (c main) " and browse to " (ll "http://localhost:9000") " to see the live namespaces."]
    
     [:li "Next we need a function " (c var-names) " that returns the var names given a namespace name. To build it you will need to call" (c symbol) ", " (c find-ns) ", " (c ns-publics) ", and " (c keys) "."
@@ -104,7 +104,7 @@
     [:li "The " (c var-detail) " function should return markup:"
      [:ul
       [:li "The var symbol in an h3 tag"]
-      [:li "The docstring in a " (c "pre code") "block. You can combine " (c print-doc) " and " (c with-out-str) " to get the docstring"]
+      [:li "The docstring in a " (c "pre code") " block. You can combine " (c print-doc) " and " (c with-out-str) " to get the docstring"]
       [:li "The source code itself. You will need to use" (c find-var) ", " (c clojure.contrib.repl-utils/get-source) ", and " (c labrepl.util/code*) ", which will wrap the code in html tags for you."]]
      (showme var-detail)]
     [:li "Test " (c var-detail) " from the repl."
@@ -117,10 +117,10 @@
   []
   [[:h3 "Bonus"]
    [:ol
-    [:li "The 'everything is a function' approach makes testing easy. Routes are just functions--try calling one of your routed directly:"
+    [:li "The 'everything is a function' approach makes testing easy. Routes are just functions--try calling one of your routes directly:"
      (repl-showme (mockup-routes {:uri "/m1"}))]
-    [:li "The syntax highligher isn't perfect--it sometimes highlights parts of words. What is the issue, and what is the fix?"]
-    [:li "The lab you are reading is itself a Compojure app. Use your browse to explore the namespaces starting with " (c labrepl) "."]]])
+    [:li "The syntax highlighter isn't perfect--it sometimes highlights parts of words. What is the issue, and what is the fix?"]
+    [:li "The lab you are reading is itself a Compojure app. Use your browser to explore the namespaces starting with " (c labrepl) "."]]])
 
 (defn instructions
   []
