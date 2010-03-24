@@ -95,6 +95,16 @@ If you don't know emacs you may want to pick one of the choices above. The learn
 * Making sure your emacs working directory is the labrepl, run `inferior-lisp`.
 * If you want slime as well, run `slime-connect` and accept the defaults. You now have slime and inferior-lisp both working simultaneously.
 
+# Running the Tests
+
+## Maven
+
+`mvn clojure:test`
+
+## From Shell Script (Unix)
+
+`script/test`
+
 # Thanks for contributions and reviews from
 
 * Aaron Bedra
@@ -103,6 +113,7 @@ If you don't know emacs you may want to pick one of the choices above. The learn
 * Michael Kohl
 * Jess Martin
 * Alex Ott
+
 
 
  

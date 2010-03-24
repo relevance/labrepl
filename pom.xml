@@ -25,8 +25,8 @@
             <sourceDirectory>src</sourceDirectory>
           </sourceDirectories>
           <clojureOptions>-Xmx1G</clojureOptions>
-          <runWithTests>false</runWithTests>
           <replScript>script/run.clj</replScript>
+          <testScript>script/test.clj</testScript>
         </configuration>
       </plugin>
     </plugins>
