@@ -13,9 +13,9 @@
     [:ul
      [:li "Data is immutable."]
      [:li [:em "State"] " is manged through indirection, via " [:em "references"] " to immutable data."]
-     [:li "There are a variety of different reference types, each of which provide reliable concurrency semantics."]
+     [:li "There are a variety of different reference types, each of which provides reliable concurrency semantics."]
      [:li "The reference types share a Unified Update Model, which is the atomic application of a function to the existing value."]]
-    [:p "The unified update model makes clojure concurrency easy to use, both in concept and at the API level. In this section you will explore the Unified Update Model in the context of different Clojure reference types"]]
+    [:p "The Unified Update Model makes Clojure's concurrency easy to use, both in concept and at the API level. In this section you will explore the Unified Update Model in the context of different Clojure reference types."]]
    ])
 
 (defn atoms
@@ -30,7 +30,7 @@
      (repl-code (swap! counter + 1000))]
     [:li "It is really that simple, and it is thread-safe. And the atomic values can be composites:"
      (repl-code (def language (atom {:name "Clojure" :age 2})))]
-    [:li "The " (c xxx-in) " family of functions are great for working with composites:"
+    [:li "The " (c xxx-in) " family of functions is great for working with composites:"
      (repl-code (swap! language update-in [:age] inc))]
     [:li "Let's use atoms to build a simple object cache. First, create a " (c create-1) " function that returns an atom wrapped around an empty map."
      (showme ac/create-1)]
@@ -80,11 +80,13 @@
                      (rc/put colors :hulk "green")
                      (rc/put powers :sinestro "fear-powered space flight"))
                     {:colors colors :powers powers}))]
-    [:li "Some operations are commutative (you don't care what order they happen in, as long as they all happen). If you know that an operation is commutative, you can use " (c commute) " instead of " (c alter) ". This is a performance optimization, allowing the the STM to reduce the impedance between writers in some situations. Create a " (c fast-put) " that uses commute instead of " (c alter) "."
+    [:li "Some operations are commutative (you don't care what order they happen in, as long as they all happen). If you know that an operation is commutative, you can use " (c commute) " instead of " (c alter) ". This is a performance optimization, allowing the STM to reduce the impedance between writers in some situations. Create a " (c fast-put) " that uses commute instead of " (c alter) "."
      (showme rc/fast-put)]
     [:li "Make sure that " (c fast-put) " works correctly:"
-     ]
-    [:li "The mechanics of " (c commute) " are simple, but the implication require some thought. Is " (c commute) " actually appropriate for a cache? For a counter?"]]])
+     (repl-showme (let [colors (rc/create {:hulk "green" :aquaman "orange"})]
+                    (rc/fast-put colors {:flash "red" :sinestro "yellow"})
+                    colors))]
+    [:li "The mechanics of " (c commute) " are simple, but the implications require some thought. Is " (c commute) " actually appropriate for a cache? For a counter?"]]])
 
 
 (defn estimated-hits-for
@@ -126,9 +128,9 @@
 (defn agents
   []
   [[:h3 "Agents"]
-   [:p "Although futures allow " (c deref) ", they do not implement the unified update model. There is no ongoing state in a future, just a one-shot off-thread result. In this section, you will see agents, which implement the unified update model off-thread, allowing multiple background updates to a piece of state. We will continue the " (c fight) " example, using an agent to track of all the results over time."]
+   [:p "Although futures allow " (c deref) ", they do not implement the unified update model. There is no ongoing state in a future, just a one-shot off-thread result. In this section, you will see agents, which implement the unified update model off-thread, allowing multiple background updates to a piece of state. We will continue the " (c fight) " example, using an agent to track all of the results over time."]
    [:ol
-    [:li "You can create an agent by calling " (c agent) " with initial state. At the REPL, define " (c fight-results) " as an agent with an initially empty map"
+    [:li "You can create an agent by calling " (c agent) " with an initial state. At the REPL, define " (c fight-results) " as an agent with an initially empty map:"
      (repl-showme (def fight-results (agent {})))]
     [:li "Since agents use the unified update model, you already know how to use them, except for the function name to call (it's " (c send-off) "). We will store terms as keys, and their results counts as values in the map. " (c send-off) " a function to " (c fight-results) " that will update it with the hit count for \"clojure\":"
      (repl-showme (send-off fight-results
