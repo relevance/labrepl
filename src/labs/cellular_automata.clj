@@ -30,7 +30,7 @@
    [:ol
     [:li "Time to bring the GUI to life. Create " (c launch-2) ", which is the fleshed-out version of the trivial " (c launch-1) ". It should add lets for a " (c "BufferedImage img") " to do the drawing work offscreen, and for a " (c panel) " that proxies " (c JPanel) ". The proxy should implement " (c paint) " by calling a (yet-to-be-written) " (c render) " function."
      (showme launch-2)]
-    [:li "Render is going to iterate over the board, coloring cells white, gray, or black based on their on/dying/off status. Rather than have explicit loop variables, we are going to transform the board so that each cell knows its coordinates. Create a " (c with-coords) " function that takes a board and replace each cell with a " (c [status x y]) " tuple:"
+    [:li "Render is going to iterate over the board, coloring cells white, gray, or black based on their on/dying/off status. Rather than have explicit loop variables, we are going to transform the board so that each cell knows its coordinates. Create a " (c with-coords) " function that takes a board and replaces each cell with a " (c [status x y]) " tuple:"
      (showme with-coords)]
     [:li "Test " (c with-coords) " at the REPL:"
      (repl-showme (with-coords (new-board [3 3])))]
@@ -52,7 +52,7 @@
   []
   [[:h3 "Let 'Er Rip"]
    [:ol
-    [:li "Each cell's state in the next step depends on the current state of its eight immediate neighbors. Clojure destructuring makes it easy to extract these neighbors from a list of lists. Write an " (c active-neighbors) " function that counts all the neighbors in the on state:"
+    [:li "Each cell's state in the next step depends on the current state of its eight immediate neighbors. Clojure destructuring makes it easy to extract these neighbors from a list of lists. Write an " (c active-neighbors) " function that counts all the neighbors in the " (c :on) " state:"
      (showme active-neighbors)]
     [:li "Test " (c active-neighbors) " against a board that is all on:"
      (repl-showme (active-neighbors (repeat (repeat :on))))]
@@ -61,7 +61,7 @@
       [:li "An " (c :on) " cell goes to " (c :dying)]
       [:li "A " (c :dying) " cell goes to " (c :off)]
       [:li "An " (c :off) " cell with two active (" (c :on) ") neighbors goes to " (c :on)]
-      [:li "All other cells go to off"]]
+      [:li "All other cells go to " (c: off)]]
      "Implement " (c brians-brain-rules) " as a function of three rows."
      (showme brians-brain-rules)]
     [:li "Test the rules at the REPL."

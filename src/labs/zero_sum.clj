@@ -32,17 +32,17 @@
      (showme accounts-1/total-balance)]
     [:li "Create a " (c transfer) " function that takes a map keyed with " (c [:accounts :from :to :amount]) " and does a transfer. You will need to use " (c dosync) " to scope a transaction, and you should " [:i "not"] " need to actually read any balances."
      (showme accounts-1/transfer)]
-    [:li "Create a " (c balance) " function that takes " (c accounts) " and an " (c accound-id) " and returns the current balance for an account."
+    [:li "Create a " (c balance) " function that takes " (c accounts) " and an " (c account-id) " and returns the current balance for an account."
      (showme accounts-1/balance)]
     [:li "Using the REPL or a unit testing framework you already know to test these functions against the requirements listed at the start of the lab. Don't worry about the \"must be thread safe!\" requirement yet."]]])
 
 (defn is-it-threadsafe
   []
-  [[:h3 "Is Is Threadsafe?"]
+  [[:h3 "Is It Threadsafe?"]
    [:p "No."]
    [:p "The transaction guarantees that all updates are atomic, consistent, and isolated. But the reads are not atomic, so " (c total-balance) " could be wrong. Let's prove it in code, by generating a bunch of random transactions on multiple threads and then watching reads get out of sync."]
    [:ol
-    [:li "First, we needs some random account ids: a " (c from-id) " and a " (c to-id) ". But in Clojure it rarely makes sense to deliver " [:i "two"] " of something, when you could deliver an lazy, infinite sequence instead. Write a " (c random-account-ids) " function that returns a lazy sequence of ids from accounts. You can use " (c clojure.contrib.seq-utils/rand-elts) " to get a random element from a collection, and you can use " (c repeatedly) " to return a lazy sequence of results from calling an impure function."
+    [:li "First, we need some random account ids: a " (c from-id) " and a " (c to-id) ". But in Clojure it rarely makes sense to deliver " [:i "two"] " of something, when you could deliver a lazy, infinite sequence instead. Write a " (c random-account-ids) " function that returns a lazy sequence of ids from accounts. You can use " (c clojure.contrib.seq-utils/rand-elts) " to get a random element from a collection, and you can use " (c repeatedly) " to return a lazy sequence of results from calling an impure function."
      (showme accounts-1/random-account-ids)]
     [:li "Now, create a " (c random-transfer) " function to do a transfer at random. Let " (c [from-id to-id]) " from " (c random-account-ids) ", then use " (c rand-int) " to let a random transfer amount, then make the " (c transfer) " :"
      (showme accounts-1/random-transfer)]
@@ -64,7 +64,7 @@
     [:li "A simple fix is to change " (c total-balance) " to read within a transaction, which guarantees that all reads are from the same point-in-time."
      (showme accounts-2/total-balance)
      "Now you should be able to run as long a " (c trial) " as you like without a problem."]]
-   [:p "Reading from a transaction is fast, requires no locks, and never impedes writers. However, there is a way to solve this problem the avoids the read transaction, by changing the granularity we use to think about identity."]])
+   [:p "Reading from a transaction is fast, requires no locks, and never impedes writers. However, there is a way to solve this problem that avoids the read transaction, by changing the granularity we use to think about identity."]])
 
 (defn granularity
   []
