@@ -4,8 +4,8 @@
 (defn overview
   []
   [[:h3 "Overview"]
-   [:p "Clojure's protocols and types are a more powerful and flexible alternative to interfaces and classes. They solve the expression problem, allowing you to extend old things that you don't control, and allowing old code to easily use new, all with performance consistent with the fastest forms fof virtual invocation available on the host platform (e.g. Java)."]
-   [:p "We won't explore all the power at once. In this lab, you will get your feet wet using protocols and types to simulate players in the classic rock-paper-scissors game. I got the idea for this texercise from an episode of the " [:a {:href "http://www.rubyquiz.com/quiz16.html"} "Ruby Quiz"] "."]])
+   [:p "Clojure's protocols and types are a more powerful and flexible alternative to interfaces and classes. They solve the expression problem, allowing you to extend old things that you don't control, and allowing old code to easily use new, all with performance consistent with the fastest forms of virtual invocation available on the host platform (e.g. Java)."]
+   [:p "We won't explore all the power at once. In this lab, you will get your feet wet using protocols and types to simulate players in the classic rock-paper-scissors game. I got the idea for this exercise from an episode of the " [:a {:href "http://www.rubyquiz.com/quiz16.html"} "Ruby Quiz"] "."]])
 
 (defn the-rules
   []
@@ -29,7 +29,7 @@
     [:li "All the players will conform to a " (c Player) " protocol. It should have two methods: "
      [:ol
       [:li (c choose) " takes a player and returns that player's choice"]
-      [:li (c update-strategy) " takes a player, that player's last choice, and the other player's last choice, returning the " (c Player) " for the next round"]]
+      [:li (c update-strategy) " takes a player, that player's last choice, and the other player's last choice, returning the " (c Player) " for the next round:"]]
      (showme Player)]
     [:li "Use " (c deftype) " to define a " (c Random) " player. " (c Random) " always picks at random, and never changes strategy based on what the other player is doing."
      (showme Random)]

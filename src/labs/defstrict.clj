@@ -12,11 +12,11 @@
    [:p "Static typing provides (at least!) three benefits:"
     [:ul
      [:li "Invocation can be optimized, as no reflection against the object is necessary."]
-     [:li "Argument types can be verified correct."]
+     [:li "Argument types can be verified to be correct."]
      [:li "Static analysis of programs can identify bugs, perform optimizations, etc."]]]
    [:p "Clojure can provide some of these benefits, in a way consistent with its a la carte, dynamic nature:"
     [:ul
-     [:li "Type tags allow the clojure compiler to inject class casts and avoid the overhead of reflective invocation."]
+     [:li "Type tags allow the Clojure compiler to inject class casts and avoid the overhead of reflective invocation."]
      [:li "Preconditions can verify the type of arguments at runtime. (In fact, they can do much more, testing any function against any combination of the argument list.)"]]]
    [:p "Functions can use type tags and preconditions in any combination, and many Clojure programs use neither. In this exercise, we will imagine an unusual project that wants both of these features on every argument to every function. We will define a " (c defstrict) " macro to capture this idiom."]]
   )
@@ -36,7 +36,7 @@
     [:li "Test that " (c shout-3) " provides a more informative error message for various bad inputs."]]
    [:p "A la carte is nice until you want the same fixed meal every time. If you wanted to write a ton of functions that all did type tagging and instance checking, the style used in " (c shout-3) " would become tedious. Let's pretend that there is a Clojure feature called " (c defstrict) " that provides a simple syntax like this:"
     (source shout)
-    "In a lisp, you don't have to pretend. Let's implement " (c defstrict) "."]])
+    "In a Lisp, you don't have to pretend. Let's implement " (c defstrict) "."]])
 
 (defn arg-type-preconditions-ins
   []
