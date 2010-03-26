@@ -5,7 +5,7 @@
 
 (defn all
   []
-  [:intro :names-and-places :its-all-data :project-euler
+  [:intro :names-and-places :its-all-data :looping :project-euler
    :mini-browser :unified-update-model :zero-sum  :cellular-automata
    :defstrict :rock-paper-scissors])
 

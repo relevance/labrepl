@@ -5,4 +5,4 @@ for f in lib/*.jar; do
     CLASSPATH=$CLASSPATH:$f
 done
 
-java -Xmx1G -cp $CLASSPATH jline.ConsoleRunner clojure.main -e "(require 'labrepl) (set! *print-length* 100) (labrepl/-main)$LABREPL_SWANK" -r
+java -Xmx1G -cp $CLASSPATH jline.ConsoleRunner clojure.main -i script/run.clj -r
