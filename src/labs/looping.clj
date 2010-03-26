@@ -20,7 +20,7 @@
     [:li "Clojure also has exactly one primtive control flow construct:" (c loop) ". Alone, it would loop forever, so you typically combine it with " (c if) " to terminate the recursion. Implement a function " (c min-1) " that takes the minimum of a variable-length argument list. It should"
      [:ol
       [:li "Begin the loop by binding " (c min) " to the first arg, and " (c more) " to a " (c seq) " over the rest of the args."]
-      [:li "Grab the next number " (c x) "from the front of " (c more) " in an " (c if-let) "form."]
+      [:li "Grab the next number " (c x) " from the front of " (c more) " in an " (c if-let) "form."]
       [:li "If " (c x) " then recur with the smaller of " (c x) " and " (c min) ", followed by the " (c next) " of the numbers."]
       [:li "In the else branch of the " (c if-let) ", simply return the result " (c min)]]
      (showme min-1)]
@@ -42,7 +42,7 @@
   []
   [[:h3 "zipm"]
    [:ol
-    [:li "The previous example, " (c min) ", looped over a collection to produce a single value. When your inputs and outputs are both collections, there are more implementation choices to consider. We will see this with " (c zipm) ", which takes sequence of keys and values to make a map:"
+    [:li "The previous example, " (c min) ", looped over a collection to produce a single value. When your inputs and outputs are both collections, there are more implementation choices to consider. We will see this with " (c zipm) ", which takes sequences of keys and values to make a map:"
      (let [zipm zipmap]
        (repl-code (zipm [:a :b :c] [1 2 3])))]
     [:li "One option is to loop over three variables: the result map " (c m) " (which gets bigger), and the input sequences " (c ks) " and " (c vs) " (which get smaller). Create a " (c zipm-1) " that uses a loop and " (c assoc) " to build the result map."
