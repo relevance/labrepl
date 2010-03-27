@@ -141,6 +141,7 @@ If you don't know emacs you may want to pick one of the choices above. The learn
 
 * Aaron Bedra
 * Rich Hickey
+* Shawn Hoover
 * Larry Karnowski
 * Michael Kohl
 * Jess Martin
