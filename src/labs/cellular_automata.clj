@@ -61,7 +61,7 @@
       [:li "An " (c :on) " cell goes to " (c :dying)]
       [:li "A " (c :dying) " cell goes to " (c :off)]
       [:li "An " (c :off) " cell with two active (" (c :on) ") neighbors goes to " (c :on)]
-      [:li "All other cells go to " (c: off)]]
+      [:li "All other cells go to " (c off)]]
      "Implement " (c brians-brain-rules) " as a function of three rows."
      (showme brians-brain-rules)]
     [:li "Test the rules at the REPL."
