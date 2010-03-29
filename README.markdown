@@ -16,20 +16,27 @@ Instructions below for getting started with NetBeans/Enclojure, Eclipse/Counterc
 
 One-time setup
 
-* Grab labrepl from git
-  * you do not need leiningen or to do the lein or any other steps above
+* Note you will not need the git command line, nor maven, nor leiningen
+* Install [Netbeans](http://netbeans.org/downloads/index.html)
+  * You just need the Java SE version
 * If you've just installed Netbeans, activate feature Java SE
   * Activate features is on the Start page
   * or from Tools, Plugins, Installed
-* Install enclojure
+* Download the [git plugin for Netbeans](http://code.google.com/p/nbgit/downloads/list)
+  * Choose nbgit-0.3.nbm
+* Download the Enclojure plugin
   * Make sure you use [the latest .nbm from 2010-march-23](http://github.com/downloads/EricThorsen/enclojure/enclojure-plugin-2010-23-mar.nbm)	
-  * Tools/Plugins/Downloaded, locate downloaded .nbm
-* Restart Netbeans w/enclojure plugin installed
+* Install the plugins - git, then Enclojure
+  * Tools/Plugins/Downloaded, locate the downloaded .nbms
+* Restart Netbeans w/enclojure and git plugins installed
+* Grab labrepl from git
+  * In Netbeans - Team/Git/Clone Other
+     * git@github.com:relevance/labrepl.git
 * Open project labrepl
   * File, Open project, select directory where you pulled labrepl
 * Right click on Libraries in the project pane
-  * Download missing dependencies
-  *	wait for that to complete
+  * Download Missing Dependencies
+     * wait for that to complete
 
 To run the labrepl
 
