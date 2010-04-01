@@ -94,6 +94,36 @@ To run the labrepl
 * Browse to localhost:8080
 * Enjoy the labs!
 
+## Getting Started (IDEA/La Clojure)
+
+One-time setup
+
+* Install [IntelliJ IDEA](http://www.jetbrains.com/idea/). The free Community Edition works fine.
+* Install the La Clojure plugin:
+  * Prefereneces/Plugins/Available, select La Clojure, right click
+and download the plugin.
+* Restart IDEA.
+* Clone the labrepl repository:
+  * Choose Version Control|Checkout From Version Control|Git. Fill in the dialog with:
+      * Repository URL: git://github.com/relevance/labrepl.git
+      * Leave Origin Name blank
+      * Choose whatever Parent Directory you want
+      * Directory name: labrepl
+  * Choose "Yes" for create IDEA project, and then:
+      * Import Project from external model
+      * Choose Maven if given choice of models
+      * Accept all the defaults (click "Next" a bunch of times.)
+  * Wait for maven to download dependencies.
+
+To run the labrepl
+
+* Choose Tools|Clojure REPL|Add new Clojure REPL
+* In the REPL Console
+  * `(require 'labrepl)`
+  * `(labrepl/-main)`
+* Browse to localhost:8080
+* Enjoy the labs!
+
 ## Getting Started (Maven)
 
 * Make sure you have Java installed.
@@ -125,10 +155,6 @@ This is minimally tested. You are probably better off using Maven or one of the 
 * Run `script\repl` to launch the labrepl.
 * Browse to localhost:8080 for instructions.
 * Press Ctrl+D to exit the repl when you are done.
-
-## Getting Started (IDEA/La Clojure)
-
-Help wanted here. You can use the maven install instructions, then create an IDEA project over existing sources, accept the defaults, and things will *partially* work. Completion will work against project code, but not against functions in clojure and clojure-contrib. If you know how to fix this, please send me a patch.
 
 ## Getting Started (Emacs)
 
