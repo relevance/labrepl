@@ -9,7 +9,7 @@
   <scm>
     <connection>scm:git:git://github.com/relevance/labrepl.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/relevance/labrepl.git</developerConnection>
-    <tag>e6b11195217f0869e088be12d359a0437e3c323e</tag>
+    <tag>eb4644a954faf1301d24b7c2d4ee9b82e849acf0</tag>
     <url>http://github.com/relevance/labrepl</url>
   </scm>
   <build>
@@ -27,6 +27,15 @@
           <clojureOptions>-Xmx1G</clojureOptions>
           <replScript>script/run.clj</replScript>
           <testScript>script/test.clj</testScript>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
         </configuration>
       </plugin>
     </plugins>

@@ -50,8 +50,6 @@ To run the labrepl
 
 ## Getting Started (Eclipse/Counterclockwise)
 
-* The repository includes Eclipse .project and .classpath files. If you are using the counterclockwise Eclipse plugin (http://code.google.com/p/counterclockwise/) you should be able to import the project into your workspace.
-
 One-time setup
 
 * If you do not have Eclipse installed
@@ -78,11 +76,12 @@ One-time setup
   * Select counterclockwise, verify the "Contact all update sites during ..." chekbox is checked, click next, accept licence, etc., restart Eclipse
 * Grab labrepl from git via EGit
   * Menu File > Import ... > Git > Git Repository ; Hit Next
-  * URI: git://github.com/relevance/labrepl.git ; Hit Next ; Hit Next ; Hit Next ; Hit Finish
-  * You now have a project named labrepl in eclipse
-* Download project labrepl project's dependencies
-  * In the Package Explorer, right click on project labrepl > Maven > Enable Dependency Management
-  * Wait while the project is updated (takes time because it is downloading all the missing dependencies automatically)
+  * URI: git://github.com/relevance/labrepl.git ; Hit Next ; Hit Next ; Uncheck "Import Existing Projects"; Hit Finish
+* Import the maven project into Eclipse
+  * Menu File > Import ... > Maven > Existing Maven Projects ; Hit Next
+  * Choose root directory (wherever you dropped the labrepl in the previous step); Hit Finish
+* Enable Clojure Support
+  * Right-click the "labrepl" project in Package Explorer and choose "Enable/disable Clojure language support"  
 
 To run the labrepl
 
