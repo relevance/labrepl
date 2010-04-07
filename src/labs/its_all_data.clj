@@ -32,7 +32,7 @@
     [:li "Numeric literals suffixed with " (c M) " are " (c BigDecimal) "s, and provide the same guarantees for correctness as the underlying platform:"
      (code "(+ 100000M 0.00000000001M)")]
     [:li "Strings are simply Java Strings. They are immutable, and have access to all the underlying Java methods:"
-     (code "hello")
+     (code "\"hello\"")
      (code (.toUpperCase "hello"))]]])
 
 (defn name-types
@@ -48,7 +48,7 @@
     [:li "Now you can call " (c my-println) " just like you would " (c println) ": "
      (code (my-println "hello"))]
     [:li "Sometimes you want to refer to the symbol itself, without retrieving whatever it refers to. To do this, you can " [:i "quote"] " the symbol:"
-     (code (quote println))]
+     (code "(quote println)")]
     [:li "Quoting is so common that that there is a sugared form: simply put a single quote in front of any symbol to prevent that form from being evaluated:"
      (code 'foo)]
     [:li "In fact, any Clojure form can be quoted. Look at the difference between"
