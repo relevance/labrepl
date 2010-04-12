@@ -10,7 +10,18 @@ the terms of this license.
 
 You must not remove this notice, or any other, from this software.
 
-Instructions below for getting started with NetBeans/Enclojure, Eclipse/Counterclockwise, Maven, Mac/Linux command line, Windows command line, IDEA/La Clojure, and Emacs.
+# What is it?
+
+Labrepl is an environment for exploring the Clojure language. It
+includes:
+
+* a web application that presents a set of lab exercises with
+  step-by-step instructions
+* an interactive repl for working with the lab exercises
+* solutions with passing tests 
+* up-to-date versions of Clojure, contrib, incanter, compojure and a bunch of other libraries to explore
+
+See instructions below for getting started with NetBeans/Enclojure, Eclipse/Counterclockwise, Maven, Mac/Linux command line, Windows command line, IDEA/La Clojure, and Emacs.
 
 ## Getting Started (NetBeans/Enclojure)
 
@@ -172,6 +183,7 @@ If you don't know emacs you may want to pick one of the choices above. The learn
 ## Thanks for contributions and reviews from
 
 * Aaron Bedra
+* Daniel Solano Gómez
 * Rich Hickey
 * Shawn Hoover
 * Larry Karnowski
@@ -179,7 +191,7 @@ If you don't know emacs you may want to pick one of the choices above. The learn
 * Jess Martin
 * Alex Ott
 * Laurent Petit
-
+* Seth Schroeder
 
 
  
