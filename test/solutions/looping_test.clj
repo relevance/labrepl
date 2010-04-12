@@ -11,8 +11,7 @@
                (zipm-5 keys vals)
                (zipmap keys vals)))
     {} nil nil
-    {:a 1} [:a] [1]
-    {:a 2} [:a :a] [1 2]))
+    {:a 1} [:a] [1]))
 
 (testing "min"
   (for-these [result vals]
