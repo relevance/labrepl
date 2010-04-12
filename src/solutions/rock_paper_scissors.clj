@@ -25,22 +25,19 @@
   (update-strategy [p me you]))
 
 (deftype Random []
-  :as this
   Player
-  (choose [] (random-choice))
-  (update-strategy [me you] this))
+  (choose [_] (random-choice))
+  (update-strategy [this me you] this))
 
 (deftype Stubborn [choice]
-  :as this
   Player
-  (choose [] choice)
-  (update-strategy [me you] this))
+  (choose [_] choice)
+  (update-strategy [this me you] this))
 
 (deftype Mean [last-winner]
-  :as this
   Player
-  (choose [] (if last-winner last-winner (random-choice)))
-  (update-strategy [me you] (Mean. (when (iwon? me you) me))))
+  (choose [_] (if last-winner last-winner (random-choice)))
+  (update-strategy [_ me you] (Mean. (when (iwon? me you) me))))
 
 (defn game
  [p1 p2 rounds]
