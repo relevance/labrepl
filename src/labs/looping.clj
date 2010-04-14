@@ -17,7 +17,7 @@
    [:ol
     [:li "Clojure has exactly one primitive control flow form: " (c if) ". Try using it to return the minimum of two numbers:"
      (repl-code (if (< 3 4) 3 4))]
-    [:li "Clojure also has exactly one primtive control flow construct:" (c loop) ". Alone, it would loop forever, so you typically combine it with " (c if) " to terminate the recursion. Implement a function " (c min-1) " that takes the minimum of a variable-length argument list. It should"
+    [:li "Clojure also has exactly one primitive control flow construct:" (c loop) ". Alone, it would loop forever, so you typically combine it with " (c if) " to terminate the recursion. Implement a function " (c min-1) " that takes the minimum of a variable-length argument list. It should"
      [:ol
       [:li "Begin the loop by binding " (c min) " to the first arg, and " (c more) " to a " (c seq) " over the rest of the args."]
       [:li "Grab the next number " (c x) " from the front of " (c more) " in an " (c if-let) "form."]

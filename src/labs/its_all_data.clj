@@ -24,7 +24,7 @@
     [:li "For integer division and remainder, use " (c quot) " and " (c rem) ": "
      (code (quot 22 7))
      (code (rem 22 7))]
-    [:li "Clojure integer literals are not limited to the range of Java's primtive types. They can be any size, and Clojure will choose the correct underlying representation."
+    [:li "Clojure integer literals are not limited to the range of Java's primitive types. They can be any size, and Clojure will choose the correct underlying representation."
      (code (class (* 1000 1000)))
      (code (class (* 1000 1000 1000 1000)))
      (code (class (* 1000 1000 1000 1000 1000 1000 1000 1000)))
