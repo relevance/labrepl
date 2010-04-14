@@ -23,37 +23,36 @@ includes:
 
 See instructions below for getting started with NetBeans/Enclojure, Eclipse/Counterclockwise, Maven, Mac/Linux command line, Windows command line, IDEA/La Clojure, and Emacs.
 
-## Getting Started (NetBeans/Enclojure)
+## Getting Started (NetBeans with the Enclojure plugin)
 
-One-time setup
+This is a one-time setup that does not require the git command line, Maven, or leiningen.
 
-* Note you will not need the git command line, nor maven, nor leiningen
-* Install [Netbeans](http://netbeans.org/downloads/index.html)
-  * You just need the Java SE version
-* If you've just installed Netbeans, activate feature Java SE
-  * Activate features is on the Start page
-  * or from Tools, Plugins, Installed
-* Download the [git plugin for Netbeans](http://code.google.com/p/nbgit/downloads/list)
-  * Choose nbgit-0.3.nbm
-* Download the Enclojure plugin
-  * Make sure you use [the latest .nbm from 2010-march-23](http://github.com/downloads/EricThorsen/enclojure/enclojure-plugin-2010-23-mar.nbm)	
-* Install the plugins - git, then Enclojure
-  * Tools/Plugins/Downloaded, locate the downloaded .nbms
-* Restart Netbeans w/enclojure and git plugins installed
-* Grab labrepl from git
-  * In Netbeans - Team/Git/Clone Other
-     * git@github.com:relevance/labrepl.git
-* Open project labrepl
-  * File, Open project, select directory where you pulled labrepl
-* Right click on Libraries in the project pane
-  * Download Missing Dependencies
-     * wait for that to complete
+1. Install the Java SE version of [NetBeans](http://netbeans.org/downloads/index.html)
+2. Launch NetBeans
+3. If you've just installed NetBeans for the first time, make sure the Java SE plugin is
+active
+  * Click the "Install Plugins" link on the Start page, then select the "Installed" tab or...
+  * Go to the Tools > Plugins menu, then select the "Installed" tab
+4. Download the [git plugin](http://nbgit.googlecode.com/files/nbgit-0.3.nbm)
+5. Download the [Enclojure plugin](http://github.com/downloads/EricThorsen/enclojure/enclojure-plugin-2010-23-mar.nbm)
+6. Install the git and Enclojure plugins
+  * Go to the Tools > Plugins menu, then select the "Downloaded" tab
+  * Click the "Add Plugins..." button and locate the downloaded .nbms files
+  * Click the "Install" button to complete the installation
+7. Restart NetBeans with the git and Enclojure plugins installed
+8. Clone the labrepl project from GitHub
+  * Go to the Team > Git > Clone Other menu
+  * For the Repository URL, use git://github.com/relevance/labrepl
+  * Choose an arbitrary Parent Directory location where NetBeans will clone laprepl   
+9. Open the labrepl project
+  * Use the File > Open Project menu and select the directory where you cloned labrepl
+10. Right click on "Libraries" in the project pane and select "Download Missing Dependencies"
+  * Wait for that to complete
 
-To run the labrepl
+To run the labrepl:
 
-* Right click on project in the project pane
-  * Start Project REPL
-* In the integrated REPL:
+1. Right click on the project in the project pane and select "Start Project REPL" (near the bottom)
+2. In the integrated REPL window, type:
   * `(require 'labrepl)`
   * `(labrepl/-main)`
 * Browse to localhost:8080
@@ -61,7 +60,7 @@ To run the labrepl
 
 ## Getting Started (Eclipse/Counterclockwise)
 
-One-time setup
+This is a one-time setup that does not require the git command line, Maven, or leiningen.
 
 * If you do not have Eclipse installed
   * Grab a recent version of eclipse, e.g. the "Eclipse IDE for java developers" from the download page: http://www.eclipse.org/downloads/
