@@ -27,26 +27,26 @@ See instructions below for getting started with NetBeans/Enclojure, Eclipse/Coun
 
 This is a one-time setup that does not require the git command line, Maven, or leiningen.
 
-1. Install the Java SE version of [NetBeans](http://netbeans.org/downloads/index.html)
-2. Launch NetBeans
-3. If you've just installed NetBeans for the first time, make sure the Java SE plugin is
+* Install the Java SE version of [NetBeans](http://netbeans.org/downloads/index.html)
+* Launch NetBeans
+* If you've just installed NetBeans for the first time, make sure the Java SE plugin is
 active
   * Click the "Install Plugins" link on the Start page, then select the "Installed" tab or...
   * Go to the Tools > Plugins menu, then select the "Installed" tab
-4. Download the [git plugin](http://nbgit.googlecode.com/files/nbgit-0.3.nbm)
-5. Download the [Enclojure plugin](http://github.com/downloads/EricThorsen/enclojure/enclojure-plugin-2010-23-mar.nbm)
-6. Install the git and Enclojure plugins
+* Download the [git plugin](http://nbgit.googlecode.com/files/nbgit-0.3.nbm)
+* Download the [Enclojure plugin](http://github.com/downloads/EricThorsen/enclojure/enclojure-plugin-2010-23-mar.nbm)
+* Install the git and Enclojure plugins
   * Go to the Tools > Plugins menu, then select the "Downloaded" tab
   * Click the "Add Plugins..." button and locate the downloaded .nbms files
   * Click the "Install" button to complete the installation
-7. Restart NetBeans with the git and Enclojure plugins installed
-8. Clone the labrepl project from GitHub
+* Restart NetBeans with the git and Enclojure plugins installed
+* Clone the labrepl project from GitHub
   * Go to the Team > Git > Clone Other menu
   * For the Repository URL, use git://github.com/relevance/labrepl
   * Choose an arbitrary Parent Directory location where NetBeans will clone laprepl   
-9. Open the labrepl project
+* Open the labrepl project
   * Use the File > Open Project menu and select the directory where you cloned labrepl
-10. Right click on "Libraries" in the project pane and select "Download Missing Dependencies"
+* Right click on "Libraries" in the project pane and select "Download Missing Dependencies"
   * Wait for that to complete
 
 To run the labrepl:
@@ -55,8 +55,8 @@ To run the labrepl:
 2. In the integrated REPL window, type:
   * `(require 'labrepl)`
   * `(labrepl/-main)`
-* Browse to localhost:8080
-* Enjoy the labs!
+3. Browse to http://localhost:8080
+4. Enjoy the labs!
 
 ## Getting Started (Eclipse/Counterclockwise)
 
