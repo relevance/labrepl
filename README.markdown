@@ -30,28 +30,27 @@ This is a one-time setup that does not require the git command line, Maven, or l
 * Install the Java SE version of [NetBeans](http://netbeans.org/downloads/index.html)
 * Launch NetBeans
 * If you've just installed NetBeans for the first time, make sure the Java SE plugin is
-active
+active:
   * Click the "Install Plugins" link on the Start page, then select the "Installed" tab or...
   * Go to the Tools > Plugins menu, then select the "Installed" tab
 * Download the [git plugin](http://nbgit.googlecode.com/files/nbgit-0.3.nbm)
 * Download the [Enclojure plugin](http://github.com/downloads/EricThorsen/enclojure/enclojure-plugin-2010-23-mar.nbm)
-* Install the git and Enclojure plugins
+* Install the git and Enclojure plugins:
   * Go to the Tools > Plugins menu, then select the "Downloaded" tab
   * Click the "Add Plugins..." button and locate the downloaded .nbms files
   * Click the "Install" button to complete the installation
 * Restart NetBeans with the git and Enclojure plugins installed
-* Clone the labrepl project from GitHub
+* Clone the labrepl project from GitHub:
   * Go to the Team > Git > Clone Other menu
   * For the Repository URL, use: git://github.com/relevance/labrepl.git
-  * Choose an arbitrary Parent Directory location where NetBeans will clone laprepl   
-* Open the labrepl project
-  * Use the File > Open Project menu and select the directory where you cloned labrepl
-* Right click on "Libraries" in the project pane and select "Download Missing Dependencies"
-  * Wait for that to complete
+  * Choose an arbitrary Parent Directory location where NetBeans will clone labrepl   
+* Open the labrepl project:
+  * Go to the File > Open Project menu and select the directory where you cloned labrepl
+* Right click on "Libraries" in the project pane and select "Download Missing Dependencies". Wait for that to complete...
 
 To run the labrepl:
 
-* Right click on the project in the project pane and select "Start Project REPL" (near the bottom)
+* Right click on the labrepl project in the project pane and select "Start Project REPL" (near the bottom)
 * In the integrated REPL window, type:
   * `(require 'labrepl)`
   * `(labrepl/-main)`
@@ -62,15 +61,14 @@ To run the labrepl:
 
 This is a one-time setup that does not require the git command line, Maven, or leiningen.
 
-* Install [Eclipse](http://www.eclipse.org/downloads/)
+* Install [Eclipse](http://www.eclipse.org/downloads/):
   * Download a recent version of "Eclipse IDE for Java Developers"
-  * Unzip it somewhere. 
-  * The executable is eclipse (Linux), Eclipse (Mac), or eclipse.exe (Windows) located
-    in the eclipse/ directory created by the unzip operation
+  * Unzip it in a directory of your choosing. 
+  * The executable is in the unzipped directory: eclipse (Linux), Eclipse (Mac), or eclipse.exe (Windows)
 * Launch Eclipse
-  * The first time it is run, Eclipse will ask you for a location on your disk where
-    eclipse will put its metadata and will create new projects by default.
-* Install the Eclipse Git (EGit) plugin
+  * The first time it is run, Eclipse will ask you for the location where
+    Eclipse will put its metadata and will create new projects by default.
+* Install the Eclipse Git (EGit) plugin:
   * Go to the Help > Install New Software menu
   * For the "Work with:" site, use: http://download.eclipse.org/egit/updates
   * Hit Enter
@@ -80,7 +78,7 @@ This is a one-time setup that does not require the git command line, Maven, or l
   * Click "Next" and accept the license when prompted
   * Click "Finish" to start the installation process
   * When EGit has been installed, restart Eclipse
-* Install the Maven (m2eclipse) plugin
+* Install the Maven (m2e) plugin:
   * Go to the Help > Install New Software menu
   * For the "Work with:" site, use: http://m2eclipse.sonatype.org/sites/m2e
   * Hit Enter
@@ -89,7 +87,7 @@ This is a one-time setup that does not require the git command line, Maven, or l
   * Click "Next" and accept the license when prompted
   * Click "Finish" to start the installation process
   * When Maven has been installed, restart Eclipse
-* Install the Counterclockwise plugin
+* Install the Counterclockwise plugin:
   * Go to the Help > Install New Software menu
   * For the "Work with:" site, use: http://updatesite.counterclockwise.googlecode.com/hg/
   * Hit Enter
@@ -98,21 +96,21 @@ This is a one-time setup that does not require the git command line, Maven, or l
   * Click "Next" and accept the license when prompted
   * Click "Finish" to start the installation process
   * When Counterclockwise has been installed, restart Eclipse
-* Clone the labrepl project from GitHub
+* Clone the labrepl project from GitHub:
   * Go to File > Import ... > Git > Git Repository
   * Hit Next
   * For the "URI:", use: git://github.com/relevance/labrepl.git
   * Hit Next twice
   * Uncheck "Import Existing Projects" if prompted
   * Hit "Select All" and hit "Finish"
-* Import the labrepl Maven project into Eclipse
+* Import the labrepl Maven project into Eclipse:
   * Go to File > Import ... > Maven > Existing Maven Projects
   * Hit Next
-  * Choose the root directory where you cloned the labrepl project in the previous step)
+  * Choose the root directory where you cloned the labrepl project in the previous step
   * Verify that the pom.xml file is selected 
   * Hit Finish
 * Enable Clojure support
-  * Right-click the "labrepl" project in Package Explorer and choose "Enable/disable
+  * Right-click the labrepl project in Package Explorer and choose "Enable/disable
     clojure language support"
 
 To run the labrepl:
@@ -128,19 +126,19 @@ To run the labrepl:
 
 This is a one-time setup that does not require the git command line, Maven, or leiningen.
 
-* Install [IntelliJ IDEA](http://www.jetbrains.com/idea/). The free Community Edition
-  works fine.
-* Install the La Clojure plugin
+* Install [IntelliJ IDEA](http://www.jetbrains.com/idea/). (The free Community Edition
+  works fine.)
+* Install the La Clojure plugin:
   * Go to File > Preferences
-  * Then open the Plugins preference and select the Available tab
-  * Select La Clojure, right-click it, and choose "Download and Install".
+  * Open the Plugins preference and select the Available tab
+  * Select La Clojure, right-click it, and choose "Download and Install"
 * Restart IDEA.
-* Clone the labrepl project from GitHub
-  * Go to  Version Control > Checkout From Version Control > Git. 
+* Clone the labrepl project from GitHub:
+  * Go to Version Control > Checkout From Version Control > Git. 
   * Fill in the dialog with:
       * Git Repository URL: git://github.com/relevance/labrepl.git
       * Origin Name: (leave blank)
-      * Choose an arbitrary Parent Directory
+      * Parent Directory: (choose an arbitrary directory)
       * Directory name: labrepl
   * Hit the "Clone" button
   * Choose "Yes" when prompted to create an IDEA project, and then select:
