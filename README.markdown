@@ -23,7 +23,7 @@ includes:
 
 See instructions below for getting started with NetBeans/Enclojure, Eclipse/Counterclockwise, Maven, Mac/Linux command line, Windows command line, IDEA/La Clojure, and Emacs.
 
-## Getting Started (NetBeans with the Enclojure plugin)
+## Getting Started (NetBeans with Enclojure)
 
 This is a one-time setup that does not require the git command line, Maven, or leiningen.
 
@@ -42,7 +42,7 @@ active
 * Restart NetBeans with the git and Enclojure plugins installed
 * Clone the labrepl project from GitHub
   * Go to the Team > Git > Clone Other menu
-  * For the Repository URL, use git://github.com/relevance/labrepl
+  * For the Repository URL, use: git://github.com/relevance/labrepl.git
   * Choose an arbitrary Parent Directory location where NetBeans will clone laprepl   
 * Open the labrepl project
   * Use the File > Open Project menu and select the directory where you cloned labrepl
@@ -51,104 +51,131 @@ active
 
 To run the labrepl:
 
-1. Right click on the project in the project pane and select "Start Project REPL" (near the bottom)
-2. In the integrated REPL window, type:
+* Right click on the project in the project pane and select "Start Project REPL" (near the bottom)
+* In the integrated REPL window, type:
   * `(require 'labrepl)`
   * `(labrepl/-main)`
-3. Browse to http://localhost:8080
-4. Enjoy the labs!
+* Browse to http://localhost:8080
+* Enjoy the labs!
 
-## Getting Started (Eclipse/Counterclockwise)
+## Getting Started (Eclipse with Counterclockwise)
 
 This is a one-time setup that does not require the git command line, Maven, or leiningen.
 
-* If you do not have Eclipse installed
-  * Grab a recent version of eclipse, e.g. the "Eclipse IDE for java developers" from the download page: http://www.eclipse.org/downloads/
-  * Unzip it somewhere. The executable is eclipse (linux) eclipse.exe (windows) located in the eclipse/ directory created by the unzip operation
-  * The first time it is run, it will ask you for a location on your disk where eclipse will put its metadata and will create new projects by default.
-* If you do not have Eclipse Git (EGit) installed
-  * You install it via the "software update center", that is:
-  * Menu Help > Install new software...
-  * Paste the following EGit url in the "Work with:" textbox: http://download.eclipse.org/egit/updates
+* Install [Eclipse](http://www.eclipse.org/downloads/)
+  * Download a recent version of "Eclipse IDE for Java Developers"
+  * Unzip it somewhere. 
+  * The executable is eclipse (Linux), Eclipse (Mac), or eclipse.exe (Windows) located
+    in the eclipse/ directory created by the unzip operation
+* Launch Eclipse
+  * The first time it is run, Eclipse will ask you for a location on your disk where
+    eclipse will put its metadata and will create new projects by default.
+* Install the Eclipse Git (EGit) plugin
+  * Go to the Help > Install New Software menu
+  * For the "Work with:" site, use: http://download.eclipse.org/egit/updates
   * Hit Enter
-  * Select "Eclipse EGit feature", verify the "Contact all update sites during ..." chekbox is checked, click next, accept licence, etc., restart Eclipse
-* If you do not have maven support in Eclipse (plugin m2e)
-  * You install it via the "software update center", that is:
-  * Menu Help > Install new software...
-  * Paste the following maven2eclipse (m2e) url in the "Work with:" textbox: http://m2eclipse.sonatype.org/sites/m2e
+  * Expand the resulting "Eclipse Git Team Provider" set of features
+  * Select the "Eclipse EGit Feature"
+  * Verify the "Contact all update sites during ..." checkbox is checked
+  * Click "Next" and accept the license when prompted
+  * Click "Finish" to start the installation process
+  * When EGit has been installed, restart Eclipse
+* Install the Maven (m2eclipse) plugin
+  * Go to the Help > Install New Software menu
+  * For the "Work with:" site, use: http://m2eclipse.sonatype.org/sites/m2e
   * Hit Enter
-  * Select Maven Integration for Eclipse, verify the "Contact all update sites during ..." chekbox is checked, click next, accept licence, etc., restart Eclipse
-* If you do not have Counterclockwise installed
-  * You install it via the "software update center", that is:
-  * Menu Help > Install new software...
-  * Paste the following Counterclockwise url in the "Work with:" textbox: http://updatesite.counterclockwise.googlecode.com/hg/
+  * Select "Maven Integration for Eclipse"
+  * Verify the "Contact all update sites during ..." checkbox is checked
+  * Click "Next" and accept the license when prompted
+  * Click "Finish" to start the installation process
+  * When Maven has been installed, restart Eclipse
+* Install the Counterclockwise plugin
+  * Go to the Help > Install New Software menu
+  * For the "Work with:" site, use: http://updatesite.counterclockwise.googlecode.com/hg/
   * Hit Enter
-  * Select counterclockwise, verify the "Contact all update sites during ..." chekbox is checked, click next, accept licence, etc., restart Eclipse
-* Grab labrepl from git via EGit
-  * Menu File > Import ... > Git > Git Repository ; Hit Next
-  * URI: git://github.com/relevance/labrepl.git ; Hit Next ; Hit Next ; Uncheck "Import Existing Projects"; Hit Finish
-* Import the maven project into Eclipse
-  * Menu File > Import ... > Maven > Existing Maven Projects ; Hit Next
-  * Choose root directory (wherever you dropped the labrepl in the previous step); Hit Finish
-* Enable Clojure Support
-  * Right-click the "labrepl" project in Package Explorer and choose "Enable/disable Clojure language support"  
+  * Select "Clojure Programming"
+  * Verify the "Contact all update sites during ..." checkbox is checked
+  * Click "Next" and accept the license when prompted
+  * Click "Finish" to start the installation process
+  * When Counterclockwise has been installed, restart Eclipse
+* Clone the labrepl project from GitHub
+  * Go to File > Import ... > Git > Git Repository
+  * Hit Next
+  * For the "URI:", use: git://github.com/relevance/labrepl.git
+  * Hit Next twice
+  * Uncheck "Import Existing Projects" if prompted
+  * Hit "Select All" and hit "Finish"
+* Import the labrepl Maven project into Eclipse
+  * Go to File > Import ... > Maven > Existing Maven Projects
+  * Hit Next
+  * Choose the root directory where you cloned the labrepl project in the previous step)
+  * Verify that the pom.xml file is selected 
+  * Hit Finish
+* Enable Clojure support
+  * Right-click the "labrepl" project in Package Explorer and choose "Enable/disable
+    clojure language support"
 
-To run the labrepl
+To run the labrepl:
 
-* Right click on project "labrepl" in the Package Explorer
-  * Run as > Clojure REPL
-* In the REPL Console:
+* Right click on the project in the Package Explorer and select Run As > Clojure REPL
+* In the REPL console, type:
   * `(require 'labrepl)`
   * `(labrepl/-main)`
-* Browse to localhost:8080
+* Browse to http://localhost:8080
 * Enjoy the labs!
 
-## Getting Started (IDEA/La Clojure)
+## Getting Started (IntelliJ IDEA with La Clojure)
 
-One-time setup
+This is a one-time setup that does not require the git command line, Maven, or leiningen.
 
-* Install [IntelliJ IDEA](http://www.jetbrains.com/idea/). The free Community Edition works fine.
-* Install the La Clojure plugin:
-  * Prefereneces/Plugins/Available, select La Clojure, right click
-and download the plugin.
+* Install [IntelliJ IDEA](http://www.jetbrains.com/idea/). The free Community Edition
+  works fine.
+* Install the La Clojure plugin
+  * Go to File > Preferences
+  * Then open the Plugins preference and select the Available tab
+  * Select La Clojure, right-click it, and choose "Download and Install".
 * Restart IDEA.
-* Clone the labrepl repository:
-  * Choose Version Control|Checkout From Version Control|Git. Fill in the dialog with:
-      * Repository URL: git://github.com/relevance/labrepl.git
-      * Leave Origin Name blank
-      * Choose whatever Parent Directory you want
+* Clone the labrepl project from GitHub
+  * Go to  Version Control > Checkout From Version Control > Git. 
+  * Fill in the dialog with:
+      * Git Repository URL: git://github.com/relevance/labrepl.git
+      * Origin Name: (leave blank)
+      * Choose an arbitrary Parent Directory
       * Directory name: labrepl
-  * Choose "Yes" for create IDEA project, and then:
+  * Hit the "Clone" button
+  * Choose "Yes" when prompted to create an IDEA project, and then select:
       * Import Project from external model
       * Choose Maven if given choice of models
       * Accept all the defaults (click "Next" a bunch of times.)
-  * Wait for maven to download dependencies.
+  * Wait for Maven to download all the dependent libraries.
 
-To run the labrepl
+To run the labrepl:
 
-* Choose Tools|Clojure REPL|Add new Clojure REPL
+* Choose Tools > Clojure REPL > Add New Clojure REPL
 * In the REPL Console
   * `(require 'labrepl)`
   * `(labrepl/-main)`
-* Browse to localhost:8080
+* Browse to http://localhost:8080
 * Enjoy the labs!
 
 ## Getting Started (Maven)
 
 * Make sure you have Java installed.
-* Make sure you have Maven (http://maven.apache.org/) installed.
-* Run `mvn clojure:repl` to launch Clojure REPL (maven will download all necessary
+* Make sure you have [Maven](http://maven.apache.org/) installed.
+* Clone the labrepl project and change directory into it.
+* Run `mvn clojure:repl` to launch Clojure REPL (Maven will download all necessary
   dependencies).
-* Browse to localhost:8080 for instructions.
+* Browse to http://localhost:8080 for the labs.
 * Press Ctrl+D to exit the repl when you are done.
 
 ## Getting Started (Mac/Linux command line) 
 
 * Make sure you have Java installed.
-* Make sure you have leiningen installed (http://github.com/technomancy/leiningen).
-* Run `lein deps` to install dependent libs.
+* Make sure you have [leiningen](http://github.com/technomancy/leiningen) installed.
+* Clone the labrepl project and change directory into it.
+* Run `lein deps` to install all the dependent libraries.
 * Run `script/repl` to launch the labrepl.
-* Browse to localhost:8080 for instructions.
+* Browse to http://localhost:8080 for the labs.
 * Press Ctrl+D to exit the repl when you are done.
 
 ## Getting Started (Windows command line)
@@ -156,22 +183,23 @@ To run the labrepl
 This is minimally tested. You are probably better off using Maven or one of the IDEs above. Let me know if you have problems.
 
 * Make sure you have Java installed.
-* Make sure you have leiningen installed (http://github.com/technomancy/leiningen). Do not use `lein self-install` as Windows installation is a manual process. You will need to:
-* Download leinigen.jar and set `LEIN_JAR` to point to it.
-* Download a Clojure 1.1 clojure.jar (from clojure.org) and set `CLOJURE_JAR` to point to it.
+* Make sure you have [leiningen](http://github.com/technomancy/leiningen) installed. Do not use `lein self-install` as Windows installation is a manual process. You will need to:
+* Download the leinigen.jar and set `LEIN_JAR` to point to it.
+* Download [Clojure 1.1](http://code.google.com/p/clojure/downloads/list)
+* Set `CLOJURE_JAR` to point to the clojure.jar file.
 * Set your path to include `{your-lein-install}\bin`
-* Run `lein.bat deps` to install dependent libs
+* Run `lein.bat deps` to install all the dependent libraries.
 * Run `script\repl` to launch the labrepl.
-* Browse to localhost:8080 for instructions.
+* Browse to http://localhost:8080 for the labs.
 * Press Ctrl+D to exit the repl when you are done.
 
 ## Getting Started (Emacs)
 
-If you don't know emacs you may want to pick one of the choices above. The learning curve is steep.
+If you don't know Emacs, you may want to pick one of the choices above. The learning curve here is steep.
 
 * Install Emacs, the Emacs Starter Kit, Clojure mode, slime, and swank.
 * From within emacs, set the `inferior-lisp-program` variable to `script/swank`. 
-* Making sure your emacs working directory is the labrepl, run `inferior-lisp`.
+* Making sure your Emacs working directory is the labrepl, run `inferior-lisp`.
 * If you want slime as well, run `slime-connect` and accept the defaults. You now have slime and inferior-lisp both working simultaneously.
 
 ## Running the Tests
@@ -182,6 +210,7 @@ If you don't know emacs you may want to pick one of the choices above. The learn
 ## Thanks for contributions and reviews from
 
 * Aaron Bedra
+* Mike Clark
 * Daniel Solano Gómez
 * Rich Hickey
 * Shawn Hoover
