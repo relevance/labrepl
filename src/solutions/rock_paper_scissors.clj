@@ -24,17 +24,17 @@
   (choose [p])
   (update-strategy [p me you]))
 
-(deftype Random []
+(defrecord Random []
   Player
   (choose [_] (random-choice))
   (update-strategy [this me you] this))
 
-(deftype Stubborn [choice]
+(defrecord Stubborn [choice]
   Player
   (choose [_] choice)
   (update-strategy [this me you] this))
 
-(deftype Mean [last-winner]
+(defrecord Mean [last-winner]
   Player
   (choose [_] (if last-winner last-winner (random-choice)))
   (update-strategy [_ me you] (Mean. (when (iwon? me you) me))))

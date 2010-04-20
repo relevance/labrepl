@@ -31,12 +31,21 @@
       [:li (c choose) " takes a player and returns that player's choice"]
       [:li (c update-strategy) " takes a player, that player's last choice, and the other player's last choice, returning the " (c Player) " for the next round:"]]
      (showme Player)]
-    [:li "Use " (c deftype) " to define a " (c Random) " player. " (c Random) " always picks at random, and never changes strategy based on what the other player is doing."
-     (showme Random)]
+    [:li "Use " (c defrecord) " to define a " (c Random) " player. " (c Random) " always picks at random, and never changes strategy based on what the other player is doing."
+     (showme "(defrecord Random []
+  Player
+  (choose [_] (random-choice))
+  (update-strategy [this me you] this))")]
     [:li "Create " (c Stubborn) ", who is initialized with a choice and sticks with it come hell or high water:"
-     (showme Stubborn)]
+     (showme "(defrecord Stubborn [choice]
+  Player
+  (choose [_] choice)
+  (update-strategy [this me you] this))")]
     [:li "Create " (c Mean) ", who is a little more subtle. " (c Mean) "sticks with what worked last time, or plays at random following a loss:"
-     (showme Mean)]
+     (showme "(defrecord Mean [last-winner]
+  Player
+  (choose [_] (if last-winner last-winner (random-choice)))
+  (update-strategy [_ me you] (Mean. (when (iwon? me you) me))))")]
     [:li "Now let's play the " (c game) ", with three arguments: two players and a number of rounds. " (c game) " reads nicely as a loop with five arguments:"
      [:ol
       [:li "player 1"]
@@ -55,7 +64,7 @@
     [:li "Create some other strategies."]
     [:li "Compare your solution with some of the " [:a {:href "http://www.rubyquiz.com/quiz16.html"}"Ruby Quiz solutions"] ". What are the salient differences?"]
     [:li "How would you parallelize the code to spread games out to all your cores?"]
-    [:li "Extend the simulation to support " [:a {:href "http://www.samkass.com/theories/RPSSL.html"} "Rock Paper Scissors Spock Lizard"]]]])
+    [:li "Extend the simulation to support " [:a {:href "http://www.samkass.com/theories/RPSSL.html"} "Rock Paper Scissors Spock Lizard"]  "."]]])
 
 (defn instructions
   []
