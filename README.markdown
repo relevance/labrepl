@@ -218,6 +218,6 @@ If you don't know Emacs, you may want to pick one of the choices above. The lear
 * Alex Ott
 * Laurent Petit
 * Seth Schroeder
-
+* Matthew Wizeman
 
  
