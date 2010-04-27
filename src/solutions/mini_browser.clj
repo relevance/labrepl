@@ -43,11 +43,6 @@
       (fn [var] [:li (var-link ns var)])
       vars)]]))
 
-(defn reloading [handler]
-  (fn [request]
-    (require :reload-all '[solutions.mini-browser])
-    (handler request)))
-
 (defn layout [& body]
   (html
     [:head
@@ -103,8 +98,6 @@
 (defroutes static-routes
   (GET "/*" (or (serve-file (params :*)) :next))
   (ANY "*" (page-not-found)))
-
-(decorate browser-routes reloading)
 
 (defroutes app-routes
   (routes browser-routes static-routes))
