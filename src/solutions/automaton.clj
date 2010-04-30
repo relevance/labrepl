@@ -1,8 +1,7 @@
 (ns solutions.automaton
   (import [javax.swing JFrame JPanel]
           [java.awt Color Graphics]
-          [java.awt.image BufferedImage])
-  (:use [clojure.contrib.seq-utils :only (indexed)]))
+          [java.awt.image BufferedImage]))
 
 (def dim-board   [ 90   90])
 (def dim-screen  [600  600])
@@ -17,8 +16,8 @@
          (if (< 50 (rand-int 100)) :on :off)))))
 
 (defn with-coords [board]
-  (for [[row-idx row] (indexed board)]
-    (for [[col-idx val] (indexed row)]
+  (for [[row-idx row] (map-indexed vector board)]
+    (for [[col-idx val] (map-indexed vector row)]
          [val row-idx col-idx])))
 
 (defn without-coords [board]

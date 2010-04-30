@@ -126,6 +126,6 @@
   (- (square-of-sum x) (sum-of-squares x)))
 
 (defn problem-7
-  "for this to count, you need to understand how seq-utils primes works..."
+  "for this to count, you need to understand how lazy-seq primes works..."
   [x]
   (nth primes (dec x)))

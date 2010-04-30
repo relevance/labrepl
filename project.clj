@@ -2,9 +2,9 @@
   :description "Clojure exercises, with integrated repl and webapp"
   :dependencies [
                  [org.clojure/clojure
-                  "1.2.0-master-SNAPSHOT"]
+                  "1.2.0-master-20100430.130229-58"]
                  [org.clojure/clojure-contrib
-                  "1.2.0-master-SNAPSHOT"]
+                  "1.2.0-20100430.130503-89"]
                  [compojure
                   "0.3.2"]
                  [postgresql
@@ -20,7 +20,7 @@
                  [jline
                   "0.9.94"]
                  [circumspec
-                  "0.0.10"]]
+                  "0.0.11"]]
   :dev-dependencies [[autodoc "0.7.0"]
                      [swank-clojure "1.1.0"]]
   :repositories {"clojure-releases" "http://build.clojure.org/releases"

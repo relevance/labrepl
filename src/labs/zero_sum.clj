@@ -42,7 +42,7 @@
    [:p "No."]
    [:p "The transaction guarantees that all updates are atomic, consistent, and isolated. But the reads are not atomic, so " (c total-balance) " could be wrong. Let's prove it in code, by generating a bunch of random transactions on multiple threads and then watching reads get out of sync."]
    [:ol
-    [:li "First, we need some random account ids: a " (c from-id) " and a " (c to-id) ". But in Clojure it rarely makes sense to deliver " [:i "two"] " of something, when you could deliver a lazy, infinite sequence instead. Write a " (c random-account-ids) " function that returns a lazy sequence of ids from accounts. You can use " (c clojure.contrib.seq-utils/rand-elts) " to get a random element from a collection, and you can use " (c repeatedly) " to return a lazy sequence of results from calling an impure function."
+    [:li "First, we need some random account ids: a " (c from-id) " and a " (c to-id) ". But in Clojure it rarely makes sense to deliver " [:i "two"] " of something, when you could deliver a lazy, infinite sequence instead. Write a " (c random-account-ids) " function that returns a lazy sequence of ids from accounts. You can use " (c rand-nth) " to get a random element from a collection, and you can use " (c repeatedly) " to return a lazy sequence of results from calling an impure function."
      (showme accounts-1/random-account-ids)]
     [:li "Now, create a " (c random-transfer) " function to do a transfer at random. Let " (c [from-id to-id]) " from " (c random-account-ids) ", then use " (c rand-int) " to let a random transfer amount, then make the " (c transfer) " :"
      (showme accounts-1/random-transfer)]

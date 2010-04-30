@@ -1,8 +1,7 @@
 (ns
     #^{:author "Stu Halloway"
        :doc "Improved version of accounts example. total-balance reads consistently."}
-  solutions.accounts-2
-  (:use [clojure.contrib.seq-utils :only (rand-elt)]))
+  solutions.accounts-2)
 
 (defn make-accounts
   "Create a map of account-num->(ref :initial-balance) for :count
@@ -29,7 +28,7 @@
   "Return a lazy seq of random account ids from accounts"
   [accounts]
   (let [ids (keys accounts)]
-    (repeatedly (fn [] (rand-elt ids)))))
+    (repeatedly (fn [] (rand-nth ids)))))
 
 (defn random-transfer
   "Perform a random tranfer between two accounts in accounts.
