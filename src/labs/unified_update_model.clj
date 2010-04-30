@@ -1,6 +1,6 @@
 (ns labs.unified-update-model
   (:use labrepl.util
-        [clojure.contrib.json.read :only (read-json)]
+        [clojure.contrib.json :only (read-json)]
         [clojure.http.client :only (request url-encode)])
   (:require [solutions.atom-cache :as ac]
             [solutions.ref-cache :as rc]
@@ -104,7 +104,7 @@
   [[:h3 "Futures"]
    [:p "A future represents work to be done off the current thread. To see futures in action, let's create something slow: a program that compares the estimated google results for two search terms. You will need to include the following namespaces:"
     (code "(:use [clojure.http.client :only (request url-encode)]
-      [clojure.contrib.json.read :only (read-json)])")]
+      [clojure.contrib.json :only (read-json)])")]
    [:ol
     [:li "The " (c request) " function takes a URL string and returns a map of response data. Try it a the REPL to see how it works."]
     [:li "To get google search results, you will need the following URL prefix:"

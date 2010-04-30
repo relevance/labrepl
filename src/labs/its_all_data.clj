@@ -122,8 +122,7 @@
      [:li "Try reducing something a little bigger."
       (code (reduce + (range 101)))]
      [:li "Because all collections can be treated as sequences, it is very easy to extend Clojure's power. If you write a function that works with seqs, all data can use it. The hardest part of writing Clojure apps is often deciding if the function you want already exists. What if you wanted something like " (c reduce), ", but returning all the intermediate steps. No problem, that is called " (c reductions) ": "
-      (code (use '[clojure.contrib.seq-utils :only (reductions)])
-            (reductions + (range 101)))]]]])
+      (code (reductions + (range 101)))]]]])
 
 (defn a-little-real-data
   []
@@ -139,8 +138,7 @@
     [:li "How many words in the file start with A?"
      (code "(count (filter #(.startsWith % \"A\") words))")]
     [:li "Let's generalize that a bit. The " (c frequencies) " function returns a map of values to the number of times each value occurs. Build a frequencies table by initial letter"
-     (code (use '[clojure.contrib.seq-utils :only (frequencies)])
-           (frequencies (map first words)))
+     (code (frequencies (map first words)))
      "(Note that here you see one advantage of working with all the data, instead of thinking up a few examples. The results demonstrate that we need to decide how to deal with upper vs. lower case letters."]
     [:li "How about a frequency distribution by the length of the word?"
      (code "(frequencies (map #(.length %) words))")]
