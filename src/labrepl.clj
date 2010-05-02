@@ -43,7 +43,7 @@
 
 (defn load-common-libs
   []
-  (use '[clojure.contrib.duck-streams :only (spit read-lines reader writer)]
+  (use '[clojure.contrib.io :only (spit read-lines reader writer)]
        '[clojure.contrib def ns-utils pprint repl-utils shell-out])
   (require '[clojure.contrib.str-utils2 :as s]))
 
