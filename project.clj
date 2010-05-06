@@ -6,7 +6,7 @@
                  [org.clojure/clojure-contrib
                   "1.2.0-SNAPSHOT"]
                  [org.clojars.stuarthalloway/compojure
-                  "0.3.3"]
+                  "0.3.3-SNAPSHOT"]
                  [postgresql
                   "8.4-701.jdbc4"]
                  [log4j
