@@ -79,6 +79,8 @@
      (showme accounts-3/transfer)]
     [:li "The new " (c balance) " function differs only in placement of parentheses, so that the dereference comes before the key lookup:"
      (showme accounts-3/balance)]
+    [:li "The " (c random-account-ids) " function now needs to dereference " (c accounts) ":"
+     (showme accounts-3/random-account-ids)]
     [:li "That's it. The driver functions that you use to test transactions do not have to change. Verify that the new system works correctly."]]])
 
 (defn bonus
