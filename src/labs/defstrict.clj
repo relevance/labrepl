@@ -1,4 +1,4 @@
-(ns #^{:skip-wiki true} labs.defstrict
+(ns ^{:skip-wiki true} labs.defstrict
     (:use labrepl.util solutions.defstrict))
 
 (defn overview-ins
@@ -59,12 +59,12 @@
 (defn type-tagged-args-ins
   []
   [[:h3 "type-tagged-args"]
-   [:p "To build " (c defstrict) " we will also need a bit of code that can convert an argument list like " (c [String s]) " into the form exepcted by " (c defn) ". We can't use the reader macro syntax " (c "[#^String s]")", because the reader macro will expand before the macro itself. So, we need to expand into the same form the reader macro would emit: " (c (with-meta s {:tag String})) ". It is a little tricky to verify that this works, because metadata is semi-invisible by design: it does not print at the REPL and it does not participate in equality comparisons. So, let's do some experimenting at the REPL."]
+   [:p "To build " (c defstrict) " we will also need a bit of code that can convert an argument list like " (c [String s]) " into the form exepcted by " (c defn) ". We can't use the reader macro syntax " (c "[^String s]")", because the reader macro will expand before the macro itself. So, we need to expand into the same form the reader macro would emit: " (c (with-meta s {:tag String})) ". It is a little tricky to verify that this works, because metadata is semi-invisible by design: it does not print at the REPL and it does not participate in equality comparisons. So, let's do some experimenting at the REPL."]
    [:ol
-    [:li "Enter " (c "'[#^String s #^Integer i]") " to see how the metdata does not get printed on the symbols " (c s) " and " (c i) ":"
-     (repl-showme "'[#^String s #^Integer i]")]
+    [:li "Enter " (c "'[^String s ^Integer i]") " to see how the metdata does not get printed on the symbols " (c s) " and " (c i) ":"
+     (repl-showme "'[^String s ^Integer i]")]
     [:li "You can access the metadata by mapping " (c meta) " over the symbols:"
-     (repl-showme "(map meta '[#^String s #^Integer i])")]
+     (repl-showme "(map meta '[^String s ^Integer i])")]
     [:li "Now that we have a way to verify our outputs, let's turn our attention to the inputs. We will need a way to take " (c defstrict) " argument specs two at a time: "
      (repl-showme (partition 2 '[String s Integer i]))]
     [:li "Next, we need a function that takes a " (c [Classname var]) " pair, and emits " (c (with-meta var {:tag type})) "."

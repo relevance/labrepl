@@ -1,4 +1,4 @@
-(ns #^{:skip-wiki true} labs.looping
+(ns ^{:skip-wiki true} labs.looping
     (:use labrepl.util solutions.looping)
     (:refer-clojure :exclude [min]))
 

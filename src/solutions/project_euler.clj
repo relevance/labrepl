@@ -1,5 +1,5 @@
 (ns
-    #^{:author "Stu Halloway"
+    ^{:author "Stu Halloway"
        :doc "Some Project Euler solutions. See projecteuler.net."}
   solutions.project-euler
   (:use clojure.contrib.lazy-seqs)

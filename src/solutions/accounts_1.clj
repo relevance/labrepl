@@ -1,5 +1,5 @@
 (ns
-    #^{:author "Stu Halloway"
+    ^{:author "Stu Halloway"
        :doc "BROKEN version of accounts example. total-balance does not read consistently"}
   solutions.accounts-1)
 

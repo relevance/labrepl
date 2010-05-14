@@ -1,5 +1,5 @@
 (ns
-    #^{:author "Stu Halloway"
+    ^{:author "Stu Halloway"
        :doc "Variant version of accounts example. total-balance reads consistently. Uses one identity for a group of accounts."}
   solutions.accounts-3)
 

@@ -5,16 +5,16 @@
   (.toUpperCase s))
 
 (defn shout-2
-  [#^String s]
+  [^String s]
   (.toUpperCase s))
 
 (defn shout-3
-  [#^String s]
+  [^String s]
   {:pre [(instance? String s)]}
   (.toUpperCase s))
 
 (defn shout-4
-  [#^{:tag String} s]
+  [^{:tag String} s]
   {:pre [(instance? String s)]}
   (.toUpperCase s))
 

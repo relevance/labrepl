@@ -1,4 +1,4 @@
-(ns #^{:skip-wiki true} labs.mini-browser
+(ns ^{:skip-wiki true} labs.mini-browser
     (:use labrepl.util labrepl.web solutions.browser-mockup solutions.mini-browser compojure))
 
 (defn overview

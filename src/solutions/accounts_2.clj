@@ -1,5 +1,5 @@
 (ns
-    #^{:author "Stu Halloway"
+    ^{:author "Stu Halloway"
        :doc "Improved version of accounts example. total-balance reads consistently."}
   solutions.accounts-2)
 

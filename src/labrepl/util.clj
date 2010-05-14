@@ -1,5 +1,5 @@
 (ns
-    #^{:author "Stu Halloway"
+    ^{:author "Stu Halloway"
        :doc "Utilities for creating lab instruction pages."}
     labrepl.util
   (:use clojure.contrib.pprint

@@ -1,4 +1,4 @@
-(ns #^{:skip-wiki true} labs.intro
+(ns ^{:skip-wiki true} labs.intro
   (:use labrepl.util))
 
 (defn overview
