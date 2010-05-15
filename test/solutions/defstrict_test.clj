@@ -19,16 +19,15 @@
     (should (throws? Throwable #"Assert failed" (shout-4 :bar)))
     (should (throws? Throwable #"Assert failed" (shout-4 :foo)))))
 
-(testing type-tagged-args
-  (let [tagged (type-tagged-args '[String a Integer/TYPE b])]
-    (should (= '[a b] tagged))
-    (should (= '[{:tag String} {:tag Integer/TYPE}] (map meta tagged)))))
+(testing instance-check
+  (should (nil? (instance-check 'foo)))
+  (should (= '(clojure.core/instance? String foo) (instance-check '^String foo))))
 
 (testing arg-type-preconditions
   (should (= '{:pre
                [(clojure.core/instance? String a)
                 (clojure.core/instance? Integer/TYPE b)]}
-           (arg-type-preconditions '[String a Integer/TYPE b]))))
+           (arg-type-preconditions '[^String a ^Integer/TYPE b]))))
 
 (defn argument-metadata
   "Return the argument metadata for a var that points
@@ -42,7 +41,7 @@
                 {:pre [(clojure.core/instance? String s)]}
                 (.toUpperCase s))
              (macroexpand-1
-              '(solutions.defstrict/defstrict shout [String s]
+              '(solutions.defstrict/defstrict shout [^String s]
                  (.toUpperCase s)))))
   (should (= '(({:tag String}))
              (argument-metadata #'shout))))
