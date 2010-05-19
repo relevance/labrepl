@@ -11,8 +11,8 @@
                   "8.4-701.jdbc4"]
                  [log4j
                   "1.2.14"]
-                 [org.incanter/incanter-full
-                  "1.2.0-SNAPSHOT"]
+                 [incanter
+                  "1.2.3-SNAPSHOT"]
                  [antlr/stringtemplate
                   "2.2"]
                  [clojure-http-client
@@ -23,5 +23,4 @@
                   "0.0.13"]]
   :dev-dependencies [[autodoc "0.7.0"]
                      [swank-clojure "1.1.0"]]
-  :repositories {"clojure-releases" "http://build.clojure.org/releases"
-                 "incanter" "http://repo.incanter.org"})
+  :repositories {"clojure-releases" "http://build.clojure.org/releases"})
