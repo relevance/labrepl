@@ -2,8 +2,8 @@
     ^{:author "Stu Halloway"
        :doc "Utilities for creating lab instruction pages."}
     labrepl.util
-  (:use clojure.contrib.pprint
-        [clojure.contrib.repl-utils :only (get-source)]
+  (:use clojure.pprint
+        [clojure.repl :only (source-fn)]
         clojure.contrib.with-ns)
   (:require [clojure.contrib.str-utils2 :as s]))
 
@@ -45,7 +45,7 @@
 (defmacro source
   "Show source code in a pre block."
   [sym]
-  `(code ~(get-source sym)))
+  `(code ~(source-fn sym)))
 
 (defn showme*
   [code-string]
@@ -58,7 +58,7 @@
   "Show code (literal string or source from a var) in a
    'Show Me' block students can click to reveal."
   [str-or-sym]
-  (let [c (if (symbol? str-or-sym) (get-source str-or-sym) str-or-sym)]
+  (let [c (if (symbol? str-or-sym) (source-fn str-or-sym) str-or-sym)]
     `(showme* '~c)))
 
 (defn output-indent

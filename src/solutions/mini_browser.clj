@@ -1,7 +1,7 @@
 (ns solutions.mini-browser
   (:use compojure labrepl.web labrepl.util)
   (:require [clojure.contrib.str-utils2 :as str]
-            [clojure.contrib.repl-utils :as repl]))
+            [clojure.repl :as repl]))
 
 (defn namespace-names
   "Sorted list of namespace names (strings)."
@@ -77,7 +77,7 @@
             [:pre [:code
                    (with-out-str (print-doc var))]]
             [:h4 "Source"]
-            (code* (repl/get-source sym))))))
+            (code* (repl/source-fn sym))))))
 
 (defroutes browser-routes
   (GET

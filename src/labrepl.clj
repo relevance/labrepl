@@ -44,7 +44,9 @@
 (defn load-common-libs
   []
   (use '[clojure.contrib.io :only (spit read-lines reader writer)]
-       '[clojure.contrib def ns-utils pprint repl-utils shell-out])
+       '[clojure.contrib def shell-out]
+       '[clojure.contrib.repl-utils :only (show javadoc)]
+       'clojure.pprint)
   (require '[clojure.contrib.str-utils2 :as s]))
 
 (defn -main [& args]

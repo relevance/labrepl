@@ -1,5 +1,5 @@
 (ns ^{:skip-wiki true} labs.names-and-places
-    (:use labrepl.util clojure.contrib.math clojure.contrib.ns-utils clojure.contrib.with-ns solutions.dialect) 
+    (:use labrepl.util clojure.contrib.math clojure.contrib.with-ns solutions.dialect) 
     (:require [clojure.contrib.math :as m])
     (:import [java.util Date Random]))
 

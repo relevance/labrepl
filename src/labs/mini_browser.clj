@@ -105,7 +105,7 @@
      [:ul
       [:li "The var symbol in an h3 tag"]
       [:li "The docstring in a " (c "pre code") " block. You can combine " (c print-doc) " and " (c with-out-str) " to get the docstring"]
-      [:li "The source code itself. You will need to use" (c find-var) ", " (c clojure.contrib.repl-utils/get-source) ", and " (c labrepl.util/code*) ", which will wrap the code in html tags for you."]]
+      [:li "The source code itself. You will need to use" (c find-var) ", " (c clojure.repl/source-fn) ", and " (c labrepl.util/code*) ", which will wrap the code in html tags for you."]]
      (showme var-detail)]
     [:li "Test " (c var-detail) " from the repl."
      (repl-showme (var-detail "clojure.core" "and"))]
