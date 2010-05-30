@@ -45,7 +45,7 @@
   []
   (use '[clojure.contrib.io :only (spit read-lines reader writer)]
        '[clojure.contrib def shell-out]
-       '[clojure.contrib.repl-utils :only (show javadoc)]
+       '[clojure.contrib.repl-utils :only (show)]
        'clojure.pprint)
   (require '[clojure.contrib.str-utils2 :as s]))
 
