@@ -1,6 +1,6 @@
 (ns solutions.mini-browser
   (:use compojure labrepl.web labrepl.util)
-  (:require [clojure.contrib.str-utils2 :as str]
+  (:require [clojure.string :as str]
             [clojure.repl :as repl]))
 
 (defn namespace-names

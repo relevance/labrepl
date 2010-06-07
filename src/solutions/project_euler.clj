@@ -3,7 +3,7 @@
        :doc "Some Project Euler solutions. See projecteuler.net."}
   solutions.project-euler
   (:use clojure.contrib.lazy-seqs)
-  (:require [clojure.contrib.str-utils2 :as str]))
+  (:require [clojure.string :as str]))
 
 (defn divides?
   "Does divisor divide dividend evenly?"

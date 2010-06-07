@@ -1,7 +1,6 @@
 (ns solutions.browser-mockup
   (:use compojure labrepl.web labrepl.util)
-  (:use [solutions.mini-browser])
-  (:require [clojure.contrib.str-utils2 :as str]))
+  (:use [solutions.mini-browser]))
 
 (defn mockup-1 []
   (html

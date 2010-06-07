@@ -2,11 +2,11 @@
     ^{:author "Stu Halloway"
        :doc "Trivial examples used by the names-and-places lab."}
     solutions.dialect
-  (:require [clojure.contrib.str-utils2 :as s]))
+  (:require [clojure.string :as s]))
 
 (defn canadianize
   [sentence]
-  (str (s/chop sentence) ", eh?"))
+  (str (subs sentence 0 (dec (count sentence))) ", eh?"))
 
 (defn pig-latinize-word
   [word]

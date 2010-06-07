@@ -3,9 +3,8 @@
        :doc "Utilities for creating lab instruction pages."}
     labrepl.util
   (:use clojure.pprint
-        [clojure.repl :only (source-fn)]
-        clojure.contrib.with-ns)
-  (:require [clojure.contrib.str-utils2 :as s]))
+        [clojure.repl :only (source-fn)])
+  (:require [clojure.string :as s]))
 
 (defn format-code
   [& codes]
@@ -40,7 +39,7 @@
   "Show code (symbol or string) literally inline."
   [code]
   (let [code (if (string? code) (symbol code) code)]
-    `[:code {:class "inline-syntax"} (s/chop (with-out-str (pprint '~code)))]))
+    `[:code {:class "inline-syntax"} (s/trim-newline (with-out-str (pprint '~code)))]))
 
 (defmacro source
   "Show source code in a pre block."
@@ -83,7 +82,7 @@
   (when str
     (let [[line :as lines] (s/split str #"\n")]
       (if-let [whitespace-match (re-find #"^\s+" line)]
-        (s/join "\n" (map #(s/drop % (.length whitespace-match)) lines))
+        (s/join "\n" (map #(subs % (.length whitespace-match)) lines))
         str))))
 
 (defmacro repl*

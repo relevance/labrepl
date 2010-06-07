@@ -1,7 +1,5 @@
 (ns labrepl.lab
-  (:use [clojure.contrib.java-utils :only (as-str)]
-        labrepl.web
-        compojure))
+  (:use labrepl.web compojure))
 
 (defn all
   []
@@ -11,16 +9,15 @@
 
 (defn lab-url
   [lab-name]
-  (str "/labs/" (as-str lab-name)))
+  (str "/labs/" (name lab-name)))
 
 (defn url
   [lab]
-  (let [lab-name (as-str lab)]
-    [:a {:href (lab-url lab)} lab-name]))
+  [:a {:href (lab-url lab)} (name lab)])
 
 (defn instructions
   [lab]
-  (let [lab-ns (symbol (str "labs." (as-str lab)))]
+  (let [lab-ns (symbol (str "labs." (name lab)))]
     (require lab-ns)
     ((ns-resolve lab-ns 'instructions))))
 
