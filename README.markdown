@@ -190,6 +190,10 @@ This is minimally tested. You are probably better off using Maven or one of the 
 
 If you don't know Emacs, you may want to pick one of the choices above. The learning curve here is steep.
 
+* Make sure you have Java installed.
+* Make sure you have [leiningen](http://github.com/technomancy/leiningen) installed.
+* Clone the labrepl project and change directory into it.
+* Run `lein deps` to install all the dependent libraries.
 * Install Emacs, the Emacs Starter Kit, Clojure mode, slime, and swank.
 * From within emacs, set the `inferior-lisp-program` variable to `script/swank`. 
 * Making sure your Emacs working directory is the labrepl, run `inferior-lisp`.
@@ -214,5 +218,3 @@ If you don't know Emacs, you may want to pick one of the choices above. The lear
 * Laurent Petit
 * Seth Schroeder
 * Matthew Wizeman
-
- 
