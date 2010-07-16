@@ -139,7 +139,7 @@ This is a one-time setup that does not require the git command line, Maven, or l
   * Choose "Yes" when prompted to create an IDEA project, and then select:
       * Import Project from external model
       * Choose Maven if given choice of models
-      * Accept all the defaults (click "Next" a bunch of times.)
+      * Accept all the defaults.  If this is your first time running IntelliJ you will need to choose a JDK. When prompted locate the JDK you wish to use by clicking the plus icon and clicking through the dialog.
   * Wait for Maven to download all the dependent libraries.
 
 To run the labrepl:
