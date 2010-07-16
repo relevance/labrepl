@@ -34,10 +34,10 @@
       [:li "the routes to serve (\"/*\", i.e. everything)"]
       [:li "a " (c servlet) " that serves the " (c mockup-routes)]]
      (showme mockup-server)]
-    [:li "Run the " (c mockup-server) " and browse to " (ll "http://localhost:8099/m1") " to see the (empty) page."]
+    [:li "Run the " (c mockup-server) " and browse to " (ll "http://localhost:8999/m1") " to see the (empty) page."]
     [:li "Let's create a more complete " (c mockup-2) " with some layout divs."
      (source mockup-2)]
-    [:li "Add " (c mockup-2) " to a route /m2 and browse to " (ll "http://localhost:8099/m2") " to see the second mockup."]
+    [:li "Add " (c mockup-2) " to a route /m2 and browse to " (ll "http://localhost:8999/m2") " to see the second mockup."]
     [:li "Now let's add some standard styling and JavaScript. The " (c include-css) " function generates markup to pull in CSS files. Try it at the REPL:"
      (repl-showme (include-css "/stylesheets/application.css"))]
     [:li (c include-js) " does the same thing for JavaScript:"
