@@ -61,5 +61,5 @@
   (load-common-libs)
   (mini-browser/main)
   (run-jetty (var app) {:port 8080
-                        :joins? false})
+                        :join? false})
   (println "Welcome to the labrepl. Browse to localhost:8080 to get started!"))

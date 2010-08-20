@@ -111,5 +111,5 @@
   (routes browser-routes static-routes))
 
 (defn main []
-  (run-jetty app-routes {:port 9000
-                         :join? false}))
+  (run-jetty (var app-routes) {:port 9000
+                               :join? false}))

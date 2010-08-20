@@ -63,5 +63,5 @@
   (route/files "/"))
 
 (defn mockup-server []
-  (run-jetty mockup-routes {:port 8999
-                            :joins? false}))
+  (run-jetty (var mockup-routes) {:port 8999
+                                  :join? false}))
