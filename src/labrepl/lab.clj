@@ -1,5 +1,7 @@
 (ns labrepl.lab
-  (:use labrepl.web compojure))
+  (:use hiccup.core
+        hiccup.page-helpers
+        labrepl.web))
 
 (defn all
   []
@@ -11,7 +13,7 @@
   [lab-name]
   (str "/labs/" (name lab-name)))
 
-(defn url
+(defn make-url
   [lab]
   [:a {:href (lab-url lab)} (name lab)])
 

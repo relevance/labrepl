@@ -1,6 +1,12 @@
 (ns solutions.browser-mockup
-  (:use compojure labrepl.web labrepl.util)
-  (:use [solutions.mini-browser]))
+  (:use hiccup.core
+        hiccup.page-helpers
+        compojure.core
+        ring.adapter.jetty
+        labrepl.web
+        labrepl.util
+        solutions.mini-browser)
+  (:require [compojure.route :as route]))
 
 (defn mockup-1 []
   (html
@@ -50,16 +56,12 @@
       "Clojure Mini-Browser"]]) )
 
 (defroutes mockup-routes
-  (GET "/m1" (mockup-1))
-  (GET "/m2" (mockup-2))
-  (GET "/m3" (mockup-3))
-  (GET "/m4" (mockup-4))
-  (GET "/*" (or (serve-file (params :*)) :next)))
+  (GET "/m1" [] (mockup-1))
+  (GET "/m2" [] (mockup-2))
+  (GET "/m3" [] (mockup-3))
+  (GET "/m4" [] (mockup-4))
+  (route/files "/"))
 
 (defn mockup-server []
-  (run-server
-   {:port 8999}
-   "/*"
-   (servlet mockup-routes)))
-  
-
+  (run-jetty mockup-routes {:port 8999
+                            :joins? false}))

@@ -1,9 +1,14 @@
 (ns
-    ^{:author "Stu Halloway"
-       :doc "Compojure app that displays lab instructions."}
-    labrepl
-  (:use compojure clojure.contrib.logging)
-  (:require [labrepl.lab :as lab]
+  ^{:author "Stu Halloway"
+    :doc "Compojure app that displays lab instructions."}
+  labrepl
+  (:use compojure.core
+        hiccup.core
+        hiccup.page-helpers
+        ring.adapter.jetty
+        clojure.contrib.logging)
+  (:require [compojure.route :as route]
+            [labrepl.lab :as lab]
             [solutions.mini-browser :as mini-browser]))
 
 (defn with-logging [handler]
@@ -19,27 +24,29 @@
 
 (defroutes lab-routes
   (GET "/"
+       []
        (html
         (lab/layout
          [:h2.logo "Clojure Labs"]
          [:ul
           (map
-           (fn [lab] [:li (lab/url lab)])
+           (fn [lab] [:li (lab/make-url lab)])
            (lab/all))])))
   (GET "/labs/:name"
+       request
        (html
         (lab/layout
-         [:h2 (params :name)]
-         (lab/instructions (params :name))))))
+         [:h2 ((request :params) "name")]
+         (lab/instructions ((request :params) "name"))))))
 
 (defroutes static-routes
-  (GET "/*" (or (serve-file (params :*)) :next))
-  (ANY "*" (page-not-found)))
+  (route/files "/")
+  (route/not-found "<h1>Not Found</h1>"))
 
-(decorate lab-routes with-logging)
+(def full-routes (-> lab-routes with-logging))
 
 (defroutes app
-  (routes lab-routes static-routes))
+  (routes full-routes static-routes))
 
 (defn load-common-libs
   []
@@ -53,9 +60,6 @@
 (defn -main [& args]
   (load-common-libs)
   (mini-browser/main)
-  (run-server
-   {:port 8080}
-   "/*"
-   (servlet app))
+  (run-jetty (var app) {:port 8080
+                        :joins? false})
   (println "Welcome to the labrepl. Browse to localhost:8080 to get started!"))
-

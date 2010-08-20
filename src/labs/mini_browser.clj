@@ -1,5 +1,11 @@
 (ns ^{:skip-wiki true} labs.mini-browser
-    (:use labrepl.util labrepl.web solutions.browser-mockup solutions.mini-browser compojure))
+    (:use compojure.core
+          hiccup.core
+          hiccup.page-helpers
+          labrepl.util
+          labrepl.web
+          solutions.browser-mockup
+          solutions.mini-browser))
 
 (defn overview
   []
@@ -27,7 +33,7 @@
      (showme mockup-1)]
     [:li "Use " (c defroutes) " to create a " (c mockup-routes) " table that routes a GET of /m1 to" (c mockup-1)". "
      (showme* '(defroutes mockup-routes
-  (GET "/m1" (mockup-1))))]
+                 (GET "/m1" (mockup-1))))]
     [:li "Create a " (c mockup-server) " function that calls " (c run-server) " with three arguments:"
      [:ol
       [:li "a map with the port to use (8999)"]
@@ -94,7 +100,7 @@
     [:li "Create a " (c main) " function to launch the browser on port 9000."
      (showme main)]
     [:li "Run " (c main) " and browse to " (ll "http://localhost:9000") " to see the live namespaces."]
-   
+
     [:li "Next we need a function " (c var-names) " that returns the var names given a namespace name. To build it you will need to call" (c symbol) ", " (c find-ns) ", " (c ns-publics) ", and " (c keys) "."
      (showme var-names)]
     [:li "Test " (c var-names) "."

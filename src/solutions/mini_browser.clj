@@ -1,6 +1,12 @@
 (ns solutions.mini-browser
-  (:use compojure labrepl.web labrepl.util)
-  (:require [clojure.string :as str]
+  (:use compojure.core
+        hiccup.core
+        hiccup.page-helpers
+        ring.adapter.jetty
+        labrepl.web
+        labrepl.util)
+  (:require [compojure.route :as route]
+            [clojure.string :as str]
             [clojure.repl :as repl]))
 
 (defn namespace-names
@@ -31,7 +37,7 @@
 
 (defn var-link
   [ns-name var-name]
-  [:a {:href (str "/browse/" ns-name "/" (url-encode (str var-name)))} var-name])
+  [:a {:href (str "/browse/" ns-name "/" (encode-params (str var-name)))} var-name])
 
 (defn var-browser
   [ns vars]
@@ -82,13 +88,15 @@
 (defroutes browser-routes
   (GET
    "/"
+   []
    (html
     (layout
      (namespace-browser (namespace-names))
      [:div {:class "browse-list empty"}])))
   (GET
    "/browse/*"
-   (let [[ns var] (str/split (params :*) #"/")]
+   request
+   (let [[ns var] (str/split (request :params) #"/")]
      (html
       (layout
        (namespace-browser (namespace-names))
@@ -96,14 +104,12 @@
        (var-detail ns var))))))
 
 (defroutes static-routes
-  (GET "/*" (or (serve-file (params :*)) :next))
-  (ANY "*" (page-not-found)))
+  (route/files "/")
+  (route/not-found "<h1>Not Found</h1>"))
 
 (defroutes app-routes
   (routes browser-routes static-routes))
 
 (defn main []
-  (run-server
-   {:port 9000}
-   "/*"
-   (servlet app-routes)))
+  (run-jetty app-routes {:port 9000
+                         :join? false}))
