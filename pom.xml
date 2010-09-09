@@ -9,7 +9,7 @@
   <scm>
     <connection>scm:git:git://github.com/relevance/labrepl.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/relevance/labrepl.git</developerConnection>
-    <tag>eb4644a954faf1301d24b7c2d4ee9b82e849acf0</tag>
+    <tag>e00d79f1431656cf081a9ae9ec9f3cce7be68b5c</tag>
     <url>http://github.com/relevance/labrepl</url>
   </scm>
   <build>
@@ -46,12 +46,12 @@
       <url>http://build.clojure.org/releases</url>
     </repository>
     <repository>
-      <id>incanter</id>
-      <url>http://repo.incanter.org</url>
-    </repository>
-    <repository>
       <id>central</id>
       <url>http://repo1.maven.org/maven2</url>
+    </repository>
+    <repository>
+      <id>clojure</id>
+      <url>http://build.clojure.org/releases</url>
     </repository>
     <repository>
       <id>clojure-snapshots</id>
@@ -66,17 +66,27 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
-      <version>1.2.0-master-SNAPSHOT</version>
+      <version>1.2.0</version>
     </dependency>
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>clojure-contrib</artifactId>
-      <version>1.2.0-SNAPSHOT</version>
+      <version>1.2.0</version>
     </dependency>
     <dependency>
-      <groupId>org.clojars.stuarthalloway</groupId>
+      <groupId>compojure</groupId>
       <artifactId>compojure</artifactId>
-      <version>0.3.3-SNAPSHOT</version>
+      <version>0.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>ring</groupId>
+      <artifactId>ring-jetty-adapter</artifactId>
+      <version>0.2.3</version>
+    </dependency>
+    <dependency>
+      <groupId>hiccup</groupId>
+      <artifactId>hiccup</artifactId>
+      <version>0.2.6</version>
     </dependency>
     <dependency>
       <groupId>postgresql</groupId>
@@ -89,9 +99,9 @@
       <version>1.2.14</version>
     </dependency>
     <dependency>
-      <groupId>org.incanter</groupId>
-      <artifactId>incanter-full</artifactId>
-      <version>1.2.0-SNAPSHOT</version>
+      <groupId>incanter</groupId>
+      <artifactId>incanter</artifactId>
+      <version>1.2.3-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>antlr</groupId>
@@ -104,6 +114,11 @@
       <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
+      <groupId>swank-clojure</groupId>
+      <artifactId>swank-clojure</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+    <dependency>
       <groupId>jline</groupId>
       <artifactId>jline</artifactId>
       <version>0.9.94</version>
@@ -111,22 +126,7 @@
     <dependency>
       <groupId>circumspec</groupId>
       <artifactId>circumspec</artifactId>
-      <version>0.0.10</version>
-    </dependency>
-    <dependency>
-      <groupId>swank-clojure</groupId>
-      <artifactId>swank-clojure</artifactId>
-      <version>1.1.0-SNAPSHOT</version>
-        <exclusions>
-          <exclusion>
-            <groupId>org.clojure</groupId>
-            <artifactId>clojure</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>org.clojure</groupId>
-            <artifactId>clojure-contrib</artifactId>
-          </exclusion>
-        </exclusions>
+      <version>0.0.13</version>
     </dependency>
   </dependencies>
 </project>
