@@ -37,7 +37,7 @@
 
 (defn var-link
   [ns-name var-name]
-  [:a {:href (str "/browse/" ns-name "/" (encode-params (str var-name)))} var-name])
+  [:a {:href (str "/browse/" ns-name "/" (java.net.URLEncoder/encode (str var-name)))} var-name])
 
 (defn var-browser
   [ns vars]
@@ -96,7 +96,7 @@
   (GET
    "/browse/*"
    request
-   (let [[ns var] (str/split (request :params) #"/")]
+   (let [[ns var] (str/split (get-in request [:params "*"]) #"/")]
      (html
       (layout
        (namespace-browser (namespace-names))
