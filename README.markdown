@@ -178,7 +178,7 @@ This is minimally tested. You are probably better off using Maven or one of the 
 * Make sure you have Java installed.
 * Make sure you have [leiningen](http://github.com/technomancy/leiningen) installed. Do not use `lein self-install` as Windows installation is a manual process. You will need to:
 * Download the leinigen.jar and set `LEIN_JAR` to point to it.
-* Download [Clojure 1.1](http://code.google.com/p/clojure/downloads/list)
+* Download [Clojure 1.3-alpha1](http://github.com/clojure/clojure/downloads)
 * Set `CLOJURE_JAR` to point to the clojure.jar file.
 * Set your path to include `{your-lein-install}\bin`
 * Run `lein.bat deps` to install all the dependent libraries.
