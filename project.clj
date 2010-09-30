@@ -10,7 +10,7 @@
                  [incanter "1.2.3-SNAPSHOT"]
                  [antlr/stringtemplate "2.2"]
                  [clojure-http-client "1.0.0-SNAPSHOT"]
-                 [swank-clojure "1.2.0"]
+                 [swank-clojure "1.3.0-SNAPSHOT"]
                  [jline "0.9.94"]
                  [circumspec "0.0.13"]]
   :dev-dependencies [[autodoc "0.7.0"]]
