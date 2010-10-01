@@ -37,16 +37,16 @@
   [x & more]
   (loop [min x
          more (seq more)]
-    (if-let [x (first more)]
-      (recur (if (< x min) x min) (next more))
+    (if-let [i (first more)]
+      (recur (if (< i min) i min) (next more))
       min)))
 
 (defn min-2
   [x & more]
   (loop [min x
-         [x & more] (seq more)]
-    (if x
-      (recur (if (< x min) x min) more)
+         [i & more] (seq more)]
+    (if i
+      (recur (if (< i min) i min) more)
       min)))
 
 (defn min-3
