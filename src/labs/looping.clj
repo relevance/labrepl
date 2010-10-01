@@ -33,7 +33,7 @@
      (showme min-2)]
     [:li "An alternative to explicit looping is to call " (c reduce) ", which takes a function and applies it stepwise, two arguments a time, down a collection, e.g."
      (repl-code (reduce + [1 2 3]))
-     "Implement " (c min-3) " which reduces over a funtion that returns the min of two arguments:"
+     "Implement " (c min-3) " which reduces over a function that returns the min of two arguments:"
      (showme min-3)
      "Test that " (c min-3) " works as expected:"
      (repl-code (min-3 5 2 6 1 8))]]])

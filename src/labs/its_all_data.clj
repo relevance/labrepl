@@ -153,7 +153,7 @@
   [[:h3 "Bonus"]
    [:ol
     [:li (c bar-chart) " takes addional options for controlling the display of the chart. Use them to make the frequencies chart more appealing."]
-    [:li "Our first " (c reduce) " example showed using reduce to perform repeated addition. But in Clojure, the " (c +) " function can itself perform repeated addition! What advantages does " (c reduce) " offer over implicit reduction within a funtion?"]
+    [:li "Our first " (c reduce) " example showed using reduce to perform repeated addition. But in Clojure, the " (c +) " function can itself perform repeated addition! What advantages does " (c reduce) " offer over implicit reduction within a function?"]
     [:li "Implement your own version of " (c frequencies) " using " (c reduce) "."]
     [:li "Pick a language that you know well. What feature of your chosen language is analogous to Clojure keywords? To Clojure symbols? What do the differences (if any) imply?"]
     [:li "The " (c reverse) " function returns the reverse of a collection."
