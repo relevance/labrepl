@@ -49,7 +49,7 @@
                    (filter
                     (divides-any 3 5)
                     (range 20))))]
-    [:li "And we're done. Put that all into a funtion of " (c upper) ":"
+    [:li "And we're done. Put that all into a function of " (c upper) ":"
      (showme problem-1)]]])
 
 (defn left-to-right-solution
