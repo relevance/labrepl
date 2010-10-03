@@ -12,6 +12,7 @@
                  [clojure-http-client "1.0.0-SNAPSHOT"]
                  [swank-clojure "1.3.0-SNAPSHOT"]
                  [jline "0.9.94"]
+                 [mycroft "0.0.2"]
                  [circumspec "0.0.13"]]
   :dev-dependencies [[autodoc "0.7.0"]]
   :repositories {"clojure-releases" "http://build.clojure.org/releases"})

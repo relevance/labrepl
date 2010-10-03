@@ -5,7 +5,6 @@
                  (second found)
                  run-swank)))
 
-(println "********** Note: you can safely ignore warnings about clojure.core/spit! **********")
 (require 'labrepl)
 (set! *print-length* 100)
 (labrepl/-main)
