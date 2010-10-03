@@ -25,32 +25,7 @@ See instructions below for getting started with NetBeans/Enclojure, Eclipse/Coun
 
 ## Getting Started (NetBeans with Enclojure)
 
-This is a one-time setup that does not require the git command line, Maven, or leiningen.
-
-### If you do not have Netbeans installed
-
-* Install the Java SE version of [NetBeans](http://netbeans.org/downloads/index.html)
-* Launch NetBeans
-* If you’ve just installed Netbeans, activate feature Java SE:
-  * Activate features is on the Start page
-  * or from Tools, Plugins, Installed
-
-### One-time setup for Enclojure Plugin updates
-
-* Go to the Tools, Plugins and select the 'Settings' tab on the dialog
-* Click Add and call the Update Center "Enclojure" and use the following url: http://www.enclojure.org/file/view/Autoupdate_Site.xml.gz
-* Go to the 'Avalilable Plugins' tab and select the "Enclojure Clojure Plugin and click Install
-* Any updates to the Enclojure Plugin will be made available via the update manager in Netbeans.
-* Got to File->New Projects and under categories, select Samples/Clojure and you'll see the labrepl project. Create this project and build it. This will resolve all the dependencies for you.
-
-### Starting Labrepl
-
-* Right click on the project and select "Start Project REPL"
-* In the integrated REPL window, type:
-  * `(require 'labrepl)`
-  * `(labrepl/-main)`
-* Browse to http://localhost:8080
-* Enjoy the labs!
+We temporarily recommend you use another IDE while minor issues are worked out with the NetBeans/Enclojure setup.
 
 ## Getting Started (Eclipse with Counterclockwise)
 
