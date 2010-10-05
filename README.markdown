@@ -3,7 +3,7 @@
 Copyright (c) Relevance, Inc. All rights reserved.
 
 The use and distribution terms for this software are covered by the
-Eclipse Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php)
+[Eclipse Public License 1.0](http://opensource.org/licenses/eclipse-1.0.php)
 which can be found in the file epl-v10.html at the root of this distribution.
 By using this software in any fashion, you are agreeing to be bound by
 the terms of this license.
@@ -25,7 +25,18 @@ See instructions below for getting started with NetBeans/Enclojure, Eclipse/Coun
 
 ## Getting Started (NetBeans with Enclojure)
 
-We temporarily recommend you use another IDE while minor issues are worked out with the NetBeans/Enclojure setup.
+* Install the [Netbeans 6.9.1 Java ES bundle](http://netbeans.org/downloads/)
+* Download the [nbgit](http://code.google.com/p/nbgit/downloads/detail?name=nbgit-0.4-netbeans-6.9.nbm&can=2&q=) plugin, storing the .nbm file.
+* In Netbeans install the nbgit plugin: Tools->Plugins, Downloaded.  Select "AddPlugins" then "Install" pointing it to the .nbm file from the previous step.
+* Follow the [Enclosure install](http://www.enclojure.org/) directions starting at "One time setup for Enclojure Plugin and Updates".
+* In a terminal or 3rd party tool, clone the labrepl project.
+* In Netbeans, File->Open Project and point it to the cloned labrepl project from the previous step.
+* Right-click the labrepl project and select *Start Project Repl*
+* In the REPL console, type:
+  * `(require 'labrepl)`
+  * `(labrepl/-main)`
+* Browse to [http://localhost:8080](http://localhost:8080)
+* Enjoy the labs!
 
 ## Getting Started (Eclipse with Counterclockwise)
 
@@ -89,7 +100,7 @@ To run the labrepl:
 * In the REPL console, type:
   * `(require 'labrepl)`
   * `(labrepl/-main)`
-* Browse to http://localhost:8080
+* Browse to [http://localhost:8080](http://localhost:8080)
 * Enjoy the labs!
 
 ## Getting Started (IntelliJ IDEA with La Clojure)
@@ -123,7 +134,7 @@ To run the labrepl:
 * In the REPL Console
   * `(require 'labrepl)`
   * `(labrepl/-main)`
-* Browse to http://localhost:8080
+* Browse to [http://localhost:8080](http://localhost:8080)
 * Enjoy the labs!
 
 ## Getting Started (Maven)
@@ -133,7 +144,7 @@ To run the labrepl:
 * Clone the labrepl project and change directory into it.
 * Run `mvn clojure:repl` to launch Clojure REPL (Maven will download all necessary
   dependencies).
-* Browse to http://localhost:8080 for the labs.
+* Browse to [http://localhost:8080](http://localhost:8080) for the labs.
 * Press Ctrl+D to exit the repl when you are done.
 
 ## Getting Started (Mac/Linux command line) 
@@ -143,7 +154,7 @@ To run the labrepl:
 * Clone the labrepl project and change directory into it.
 * Run `lein deps` to install all the dependent libraries.
 * Run `script/repl` to launch the labrepl.
-* Browse to http://localhost:8080 for the labs.
+* Browse to [http://localhost:8080](http://localhost:8080) for the labs.
 * Press Ctrl+D to exit the repl when you are done.
 
 ## Getting Started (Windows command line)
@@ -158,10 +169,10 @@ This is minimally tested. You are probably better off using Maven or one of the 
 * Set your path to include `{your-lein-install}\bin`
 * Run `lein.bat deps` to install all the dependent libraries.
 * Run `script\repl` to launch the labrepl.
-* Browse to http://localhost:8080 for the labs.
+* Browse to [http://localhost:8080](http://localhost:8080) for the labs.
 * Press Ctrl+D to exit the repl when you are done.
 
-## Getting Started (Emacs)
+## Getting Started (Emacs, Mac/Linux command line)
 
 If you don't know Emacs, you may want to pick one of the choices above. The learning curve here is steep.
 
@@ -169,10 +180,21 @@ If you don't know Emacs, you may want to pick one of the choices above. The lear
 * Make sure you have [leiningen](http://github.com/technomancy/leiningen) installed.
 * Clone the labrepl project and change directory into it.
 * Run `lein deps` to install all the dependent libraries.
-* Install Emacs, the Emacs Starter Kit, Clojure mode, slime, and swank.
-* From within emacs, set the `inferior-lisp-program` variable to `script/swank`. 
-* Making sure your Emacs working directory is the labrepl, run `inferior-lisp`.
-* If you want slime as well, run `slime-connect` and accept the defaults. You now have slime and inferior-lisp both working simultaneously.
+* If they exist, move your `.emacs` and `.emacs.d` out of the way.
+* Create the `.emacs.d` directory and download the Emacs Starter Kit:
+  * `mkdir ~/.emacs.d`
+  * `cd ~/.emacs.d`
+  * `git clone http://github.com/technomancy/emacs-starter-kit.git`
+* Launch Emacs with the starter kit `emacs -l ~/.emacs.d/emacs-starter-kit/init.el`
+* Within Emacs run ELPA `M-x package-list-packages`, go to the following packages and press `i` to select:
+  * clojure-mode
+  * slime
+  * swank-clojure 
+* Once the three packages are selected press `x` to install them.  Close Emacs when the installation completes.
+* From a terminal in the labrepl directory run the swank process: `script/swank`
+* Run Emacs again `emacs -l ~/.emacs.d/emacs-starter-kit/init.el`
+* Connect to the running clojure image `M-x slime-connect` accepting the defaults.
+
 
 ## Running the Tests
 
