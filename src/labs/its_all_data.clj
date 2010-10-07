@@ -75,7 +75,7 @@
   []
   [[:h3 "Collections"]
    [:ol
-    [:li "Lists are the traditional lisp linked list. You can created them with " (c list) " or with a quoted literal:"
+    [:li "Lists are the traditional lisp linked list. You can create them with " (c list) " or with a quoted literal:"
      (code (list 1 2 3))
      (code '(1 2 3))]
     [:li "List support efficient insertion at the front via " (c cons) ", which is short for \"construct\"."
