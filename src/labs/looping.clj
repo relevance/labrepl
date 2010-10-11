@@ -77,7 +77,7 @@
       [:li (c more) " hold the remainder of the collection"]]
      "The return value should put both " (c min) " and " (c max) "into a map"
      (showme minmax-1)]
-    [:li "For comparison, implement " (c minmax-2) " using reduce. Think carefully about the reduction function. It needs to hold two values at each iteration: one each for " (c min) " and " (c maz) "."
+    [:li "For comparison, implement " (c minmax-2) " using reduce. Think carefully about the reduction function. It needs to hold two values at each iteration: one each for " (c min) " and " (c max) "."
      (showme minmax-2)]
     [:p "For functions that are updating more than one piece of information, I find the looping version is often more readable. But macros such as " (c ->) " make it simple to write multiple updates, so the " (c reduce) " isn't bad either. YMMV."]]])
 
