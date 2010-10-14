@@ -17,7 +17,7 @@
    [:ol
     [:li "One way to attack this problem is finding numbers that are evenly divisible by 3 or 5. Create a " (c divides?) " predicate that takes a dividend and a divisor, and returns true if divisor evenly divides the dividend:"
      (showme divides?)]
-    [:li "We will eventually want to filter on divisibility by more than one number, so create a " (c divides-any) " function that takes a variable list of numbers, and returns a predicate that tests whether its arg can be evenly divided by any of the numbers. (Hint: work inside-out, using " (c divides) ", " (c some) ", and " (c boolean)"). "
+    [:li "We will eventually want to filter on divisibility by more than one number, so create a " (c divides-any) " function that takes a variable list of numbers, and returns a predicate that tests whether its arg can be evenly divided by any of the numbers. (Hint: work inside-out, using " (c divides?) ", " (c some) ", and " (c boolean)"). "
      (showme divides-any)]]])
 
 (defn recursion-solution
