@@ -25,7 +25,7 @@ See instructions below for getting started with NetBeans/Enclojure, Eclipse/Coun
 
 ## Getting Started (NetBeans with Enclojure)
 
-* Install the [Netbeans 6.9.1 Java ES bundle](http://netbeans.org/downloads/)
+* Install the [Netbeans 6.9.1 Java SE bundle](http://netbeans.org/downloads/)
 * Download the [nbgit](http://code.google.com/p/nbgit/downloads/detail?name=nbgit-0.4-netbeans-6.9.nbm&can=2&q=) plugin, storing the .nbm file.
 * In Netbeans install the nbgit plugin: Tools->Plugins, Downloaded.  Select "AddPlugins" then "Install" pointing it to the .nbm file from the previous step.
 * Follow the [Enclosure install](http://www.enclojure.org/) directions starting at "One time setup for Enclojure Plugin and Updates".
