@@ -86,7 +86,7 @@
   [[:h3 "Bonus"]
    [:ol
     [:li "Read the implementations of " (c min) " and " (c zipmap) " in Clojure. Why are they different from any of the examples above?"]
-    [:li "Some collection builders start with an empty collection, while others can take an argument passed in. Review the various " (c zipmap) " appraoches. Which ones could be written to take an existing collection and add to it?"]
+    [:li "Some collection builders start with an empty collection, while others can take an argument passed in. Review the various " (c zipmap) " approaches. Which ones could be written to take an existing collection and add to it?"]
     [:li "Implement " (c min) " and " (c zipmap) " in an imperative style using a mutable OO language. Compare and contrast with the Clojure implementations above."]
     [:li "All the Clojure functions above are threadsafe. Make your mutable " (c zipmap) " threadsafe."]]])
 
