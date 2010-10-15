@@ -3,9 +3,9 @@
         labrepl
         labrepl.lab))
 
-(testing "rendering the labs"
+(deftest test-rendering
   (doseq [lab (all)]
     (let [url (lab-url lab)
           resp (app {:request-method :get :uri url})]
       (is (= {:status 200 :headers  {"Content-Type" "text/html"}}
-                 (select-keys resp [:status :headers]))))))
+             (select-keys resp [:status :headers]))))))
