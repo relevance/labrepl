@@ -25,7 +25,7 @@
   "Show codes (literal strings or forms) in a pre/code block."
   [& codes]
   (let [code-string (apply format-code codes)
-        class-string "brush: clojure; toolbar: false;"
+        class-string "brush: clojure; toolbar: false; gutter: false"
         class-string (if (one-liner? code-string) (str class-string  " light: true;") class-string)]
     [:script {:type "syntaxhighlighter" :class class-string}
      (str "<![CDATA[" code-string "]]>")]))
