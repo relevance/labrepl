@@ -1,9 +1,11 @@
 (ns labrepl-test
-  (:use labrepl labrepl.lab circumspec))
+  (:use clojure.test
+        labrepl
+        labrepl.lab))
 
 (testing "rendering the labs"
   (doseq [lab (all)]
     (let [url (lab-url lab)
           resp (app {:request-method :get :uri url})]
-      (should (= {:status 200 :headers  {"Content-Type" "text/html"}}
+      (is (= {:status 200 :headers  {"Content-Type" "text/html"}}
                  (select-keys resp [:status :headers]))))))
