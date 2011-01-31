@@ -22,7 +22,8 @@
   [[:h3 "Layout"]
    [:p "Clojure data can easily be viewed as isomorphic to HTML. A Clojure vector that begins with a keyword is an HTML element, a Clojure map is HTML attributes, and strings are strings. Compojure exposes the isomorphism through the " (c html) " function, which we will use to build a mockup of the mini-browser."]
    [:ol
-    [:li "From a REPL, use the compojure namespace."]
+    [:li "From a REPL, use the compojure and hiccup namespaces."]
+     (repl-showme (use 'compojure.core 'hiccup.core))
     [:li "Create a simple paragraph element with some text:"
      (repl-showme (html [:p "hello world"]))]
     [:li "Use a map to add a css class of " (c awesome) ":"
