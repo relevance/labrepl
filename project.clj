@@ -14,6 +14,5 @@
                  [jline "0.9.94"]
                  [mycroft "0.0.2"]
                  [circumspec "0.0.13"]]
-  :dev-dependencies [[autodoc "0.7.0" :exclusions [org.clojure/clojure-contrib]]
-                     [swank-clojure "1.3.0-SNAPSHOT"]]
+  :dev-dependencies [[swank-clojure "1.3.0-SNAPSHOT"]]
   :repositories {"clojure-releases" "http://build.clojure.org/releases"})
