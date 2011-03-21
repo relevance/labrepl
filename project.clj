@@ -2,9 +2,9 @@
   :description "Clojure exercises, with integrated repl and webapp"
   :dependencies [[org.clojure/clojure "1.2.0"]
                  [org.clojure/clojure-contrib "1.2.0"]
-                 [compojure "0.5.1"]
+                 [compojure "0.6.3"]
                  [ring/ring-jetty-adapter "0.3.0"]
-                 [hiccup "0.3.0"]
+                 [hiccup "0.3.4"]
                  [postgresql "8.4-701.jdbc4"]
                  [log4j "1.2.16"]
                  [incanter "1.2.3"]

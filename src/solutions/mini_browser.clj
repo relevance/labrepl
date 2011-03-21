@@ -95,8 +95,8 @@
      [:div {:class "browse-list empty"}])))
   (GET
    "/browse/*"
-   request
-   (let [[ns var] (str/split (get-in request [:params "*"]) #"/")]
+   {{path :*} :params}
+   (let [[ns var] (str/split path #"/")]
      (html
       (layout
        (namespace-browser (namespace-names))

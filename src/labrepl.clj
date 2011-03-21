@@ -33,11 +33,11 @@
            (fn [lab] [:li (lab/make-url lab)])
            (lab/all))])))
   (GET "/labs/:name"
-       request
+       [name]
        (html
         (lab/layout
-         [:h2 ((request :params) "name")]
-         (lab/instructions ((request :params) "name"))))))
+         [:h2 name]
+         (lab/instructions name)))))
 
 (defroutes static-routes
   (route/files "/")
