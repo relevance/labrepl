@@ -4,9 +4,9 @@
         hiccup.page-helpers
         ring.adapter.jetty
         labrepl.web
-        labrepl.util)
-  (:require [compojure.route :as route]
-            [clojure.string :as str]
+        labrepl.util
+        compojure.route)
+  (:require [clojure.string :as str]
             [clojure.repl :as repl]))
 
 (defn namespace-names
@@ -104,8 +104,8 @@
        (var-detail ns var))))))
 
 (defroutes static-routes
-  (route/files "/")
-  (route/not-found "<h1>Not Found</h1>"))
+  (files "/")
+  (not-found "<h1>Not Found</h1>"))
 
 (defroutes app-routes
   (routes browser-routes static-routes))

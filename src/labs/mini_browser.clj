@@ -7,44 +7,50 @@
           solutions.browser-mockup
           solutions.mini-browser))
 
-(defn overview
-  []
-  [[:h3 "Overview"]
-   [:p "In this lab you will implement a simple Clojure object browser using the web framework Compojure. The browser will provide access to Clojure namespaces, vars, data, docstrings, and source code. "]])
-
 (defn ll
   "literal link"
   [s]
   [:a {:href s} s])
 
-(defn defining-layout
-  []
+(defn overview []
+  [[:h3 "Overview"]
+   [:p "In this lab you will
+       implement a simple Clojure object browser using the web framework
+       Compojure. The browser will provide access to Clojure namespaces,
+       vars, data, docstrings, and source code."]])
+
+(defn defining-layout []
   [[:h3 "Layout"]
-   [:p "Clojure data can easily be viewed as isomorphic to HTML. A Clojure vector that begins with a keyword is an HTML element, a Clojure map is HTML attributes, and strings are strings. Compojure exposes the isomorphism through the " (c html) " function, which we will use to build a mockup of the mini-browser."]
+   [:p "Clojure data can easily
+       be viewed as isomorphic to HTML. A Clojure vector that begins with a
+       keyword is an HTML element, a Clojure map is HTML attributes, and
+       strings are strings. Hiccup exposes the isomorphism through
+       the " (c html) " function, which we will use in our mockup of
+       the mini-browser."]
    [:ol
-    [:li "From a REPL, use the compojure namespace."]
+    [:li "From a REPL, use the " (c hiccup.core) " namespace."]
     [:li "Create a simple paragraph element with some text:"
      (repl-showme (html [:p "hello world"]))]
     [:li "Use a map to add a css class of " (c awesome) ":"
      (repl-showme (html [:p {:class "awesome"} "hello world"]))]
-    [:li "How about an html " (c head) " with title 'Mini-Browser, and a " (c body) " with id 'browser'?"
+    [:li "How about an HTML " (c head) " with title 'Mini-Browser, and a " (c body) " with id 'browser'?"
      (repl-showme (html [:head [:title "Mini-Browser"]] [:body {:id "browser"}]))]
-    [:li "Ok, that is about enough HTML to view as a Clojure string. Let's make a server. Put the html from the previous step into a " (c mockup-1) " function:"
+    [:li "We need to pull in the compojure library in order to serve our hiccup
+         generated HTML.  Use " (c compojure.core) " and put the HTML from the previous
+         step into a " (c mockup-1) " function:"
      (showme mockup-1)]
-    [:li "Use " (c defroutes) " to create a " (c mockup-routes) " table that routes a GET of /m1 to" (c mockup-1)". "
-     (showme* '(defroutes mockup-routes
-                 (GET "/m1" (mockup-1))))]
-    [:li "Create a " (c mockup-server) " function that calls " (c run-server) " with three arguments:"
+    [:li "Use " (c defroutes) " to create " (c mockup-routes) " that routes a GET of /m1 to" (c mockup-1)". "
+     (showme* '(defroutes mockup-routes (GET "/m1" [] (mockup-1))))]
+    [:li "Use " (c ring.adapter.jetty) " and create a " (c mockup-server) " function that calls " (c run-jetty) " with two arguments:"
      [:ol
-      [:li "a map with the port to use (8999)"]
-      [:li "the routes to serve (\"/*\", i.e. everything)"]
-      [:li "a " (c servlet) " that serves the " (c mockup-routes)]]
+      [:li "the var containing the routes (in our case," (c mockup-routes) ")"]
+      [:li "a map of options that get passed down to jetty"]]
      (showme mockup-server)]
     [:li "Run the " (c mockup-server) " and browse to " (ll "http://localhost:8999/m1") " to see the (empty) page."]
     [:li "Let's create a more complete " (c mockup-2) " with some layout divs."
      (source mockup-2)]
     [:li "Add " (c mockup-2) " to a route /m2 and browse to " (ll "http://localhost:8999/m2") " to see the second mockup."]
-    [:li "Now let's add some standard styling and JavaScript. The " (c include-css) " function generates markup to pull in CSS files. Try it at the REPL:"
+    [:li "Now let's add some standard styling and JavaScript. Use " (c hiccup.page-helpers) " and its " (c include-css) " function to generate markup that will pull in CSS files. Try it at the REPL:"
      (repl-showme (include-css "/stylesheets/application.css"))]
     [:li (c include-js) " does the same thing for JavaScript:"
      (repl-showme (include-js "/javascripts/application.js"))]
@@ -52,12 +58,12 @@
      (repl-showme [default-stylesheets, default-javascripts])]
     [:li "Create a " (c mockup-3) " that adds the default CSS and JavaScripts:"
      (showme mockup-3)]
-    [:li "Add an m3 route to " (c mockup-3) ", and a catch-all route that serves files (The " (c serve-file) " function will serve files from the " (c public) " directory by default.)"
+    [:li "Add an m3 route to " (c mockup-3) ".  Use " (c compojure.route) " and add a catch-all route that serves files (The " (c files) " function will serve files from the " (c public) " directory by default.)"
      (showme* '(defroutes mockup-routes
-                 (GET "/m1" (mockup-1))
-                 (GET "/m2" (mockup-2))
-                 (GET "/m3" (mockup-3))
-                 (GET "/*" (or (serve-file (params :*)) :next))))]]])
+                 (GET "/m1" [] (mockup-1))
+                 (GET "/m2" [] (mockup-2))
+                 (GET "/m3" [] (mockup-3))
+                 (files "/")))]]])
 
 (defn static-mockup
   []
@@ -89,11 +95,9 @@
      (repl-showme (namespace-names))]
     [:li "Next, create " (c browser-routes) " so that a GET of / returns the " (c (namespace-names)) " wrapped in a " (c namespace-browser) " in a " (c layout) "."
      (showme* '(defroutes browser-routes
-                 (GET
-                  "/"
-                  (html
-                   (layout
-                    (namespace-browser (namespace-names)))))))]
+                 (GET "/" [] (html
+                              (layout
+                               (namespace-browser (namespace-names)))))))]
     [:li "Create a separate " (c static-routes) " for static content."
      (showme static-routes)]
     [:li "Create " (c app-routes) " to combine browser routes and static routes."]
@@ -111,11 +115,11 @@
      [:ul
       [:li "The var symbol in an h3 tag"]
       [:li "The docstring in a " (c "pre code") " block. You can combine " (c print-doc) " and " (c with-out-str) " to get the docstring"]
-      [:li "The source code itself. You will need to use" (c find-var) ", " (c clojure.repl/source-fn) ", and " (c labrepl.util/code*) ", which will wrap the code in html tags for you."]]
+      [:li "The source code itself. You will need to use" (c find-var) ", " (c clojure.repl/source-fn) ", and " (c labrepl.util/code*) ", which will wrap the code in HTML tags for you."]]
      (showme var-detail)]
     [:li "Test " (c var-detail) " from the repl."
      (repl-showme (var-detail "clojure.core" "and"))]
-    [:li "Update the " (c browser-routes) " to include a " (c "/browse/*") " route. It should extract the namespace and var names from the params, and then call " (c namespace-browser) ", " (c var-browser) ", and " (c var-detail) " to produce the html response."
+    [:li "Update the " (c browser-routes) " to include a " (c "/browse/*") " route. It should extract the namespace and var names from the params, and then call " (c namespace-browser) ", " (c var-browser) ", and " (c var-detail) " to produce the HTML response."
      (showme browser-routes)]
     [:li "Run the browser with the new routes, and try it out at " (ll "http://localhost:9000") "."]]])
 
