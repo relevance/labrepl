@@ -23,21 +23,17 @@
         response))))
 
 (defroutes lab-routes
-  (GET "/"
-       []
-       (html
-        (lab/layout
-         [:h2.logo "Clojure Labs"]
-         [:ul
-          (map
-           (fn [lab] [:li (lab/make-url lab)])
-           (lab/all))])))
-  (GET "/labs/:name"
-       request
-       (html
-        (lab/layout
-         [:h2 ((request :params) "name")]
-         (lab/instructions ((request :params) "name"))))))
+  (GET "/" [] (html
+               (lab/layout
+                [:h2.logo "Clojure Labs"]
+                [:ul
+                 (map
+                  (fn [lab] [:li (lab/make-url lab)])
+                  (lab/all))])))
+  (GET "/labs/:name" [name] (html
+                             (lab/layout
+                              [:h2 name]
+                              (lab/instructions name)))))
 
 (defroutes static-routes
   (route/files "/")
