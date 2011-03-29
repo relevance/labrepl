@@ -4,7 +4,7 @@
 * TODO At the bottom of every lab, add a link back to the home page
 * TODO At the bottom of every lab, add a link to the next lab if applicable
 * TODO At the bottom of every lab, add a link to the previous lab if applicable
-
+* MAYBE Create a wiki that has a page of instructions for each editor versus everything contained in the README
 
 * MAYBE Update to latest clojure version (currently 1.3.0-alpha6)
 * MAYBE Remove mini-browser lab (should it be it's own project?)
