@@ -1,14 +1,14 @@
 (ns solutions.atom-cache-test
-  (:use circumspec)
+  (:use clojure.test)
   (:require [solutions.atom-cache :as cache]))
 
-(testing "initial version"
+(deftest test-version
   (let [cache (cache/create-1)]
-    (should (nil? (cache/get cache :foo)))
-    (should (= {:foo :bar} (cache/put-1 cache :foo :bar)))))
+    (is (nil? (cache/get cache :foo)))
+    (is (= {:foo :bar} (cache/put-1 cache :foo :bar)))))
 
-(testing "improved version"
+(deftest test-improved-version
   (let [cache (cache/create {1 2})]
-    (should (nil? (cache/get cache :foo)))
-    (should (= {:foo :bar 1 2} (cache/put cache :foo :bar)))
-    (should (= {:foo :zap 1 2} (cache/put cache {:foo :zap} )))))
+    (is (nil? (cache/get cache :foo)))
+    (is (= {:foo :bar 1 2} (cache/put cache :foo :bar)))
+    (is (= {:foo :zap 1 2} (cache/put cache {:foo :zap} )))))

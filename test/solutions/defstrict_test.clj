@@ -1,30 +1,31 @@
 (ns solutions.defstrict-test
-  (:use circumspec solutions.defstrict))
+  (:use clojure.test
+        solutions.defstrict))
 
-(describe "shouts"
-  (testing shout-1
-    (should (= "FOO" (shout-1 "foo")))
-    (should (throws? NullPointerException (shout-1 nil)))
-    (should (throws? IllegalArgumentException (shout-1 :foo))))
+(deftest test-shouts
+  (testing "shout-1"
+    (is (= "FOO" (shout-1 "foo")))
+    (is (thrown? NullPointerException (shout-1 nil)))
+    (is (thrown? IllegalArgumentException (shout-1 :foo))))
   (testing "shout-2 casts to String for performance"
-    (should (= "FOO" (shout-2 "foo")))
-    (should (throws? NullPointerException (shout-2 nil)))
-    (should (throws? ClassCastException (shout-2 :foo))))
+    (is (= "FOO" (shout-2 "foo")))
+    (is (thrown? NullPointerException (shout-2 nil)))
+    (is (thrown? ClassCastException (shout-2 :foo))))
   (testing "shout-3 uses precondition to guarantee string input"
-    (should (= "FOO" (shout-3 "foo")))
-    (should (throws? Throwable #"Assert failed" (shout-3 nil)))
-    (should (throws? Throwable #"Assert failed" (shout-3 :foo))))
+    (is (= "FOO" (shout-3 "foo")))
+    (is (thrown? Throwable #"Assert failed" (shout-3 nil)))
+    (is (thrown? Throwable #"Assert failed" (shout-3 :foo))))
   (testing "shout-4 works like shout-3"
-    (should (= "FOO" (shout-4 "foo")))
-    (should (throws? Throwable #"Assert failed" (shout-4 :bar)))
-    (should (throws? Throwable #"Assert failed" (shout-4 :foo)))))
+    (is (= "FOO" (shout-4 "foo")))
+    (is (thrown? Throwable #"Assert failed" (shout-4 :bar)))
+    (is (thrown? Throwable #"Assert failed" (shout-4 :foo)))))
 
-(testing instance-check
-  (should (nil? (instance-check 'foo)))
-  (should (= '(clojure.core/instance? String foo) (instance-check '^String foo))))
+(deftest test-instance-check
+  (is (nil? (instance-check 'foo)))
+  (is (= '(clojure.core/instance? String foo) (instance-check '^String foo))))
 
-(testing arg-type-preconditions
-  (should (= '{:pre
+(deftest test-arg-type-preconditions
+  (is (= '{:pre
                [(clojure.core/instance? String a)
                 (clojure.core/instance? Integer/TYPE b)]}
            (arg-type-preconditions '[^String a ^Integer/TYPE b]))))
@@ -35,13 +36,13 @@
   [var]
   (map (partial map meta) (:arglists (meta var))))
 
-(testing "defstrict"
-  (should (= '(clojure.core/defn shout
+(deftest test-defstrict
+  (is (= '(clojure.core/defn shout
                 [s]
                 {:pre [(clojure.core/instance? String s)]}
                 (.toUpperCase s))
              (macroexpand-1
               '(solutions.defstrict/defstrict shout [^String s]
                  (.toUpperCase s)))))
-  (should (= '(({:tag String}))
+  (is (= '(({:tag String}))
              (argument-metadata #'shout))))

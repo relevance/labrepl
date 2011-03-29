@@ -1,5 +1,6 @@
 (ns ^{:skip-wiki true} labs.rock-paper-scissors
-    (:use labrepl.util solutions.rock-paper-scissors))
+    (:use labrepl.util
+          solutions.rock-paper-scissors))
 
 (defn overview
   []

@@ -1,4 +1,4 @@
-(defproject labrepl "0.0.2"
+(defproject labrepl "0.0.2-SNAPSHOT"
   :description "Clojure exercises, with integrated repl and webapp"
   :dependencies [[org.clojure/clojure "1.2.1"]
                  [compojure "0.6.2"]
@@ -10,6 +10,5 @@
                  [antlr/stringtemplate "2.2"]
                  [clojure-http-client "1.0.0-SNAPSHOT"]
                  [swank-clojure "1.3.0-SNAPSHOT"]
-                 [jline "0.9.94"]
-                 [mycroft "0.0.2"]]
+                 [jline "0.9.94"]]
   :dev-dependencies [[swank-clojure "1.3.0-SNAPSHOT"]])
