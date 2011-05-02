@@ -1,5 +1,5 @@
 #!/bin/sh
-CLASSPATH=src:test:config:data
+CLASSPATH=src:test:resources:data
 
 for f in lib/*.jar; do
     CLASSPATH=$CLASSPATH:$f
