@@ -9,6 +9,10 @@
 ** TODO Send email to James discussing pulling dependencies up so things work properly with 1.3
 ** TODO Pull necessary contrib libraries for compojure/hiccup/ring into the right places
 ** TODO Send pull requests/patches out to the right places
+* Fight Solution [0/1]
+** TODO Replace clojure.http.client with a straight Java API solution
+* Project Euler Solution [0/1]
+** TODO Remove c.c.lazy-seqs dependency
 * Misc [0/5]
 ** TODO At the bottom of every lab, add a link back to the top
 ** TODO At the bottom of every lab, add a link back to the home page

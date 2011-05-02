@@ -13,16 +13,16 @@
 
 (defn zipm-2
   [keys vals]
-  (loop [m {} 
-       [k & ks :as keys] (seq keys) 
-       [v & vs :as vals] (seq vals)]
-  (if (and keys vals)
-    (recur (assoc m k v) ks vs)
-    m)))
+  (loop [m {}
+         [k & ks :as keys] (seq keys)
+         [v & vs :as vals] (seq vals)]
+    (if (and keys vals)
+      (recur (assoc m k v) ks vs)
+      m)))
 
 (defn zipm-3
   [keys vals]
-  (reduce (fn [m [k v]] (assoc m k v)) 
+  (reduce (fn [m [k v]] (assoc m k v))
           {} (map vector keys vals)))
 
 (defn zipm-4
@@ -72,7 +72,7 @@
   (reduce
    (fn [result x]
      (->> result
-         (merge-with min {:min x})
-         (merge-with max {:max x})))
+          (merge-with min {:min x})
+          (merge-with max {:max x})))
    {:min x :max x}
    more))

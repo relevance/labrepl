@@ -1,6 +1,6 @@
-(ns
-    ^{:author "Stu Halloway"
-       :doc "Variant version of accounts example. total-balance reads consistently. Uses one identity for a group of accounts."}
+(ns ^{:author "Stu Halloway"
+      :doc "Variant version of accounts example. total-balance reads
+            consistently. Uses one identity for a group of accounts."}
   solutions.accounts-3)
 
 (defn make-accounts
@@ -52,8 +52,8 @@
   (take n (repeatedly
            (fn []
              (future
-              (dotimes [_ (/ iterations n)]
-                (random-transfer accounts)))))))
+               (dotimes [_ (/ iterations n)]
+                 (random-transfer accounts)))))))
 
 (defn trial
   "Creates :no-of-accounts accounts with :initial-balance.

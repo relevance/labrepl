@@ -1,6 +1,5 @@
-(ns
-    ^{:author "Stu Halloway"
-       :doc "Improved version of accounts example. total-balance reads consistently."}
+(ns ^{:author "Stu Halloway"
+      :doc "Improved version of accounts example. total-balance reads consistently."}
   solutions.accounts-2)
 
 (defn make-accounts
@@ -48,8 +47,8 @@
   (take n (repeatedly
            (fn []
              (future
-              (dotimes [_ (/ iterations n)]
-                (random-transfer accounts)))))))
+               (dotimes [_ (/ iterations n)]
+                 (random-transfer accounts)))))))
 
 (defn trial
   "Creates :no-of-accounts accounts with :initial-balance.

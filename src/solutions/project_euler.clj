@@ -1,6 +1,5 @@
-(ns
-    ^{:author "Stu Halloway"
-       :doc "Some Project Euler solutions. See projecteuler.net."}
+(ns ^{:author "Stu Halloway"
+      :doc "Some Project Euler solutions. See projecteuler.net."}
   solutions.project-euler
   (:use clojure.contrib.lazy-seqs)
   (:require [clojure.string :as str]))
@@ -11,7 +10,7 @@
   (zero? (rem dividend divisor)))
 
 (defn divides-any
-  "Return a predicate that tests whether its arg can be 
+  "Return a predicate that tests whether its arg can be
    evenly divided by any of nums."
   [& nums]
   (fn [arg]
@@ -81,9 +80,9 @@
   ([] (problem-4 1000))
   ([upper]
      (apply max
-      (for [x (range upper) y (range x upper) :when (let [s (str (* x y))]
-                                                    (= s (str/reverse s)))]
-        (* x y)))))
+            (for [x (range upper) y (range x upper) :when (let [s (str (* x y))]
+                                                            (= s (str/reverse s)))]
+              (* x y)))))
 
 (defn problem-5
   "2520 is the smallest number that can be divided by each of the numbers

@@ -31,8 +31,8 @@
   [arglist]
   {:pre
    (->> (map instance-check arglist)
-       (remove nil?)
-       (into []))})
+        (remove nil?)
+        (into []))})
 
 (defmacro defstrict
   [name arglist & body]

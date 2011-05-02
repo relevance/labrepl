@@ -18,7 +18,7 @@
 (defn with-coords [board]
   (for [[row-idx row] (map-indexed vector board)]
     (for [[col-idx val] (map-indexed vector row)]
-         [val row-idx col-idx])))
+      [val row-idx col-idx])))
 
 (defn without-coords [board]
   (for [row board]
@@ -41,8 +41,8 @@
   [above [_ cell _ :as row] below]
   (cond
    (= :on    cell)                              :dying
-   (= :dying cell)                              :off  
-   (= 2 (active-neighbors [above row below]))   :on   
+   (= :dying cell)                              :off
+   (= 2 (active-neighbors [above row below]))   :on
    :else                                        :off  ))
 
 (defn torus-window
@@ -89,11 +89,11 @@
 
 (defn activity-loop [panel board]
   (while
-   @board
-   (update-board board)
-   (.repaint panel)))
+      @board
+    (update-board board)
+    (.repaint panel)))
 
-(defn launch-1 [] 
+(defn launch-1 []
   (let [[screen-x screen-y] dim-screen
         board (atom (new-board))
         frame (JFrame.)
@@ -106,7 +106,7 @@
       (.setDefaultCloseOperation JFrame/DISPOSE_ON_CLOSE))
     board))
 
-(defn launch-2 [] 
+(defn launch-2 []
   (let [[screen-x screen-y] dim-screen
         board (atom (new-board))
         frame (JFrame.)
@@ -121,7 +121,7 @@
       (.setDefaultCloseOperation JFrame/DISPOSE_ON_CLOSE))
     board))
 
-(defn launch [] 
+(defn launch []
   (let [[screen-x screen-y] dim-screen
         board (atom (new-board))
         frame (JFrame.)
