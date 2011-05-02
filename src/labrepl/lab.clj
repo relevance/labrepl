@@ -30,11 +30,7 @@
      [:title (last title)]
      (apply include-css default-stylesheets)
      (apply include-js default-javascripts)]
-    [:body
-     [:div {:id "header"}
-      title]
-     [:div {:id "content"}
-      body]
-     [:div {:id "footer"}
-      "Clojure labrepl. Copyright 2010 Relevance Inc. All Rights Reserved."]]))
+    [:body [:div {:id "header"} title]
+     [:div {:id "content"} body]
+     [:div {:id "footer"} "Clojure labrepl. Copyright Relevance Inc. All Rights Reserved."]]))
 

@@ -1,6 +1,7 @@
 (defproject labrepl "0.0.2-SNAPSHOT"
   :description "Clojure exercises, with integrated repl and webapp"
   :dependencies [[org.clojure/clojure "1.2.1"]
+                 [org.clojure/tools.logging "0.1.2"]
                  [compojure "0.6.2"]
                  [ring/ring-jetty-adapter "0.3.7"]
                  [hiccup "0.3.4"]
