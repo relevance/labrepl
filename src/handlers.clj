@@ -7,7 +7,5 @@
           response (handler request)
           elapsed (/ (double (- (System/nanoTime) start)) 1000000.0)]
       (when response
-        (info (str (:uri request) " [" (:request-method request) "] " elapsed " msec"
-                   "\n\tParameters " (:params request)
-                   "\n\tSession " (:session request)))
+        (info (str (.toUpperCase (name (:request-method request))) " " (:uri request) " " elapsed " milliseconds"))
         response))))
