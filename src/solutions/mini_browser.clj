@@ -1,13 +1,13 @@
 (ns solutions.mini-browser
-  (:use compojure.core
-        hiccup.core
-        hiccup.page-helpers
-        ring.adapter.jetty
-        labrepl.web
-        labrepl.util
-        compojure.route)
+  (:use [ring.adapter.jetty :only (run-jetty)]
+        [compojure.core :only (defroutes GET)]
+        [hiccup.core :only (html)]
+        [hiccup.page-helpers :only (include-css include-js)]
+        [labrepl.util :only (code*)]
+        [labrepl.layout :only (default-stylesheets default-javascripts)])
   (:require [clojure.string :as str]
-            [clojure.repl :as repl]))
+            [clojure.repl :as repl]
+            [compojure.route :as route]))
 
 (defn namespace-names
   "Sorted list of namespace names (strings)."
@@ -51,17 +51,17 @@
 
 (defn layout [& body]
   (html
-    [:head
-     [:title "Mini-Browser"]
-     (apply include-css default-stylesheets)
-     (apply include-js default-javascripts)]
-    [:body {:id "browser"}
-     [:div {:id "header"}
-      [:h2 "Mini-Browser"]]
-     [:div {:id "content"}
-      body]
-     [:div {:id "footer"}
-      "Clojure Mini-Browser"]]))
+   [:head
+    [:title "Mini-Browser"]
+    (apply include-css default-stylesheets)
+    (apply include-js default-javascripts)]
+   [:body {:id "browser"}
+    [:div {:id "header"}
+     [:h2 "Mini-Browser"]]
+    [:div {:id "content"}
+     body]
+    [:div {:id "footer"}
+     "Clojure Mini-Browser"]]))
 
 (defn view-function
   [func]
@@ -85,31 +85,20 @@
             [:h4 "Source"]
             (code* (repl/source-fn sym))))))
 
-(defroutes browser-routes
-  (GET
-   "/"
-   []
-   (html
-    (layout
-     (namespace-browser (namespace-names))
-     [:div {:class "browse-list empty"}])))
-  (GET
-   "/browse/*"
-   request
-   (let [[ns var] (str/split (get-in request [:params "*"]) #"/")]
-     (html
-      (layout
-       (namespace-browser (namespace-names))
-       (var-browser ns (var-names ns))
-       (var-detail ns var))))))
-
-(defroutes static-routes
-  (files "/")
-  (not-found "<h1>Not Found</h1>"))
-
-(defroutes app-routes
-  (routes browser-routes static-routes))
+(defroutes application
+  (GET "/" [] (html
+               (layout
+                (namespace-browser (namespace-names))
+                [:div {:class "browse-list empty"}])))
+  (GET "/browse/*" request (let [[ns var] (str/split (get-in request [:params "*"]) #"/")]
+                             (html
+                              (layout
+                               (namespace-browser (namespace-names))
+                               (var-browser ns (var-names ns))
+                               (var-detail ns var)))))
+  (route/files "/")
+  (route/not-found "<h1>Not Found</h1>"))
 
 (defn main []
-  (run-jetty (var app-routes) {:port 9000
-                               :join? false}))
+  (run-jetty (var application) {:port 9000
+                                :join? false}))

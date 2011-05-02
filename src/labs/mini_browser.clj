@@ -1,11 +1,12 @@
-(ns ^{:skip-wiki true} labs.mini-browser
-    (:use compojure.core
-          hiccup.core
-          hiccup.page-helpers
-          labrepl.util
-          labrepl.web
-          solutions.browser-mockup
-          solutions.mini-browser))
+(ns ^{:skip-wiki true}
+  labs.mini-browser
+  (:use [compojure.core :only (defroutes GET)]
+        [hiccup.core :only (html)]
+        [hiccup.page-helpers :only (include-css include-js)]
+        [labrepl.layout :only (default-stylesheets default-javascripts)]
+        [labrepl.util :only (c repl-showme showme showme* source)]
+        [solutions.browser-mockup :only (mockup-routes)]
+        [solutions.mini-browser :only (namespace-names var-names var-detail)]))
 
 (defn ll
   "literal link"
