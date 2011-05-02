@@ -1,10 +1,17 @@
-(ns
-    ^{:author "Stu Halloway"
-       :doc "Utilities for creating lab instruction pages."}
-    labrepl.util
-  (:use clojure.pprint
+(ns ^{:author "Stu Halloway"
+      :doc "Utilities for creating lab instruction pages."}
+  labrepl.util
+  (:use [clojure.pprint :only (pprint)]
         [clojure.repl :only (source-fn)])
   (:require [clojure.string :as s]))
+
+(defn lab-url
+  [lab-name]
+  (str "/labs/" (name lab-name)))
+
+(defn make-url
+  [lab]
+  [:a {:href (lab-url lab)} (name lab)])
 
 (defn format-code
   [& codes]
@@ -48,9 +55,9 @@
 
 (defn showme*
   [code-string]
-  [:div {:class "toggle"} 
+  [:div {:class "toggle"}
    [:div [:a {:href "javascript:void(null)"} "Show Code"]]
-   [:div {:style "display:none;"} [:a {:href "javascript:void(null)"} "Hide Code"] 
+   [:div {:style "display:none;"} [:a {:href "javascript:void(null)"} "Hide Code"]
     (code* code-string)]])
 
 (defmacro showme
@@ -72,8 +79,8 @@
   "Return exception info in string instead of blowing up."
   [& forms]
   `(try
-    ~@forms
-    (catch Exception e# (str (.getClass e#) " " (.getMessage e#)))))
+     ~@forms
+     (catch Exception e# (str (.getClass e#) " " (.getMessage e#)))))
 
 (defn deindent
   "Deindent all lines of a string based on the indentation of the
