@@ -6,3 +6,4 @@ autodoc/*
 log
 *~
 target
+/logs/labrepl.log
