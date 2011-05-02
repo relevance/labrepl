@@ -1,7 +1,14 @@
 #+TODO: MAYBE TODO IN-PROGRESS REVIEW DONE
+* It's All Data [0/1]
+** TODO Replace Incanter example with something else
 * Names and Places [0/2]
 ** TODO Substitute c.c.math for something in core
 ** TODO Is c.c.with-ns necessary or does it need to be moved into a library
+* Mini Browser [0/4]
+** MAYBE Delete the lab completely
+** TODO Send email to James discussing pulling dependencies up so things work properly with 1.3
+** TODO Pull necessary contrib libraries for compojure/hiccup/ring into the right places
+** TODO Send pull requests/patches out to the right places
 * Misc [0/5]
 ** TODO At the bottom of every lab, add a link back to the top
 ** TODO At the bottom of every lab, add a link back to the home page
