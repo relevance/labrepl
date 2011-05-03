@@ -3,8 +3,9 @@
 ** DONE Remove Incanter section
    CLOSED: [2011-05-03 Tue 15:14]
 ** TODO Replace Incanter example with something else
-* Names and Places [0/2]
-** TODO Substitute c.c.math for something in core
+* Names and Places [1/2]
+** DONE Substitute c.c.math for something in core
+   CLOSED: [2011-05-03 Tue 15:44]
 ** TODO Is c.c.with-ns necessary or does it need to be moved into a library
 * Mini Browser [0/4]
 ** MAYBE Delete the lab completely
