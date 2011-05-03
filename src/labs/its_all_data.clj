@@ -141,56 +141,25 @@
            (c reductions) ": "
       (code (reductions + (range 101)))]]]])
 
-(defn a-little-real-data []
-  [[:h3 "A Little Real Data"]
-   [:p "The file " (c data/words) " contains a typical Unix words file. Let's see how easy it is to analyze
-        data using Clojure."]
-   [:ol
-    [:li "Use " (c read-lines) " to load the words file into a variable named " (c words) ". "
-     (code (def words (read-lines "data/words")))]
-    [:li "Use " (c count) " to verify that you got the words."
-     (code (count words))]
-    [:li "What is your favorite English word containing the string \"root\"? Use filter to get the possible choices:"
-     (code "(filter #(.contains % \"root\") words)")]
-    [:li "How many words in the file start with A?"
-     (code "(count (filter #(.startsWith % \"A\") words))")]
-    [:li "Let's generalize that a bit. The " (c frequencies) " function returns a map of values to the number of
-          times each value occurs. Build a frequencies table by initial letter"
-          (code (frequencies (map first words)))
-          "(Note that here you see one advantage of working with all the data, instead of thinking up a few examples.
-          The results demonstrate that we need to decide how to deal with upper vs. lower case letters."]
-    [:li "How about a frequency distribution by the length of the word?"
-     (code "(frequencies (map #(.length %) words))")]
-    [:li "Frequencies are easier to visualize with a bar chart. Load the incanter charting library:"
-     (code (use '[incanter core charts]))]
-    [:li "The " (c bar-chart) " function expects a sequence of categories, followed by a sequene of values. Use "
-          (c let) " to capture frequencies in a local variable, and then call " (c keys) " and " (c values) " to
-          pass the data to " (c bar-chart) ". "
-     (code (let [f (frequencies (map first words))]
-             (view (bar-chart (keys f) (vals f)))))]]])
-
 (defn bonus []
   [[:h3 "Bonus"]
    [:ol
-    [:li (c bar-chart) " takes addional options for controlling the display of the chart. Use them to make the
-         frequencies chart more appealing."]
-    [:li "Our first " (c reduce) " example showed using reduce to perform repeated addition. But in Clojure,
-          the " (c +) " function can itself perform repeated addition! What advantages does " (c reduce) "
+    [:li "Our first " (c reduce) " example showed using reduce to perform
+          repeated addition. But in Clojure, the " (c +) " function can itself
+          perform repeated addition! What advantages does " (c reduce) "
           offer over implicit reduction within a function?"]
-    [:li "Implement your own version of " (c frequencies) " using " (c reduce) "."]
-    [:li "Pick a language that you know well. What feature of your chosen language is analogous to Clojure
-          keywords? To Clojure symbols? What do the differences (if any) imply?"]
+    [:li "Pick a language that you know well. What feature of your chosen language
+          is analogous to Clojure keywords? To Clojure symbols? What do the
+          differences (if any) imply?"]
     [:li "The " (c reverse) " function returns the reverse of a collection."
-          (code (reverse [1 2 3]))
-          "Its behavior with strings may surprise you, but it is consistent:"
-          (code (reverse "foobar"))
-          "Why is " (c reverse) "'s behavior the right thing to do, even for strings, and what options can/should
-          be provided for String->String functions?"]]])
+          (code (reverse [1 2 3])) "Its behavior with strings may surprise
+          you, but it is consistent:" (code (reverse "foobar")) "Why
+          is " (c reverse) "'s behavior the right thing to do, even for strings,
+          and what options can/should be provided for String->String functions?"]]])
 
 (defn instructions []
   (concat (some-data-types)
           (name-types)
           (collections)
           (seqs)
-          (a-little-real-data)
           (bonus)))
