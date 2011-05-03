@@ -1,7 +1,7 @@
 (ns ^{:skip-wiki true}
   labs.project-euler
   (:use [labrepl.util :only (c showme repl-showme)]
-        [solutions.project-euler :only (divides-any)]))
+        [solutions.project-euler]))
 
 (defn overview []
   [[:h3 "Overview"]
