@@ -1,6 +1,7 @@
 (ns ^{:skip-wiki true}
   labs.rock-paper-scissors
-  (:use [labrepl.util :only (c showme)]))
+  (:use [labrepl.util :only (c showme)]
+        [solutions.rock-paper-scissors]))
 
 (defn overview []
   [[:h3 "Overview"]
@@ -23,14 +24,13 @@
           that returns the thing that dominates the argument passed in."
           (showme dominates)]
     [:li "Create a " (c choices) " set that contains the possible choices. Don't Repeat Yourself."
-     (showme choices)]
+          (showme choices)]
     [:li "Create a " (c winner) " function that takes two players' choices, and returns the winner,
-          or " (c nil) " for a tie:"
-     (showme winner)]
+          or " (c nil) " for a tie:" (showme winner)]
     [:li "Create a " (c draw?) " predicate that takes two players' choices and returns true if they are a draw."
-     (showme draw?)]
+          (showme draw?)]
     [:li "Create an " (c iwon?) " predicate that takes two players' choices and returns true if the first player won."
-     (showme iwon?)]]])
+          (showme iwon?)]]])
 
 (defn the-players []
   [[:h3 "The Players"]
@@ -41,9 +41,11 @@
       [:li (c update-strategy) " takes a player, that player's last choice, and the other player's
            last choice, returning the " (c Player) " for the next round:"]]
            (showme Player)]
+    [:li "Before we define our players we need to define our idea of random choice"
+          (showme random-choice)]
     [:li "Use " (c defrecord) " to define a " (c Random) " player. " (c Random) " always picks at
           random, and never changes strategy based on what the other player is doing."
-     (showme "(defrecord Random []
+          (showme "(defrecord Random []
   Player
   (choose [_] (random-choice))
   (update-strategy [this me you] this))")]
@@ -81,8 +83,7 @@
           [:a {:href "http://www.samkass.com/theories/RPSSL.html"} "Rock Paper Scissors Spock Lizard"]  "."]]])
 
 (defn instructions []
-  (concat
-   (overview)
-   (the-rules)
-   (the-players)
-   (bonus)))
+  (concat (overview)
+          (the-rules)
+          (the-players)
+          (bonus)))
