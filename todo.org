@@ -20,7 +20,9 @@
 * Project Euler Solution [1/1]
 ** DONE Remove c.c.lazy-seqs dependency
    CLOSED: [2011-05-04 Wed 10:42]
-* Misc [0/5]
+* Misc [1/6]
+** DONE Fix broken tests
+   CLOSED: [2011-05-04 Wed 10:52]
 ** TODO At the bottom of every lab, add a link back to the top
 ** TODO At the bottom of every lab, add a link back to the home page
 ** TODO At the bottom of every lab, add a link to the next lab if applicable
