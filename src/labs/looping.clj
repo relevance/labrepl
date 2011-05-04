@@ -67,7 +67,7 @@
           more implementation choices to consider. We will see this with " (c zipm) ",
           which takes sequences of keys and values to make a map:"
           (let [zipm zipmap]
-           (repl-code (zipm [:a :b :c] [1 2 3])))]
+            (repl-code (zipm [:a :b :c] [1 2 3])))]
     [:li "One option is to loop over three variables: the result map " (c m) "
           (which gets bigger), and the input sequences " (c ks) " and " (c vs) "
           (which get smaller). Create a " (c zipm-1) " that uses a loop and "
