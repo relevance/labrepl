@@ -25,7 +25,7 @@ See the Wiki for getting started with NetBeans/Enclojure, Eclipse/Counterclockwi
 
 ## Running the Tests
 
-* Leiningen: lein test
+* Leiningen: `lein test`
 * Maven: `mvn clojure:test`
 
 ## Thanks for contributions and reviews from
