@@ -31,17 +31,17 @@
    [:ol
     [:li "Let's create a very simple function that we can use to see type hints and preconditions in
           action. For our first iteration, create " (c shout-1) " that calls " (c .toUpperCase) " on its argument"
-     (showme shout-1)]
+          (showme shout-1)]
     [:li "Try passing invalid arguments " (c nil) " and " (c :foo) " to " (c shout-1) ". Make sure you
           understand the way each fails."]
     [:li "Now, create " (c shout-2) " that tags its argument as a string."
-     (showme shout-2)]
+          (showme shout-2)]
     [:li "Thanks to the type tag, " (c shout-2) " will no longer make a reflective invocation
           of " (c .toUpperCase) ". This is faster, and it also changes some failure modes.
           Try " (c nil) " and " (c :foo) " again."]
     [:li "Now create a " (c shout-3) " that uses both type tags and an " (c instance?) "
           precondition on its argument."
-     (showme shout-3)]
+          (showme shout-3)]
     [:li "Test that " (c shout-3) " provides a more informative error message for various bad inputs."]]
    [:p "A la carte is nice until you want the same fixed meal every time. If you wanted to write a
         ton of functions that all did type tagging and instance checking, the style used in " (c shout-3) "
@@ -59,14 +59,13 @@
     [:li "First, write an " (c instance-check) " function that checks a symbol for type hints, and
           emits an " (c instance?) "check."
           (showme instance-check)]
-    [:li "Test " (c instance-check) " from the repl:"
-     (repl-code "(instance-check '^String s)")]
+    [:li "Test " (c instance-check) " from the repl:" (repl-code "(instance-check '^String s)")]
     [:li "Now you can write " (c arg-type-preconditions) ". It simply maps " (c instance-check) "
           over all the args, removes the nils, and puts the checks into the " (c {:pre []}) "
           structure of a Clojure precondition."
           (showme arg-type-preconditions)]
     [:li "Test " (c arg-type-preconditions) " from the repl."
-     (repl-code "(arg-type-preconditions '[^String a b ^Integer c])")]]])
+          (repl-code "(arg-type-preconditions '[^String a b ^Integer c])")]]])
 
 (defn defstrict-ins []
   [[:h3 "defstrict"]
@@ -82,7 +81,7 @@
      (showme defstrict)]
     [:li "Test " (c defstrict) " using " (c macroexpand-1) "."]
     [:li "Test " (c defstrict) " by defining a strict function and calling it."
-     (showme shout)]]])
+          (showme shout)]]])
 
 (defn bonus []
   [[:h3 "Bonus"]
@@ -93,12 +92,9 @@
           to " (c defstrict) "? Why or why not?"]]])
 
 (defn instructions []
-  (concat
-   (overview-ins)
-   (the-problem-ins)
-   (shout-ins)
-   (arg-type-preconditions-ins)
-   (defstrict-ins)
-   (bonus)))
-
-
+  (concat   (overview-ins)
+            (the-problem-ins)
+            (shout-ins)
+            (arg-type-preconditions-ins)
+            (defstrict-ins)
+            (bonus)))
