@@ -2,7 +2,6 @@
   labs.names-and-places
   (:use [labrepl.util :only (c code repl-code)]
         [solutions.dialect :only (canadianize)]
-        [clojure.contrib.with-ns :only (with-ns)]
         [clojure.java.io :only (file)])
   (:require [clojure.java.io :as io])
   (:import [java.util Date Random]))
@@ -61,8 +60,7 @@
           (code (ns-refers *ns*))]]
    [:li "The refers map is often pretty big. If you are only interested in one symbol,
          pass that symbol to the result of calling " [:code "ns-refers"] ": "
-    (with-ns 'labs.names-and-places
-      (repl-code ((ns-refers *ns*) 'dir)))]])
+    (repl-code ((ns-refers 'labs.names-and-places) 'dir))]])
 
 (defn import-section []
   [[:h3 "Import"]
@@ -136,15 +134,15 @@
       (let [canadianize #(str % ", eh")]
         (repl-code (canadianize "Hello, world.")))]
      [:li "Oops! We need to trim the period off the end of the input. Fortunately, "
-      [:code "clojure.contrib.str-utils2"] " provides " [:code "chop"] ".
+      [:code "clojure.string."] " provides " [:code "replace"] ".
            Go back to " [:code "student/dialect.clj"] " and add require in "
-      [:code "clojure.contrib.str-utils2"] ": "
+      [:code "[clojure.string :as str]"] ": "
       (code (ns student.dialect
-              (:require [clojure.contrib.str-utils2 :as s])))]
-     [:li "Now, update " [:code "canadianize"] " to use " [:code "chop"] ": "
+              (:require [clojure.string :as str])))]
+     [:li "Now, update " [:code "canadianize"] " to use " [:code "replace"] ": "
       (code (defn canadianize
               [sentence]
-              (str (s/chop sentence) ", eh?")))]
+              (str/replace "hello." #"\.?$" ", eh?")))]
      [:li "If you simply retry calling " [:code "canadianize"] " from the repl,
            you will not see your new change, because the code was already loaded.
            However, you can use namespace forms with " [:code "reload"] "

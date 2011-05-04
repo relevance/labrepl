@@ -74,13 +74,11 @@
      (code (me :first-name))]
     [:li "Keywords are also functions, taking a map argument, so yet another approach is:"
      (code  (:first-name me))]
-    [:li "Keywords are also used to name options. So, you can use only the " (c primes) " function from the
-          lazy-seqs lib:"
-     (code (use '[clojure.contrib.lazy-seqs :only (primes)]))]
-    [:li "Now that we have the primes loaded, we might as well look at a few of them. We will cover " (c for) "
-          in detail later, but for now here is how to use the " (c :while) " keyword option to retrieve only
-          those primes less than a thousand:"
-     (code (for [p primes :while (< p 1000)] p))]]])
+    [:li "Keywords are also used to name options. For example, you can use the " (c :as) " to specify a short
+          form prefix for a namespace you are loading:"
+          (code (require '[clojure.string :as str]))]
+    [:li "Now you can use the" (c str/) "prefix to access string functions:"
+          (code (str/join "," ["the" "quick" "brown" "fox"]))]]])
 
 (defn collections []
   [[:h3 "Collections"]

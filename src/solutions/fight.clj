@@ -15,8 +15,6 @@
       (let [buf (BufferedReader. (InputStreamReader. stream))]
         (apply str (line-seq buf))))))
 
-(use 'clojure.contrib.pprint)
-
 (defn estimated-hits-for
   [term]
   (let [http-response (request (str google-search-base (url-encode term)))
