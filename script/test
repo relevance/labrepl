@@ -1,8 +1,0 @@
-#!/bin/sh
-CLASSPATH=test:src:resources:classes:features
-
-for f in lib/*.jar; do
-    CLASSPATH=$CLASSPATH:$f
-done
-
-java $@ -Xmx1G -cp $CLASSPATH clojure.main script/test.clj
