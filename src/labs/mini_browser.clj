@@ -5,8 +5,8 @@
         [hiccup.page-helpers :only (include-css include-js)]
         [labrepl.layout :only (default-stylesheets default-javascripts)]
         [labrepl.util :only (c repl-showme showme showme* source)]
-        [solutions.browser-mockup :only (mockup-routes)]
-        [solutions.mini-browser :only (namespace-names var-names var-detail)]))
+        [solutions.browser-mockup]
+        [solutions.mini-browser]))
 
 (defn ll
   "literal link"
@@ -133,11 +133,9 @@
     [:li "The syntax highlighter isn't perfect--it sometimes highlights parts of words. What is the issue, and what is the fix?"]
     [:li "The lab you are reading is itself a Compojure app. Use your browser to explore the namespaces starting with " (c labrepl) "."]]])
 
-(defn instructions
-  []
-  (concat
-   (overview)
-   (defining-layout)
-   (static-mockup)
-   (making-it-live)
-   (bonus)))
+(defn instructions []
+  (concat (overview)
+          (defining-layout)
+          (static-mockup)
+          (making-it-live)
+          (bonus)))

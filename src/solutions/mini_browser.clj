@@ -80,8 +80,7 @@
           var (find-var sym)]
       (html [:h3 sym]
             [:h4 "Docstring"]
-            [:pre [:code
-                   (with-out-str (print-doc var))]]
+            [:pre [:code (:doc (meta var))]]
             [:h4 "Source"]
             (code* (repl/source-fn sym))))))
 
