@@ -62,7 +62,7 @@
     [:li (c include-js) " does the same thing for JavaScript:"
          (repl-showme (include-js "/javascripts/application.js"))]
     [:li "The labs include a set of premade JavaScripts and CSS files. Use the namespace "
-          (c labrepl.web) ", and you can access these files via the vars "
+          (c labrepl.layout) ", and you can access these files via the vars "
           (c default-stylesheets) " and " (c default-javascripts)": "
           (repl-showme [default-stylesheets, default-javascripts])]
     [:li "Create a " (c mockup-3) " that adds the default CSS and JavaScripts:"
@@ -112,15 +112,13 @@
           (showme namespace-names)]
     [:li "Test " (c namespace-names) "."
      (repl-showme (namespace-names))]
-    [:li "Next, create " (c browser-routes) " so that a GET of / returns the "
+    [:li "Next, create " (c application-routes) " so that a GET of / returns the "
           (c (namespace-names)) " wrapped in a " (c namespace-browser) " in a " (c layout) "."
-          (showme* '(defroutes browser-routes
+          (showme* '(defroutes application-routes
                       (GET "/" [] (html
                                    (layout
-                                    (namespace-browser (namespace-names)))))))]
-    [:li "Create a separate " (c static-routes) " for static content."
-          (showme static-routes)]
-    [:li "Create " (c app-routes) " to combine browser routes and static routes."]
+                                    (namespace-browser (namespace-names)))))
+                      (files "/")))]
     [:li "Create a " (c main) " function to launch the browser on port 9000."
           (showme main)]
     [:li "Run " (c main) " and browse to " (ll "http://localhost:9000") " to see the live
@@ -129,25 +127,25 @@
     [:li "Next we need a function " (c var-names) " that returns the var names given a
           namespace name. To build it you will need to call" (c symbol) ", " (c find-ns) ",
          " (c ns-publics) ", and " (c keys) "." (showme var-names)]
-    [:li "Test " (c var-names) "." (repl-showme (var-names "clojure.xml"))]
+    [:li "Test " (c var-names) "." (repl-showme (var-names "clojure.string"))]
     [:li "Now for the var details. First, we need a simple " (c var-symbol) "helper that
           manufactures a fully-qualified var symbol, given the namespace and var as strings:"
           (showme var-symbol)]
     [:li "The " (c var-detail) " function should return markup:"
      [:ul
       [:li "The var symbol in an h3 tag"]
-      [:li "The docstring in a " (c "pre code") " block. You can combine " (c print-doc) "
-            and " (c with-out-str) " to get the docstring"]
+      [:li "The docstring in a " (c "pre code") " block. You can ask a var for its docstring
+            by querying the metadata " (c (:doc (meta var)))]
       [:li "The source code itself. You will need to use" (c find-var) ", "
             (c clojure.repl/source-fn) ", and " (c labrepl.util/code*) ", which will wrap
             the code in HTML tags for you."]]
-     (showme var-detail)]
+            (showme var-detail)]
     [:li "Test " (c var-detail) " from the repl."
-     (repl-showme (var-detail "clojure.core" "and"))]
-    [:li "Update the " (c browser-routes) " to include a " (c "/browse/*") " route. It should
+          (repl-showme (var-detail "clojure.core" "and"))]
+    [:li "Update the " (c application-routes) " to include a " (c "/browse/*") " route. It should
           extract the namespace and var names from the params, and then call "
           (c namespace-browser) ", " (c var-browser) ", and " (c var-detail) " to produce
-          the HTML response." (showme browser-routes)]
+          the HTML response." (showme application-routes)]
     [:li "Run the browser with the new routes, and try it out at "
           (ll "http://localhost:9000") "."]]])
 

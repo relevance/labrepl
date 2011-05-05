@@ -4,10 +4,10 @@
         [hiccup.core :only (html)]
         [hiccup.page-helpers :only (include-css include-js)]
         [labrepl.util :only (code*)]
-        [labrepl.layout :only (default-stylesheets default-javascripts)])
+        [labrepl.layout :only (default-stylesheets default-javascripts)]
+        [compojure.route])
   (:require [clojure.string :as str]
-            [clojure.repl :as repl]
-            [compojure.route :as route]))
+            [clojure.repl :as repl]))
 
 (defn namespace-names
   "Sorted list of namespace names (strings)."
@@ -84,7 +84,7 @@
             [:h4 "Source"]
             (code* (repl/source-fn sym))))))
 
-(defroutes application
+(defroutes application-routes
   (GET "/" [] (html
                (layout
                 (namespace-browser (namespace-names))
@@ -95,9 +95,9 @@
                                (namespace-browser (namespace-names))
                                (var-browser ns (var-names ns))
                                (var-detail ns var)))))
-  (route/files "/")
-  (route/not-found "<h1>Not Found</h1>"))
+  (files "/")
+  (not-found "<h1>Not Found</h1>"))
 
 (defn main []
-  (run-jetty (var application) {:port 9000
+  (run-jetty (var application-routes) {:port 9000
                                 :join? false}))
