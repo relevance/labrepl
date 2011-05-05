@@ -22,8 +22,7 @@
           :rock-paper-scissors])
 
 (defn home []
-  (layout/page
-   [:h2.logo "Clojure Labs"]
+  (layout/home
    [:ul
     (map
      (fn [lab] [:li (make-url lab)])
@@ -37,7 +36,7 @@
 
 (defroutes lab-routes
   (GET "/" [] (home))
-  (GET "/labs/:name" [name] (layout/page [:h2 name] (instructions name)))
+  (GET "/labs/:name" [name] (layout/lab [:h2 name] (instructions name)))
   (route/files "/")
   (route/not-found "<h1>Not Found</h1>"))
 

@@ -13,7 +13,17 @@
    "/javascripts/shCore.js"
    "/javascripts/shBrushClojure.js"])
 
-(defn page [title & body]
+(defn home [body]
+  (html
+    [:head
+     [:title "Clojure Labs"]
+     (apply include-css default-stylesheets)
+     (apply include-js default-javascripts)]
+    [:body [:div {:id "header"} [:h2.logo "Clojure Labs"]]
+     [:div {:id "content"} body]
+     [:div {:id "footer"} "Clojure labrepl. Copyright Relevance Inc. All Rights Reserved."]]))
+
+(defn lab [title & body]
   {:pre [(string? (last title))]}
   (html
     [:head
@@ -25,4 +35,3 @@
       [:div {:id "breadcrumb"} (link-to "/" "Home")]
       body]
      [:div {:id "footer"} "Clojure labrepl. Copyright Relevance Inc. All Rights Reserved."]]))
-
