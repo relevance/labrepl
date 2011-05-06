@@ -1,4 +1,4 @@
-(ns ^{:skip-wiki true}
+(ns ^{:next "Names and Places" :next-url "/labs/names-and-places"}
   labs.intro
   (:use [labrepl.util :only (code)]))
 

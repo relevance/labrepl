@@ -1,4 +1,6 @@
-(ns labs.cellular-automata
+(ns ^{:next "defstrict" :next-url "/labs/defstrict"
+      :prev "Zero Sum" :prev-url "/labs/zero-sum"}
+  labs.cellular-automata
   (:use [labrepl.util :only (c showme repl-showme repl-code)]
         [solutions.automaton]))
 

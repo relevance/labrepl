@@ -101,6 +101,10 @@ ol li { list-style-type: decimal; margin-left: 20px; }
 #header { padding: 10px 0 0; }
 h2.logo { padding-left: 100px; height: 82px; background: url(clojure_logo.jpg) top left no-repeat; line-height: 82px;}
 
+#breadcrumb { height: 20px; }
+#breadcrumb #previous { float: left; }
+#breadcrumb #next {float: right }
+
 /* Content styles */
 #content { padding: 0 0 10px; }
 

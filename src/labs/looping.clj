@@ -1,4 +1,5 @@
-(ns ^{:skip-wiki true}
+(ns ^{:next "Project Euler" :next-url "/labs/project-euler"
+      :prev "It's All Data" :prev-url "/labs/its-all-data"}
   labs.looping
   (:use [labrepl.util :only (c code repl-code showme)]
         [solutions.looping])

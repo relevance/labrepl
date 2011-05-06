@@ -1,4 +1,5 @@
-(ns ^{:skip-wiki true}
+(ns ^{:next "Cellular Automata" :next-url "/labs/cellular-automata"
+      :prev "Unified Update Model" :prev-url "/labs/unified-update-model"}
   labs.zero-sum
   (:use [labrepl.util :only (c showme)])
   (:require [solutions

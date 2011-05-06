@@ -1,4 +1,4 @@
-(ns ^{:skip-wiki true}
+(ns ^{:prev "defstrict" :prev-url "/labs/defstrict"}
   labs.rock-paper-scissors
   (:use [labrepl.util :only (c showme)]
         [solutions.rock-paper-scissors]))

@@ -1,4 +1,5 @@
-(ns ^{:skip-wiki true}
+(ns ^{:next "Looping" :next-url "/labs/looping"
+      :prev "Names and Places" :prev-url "/labs/names-and-places"}
   labs.its-all-data
   (:use [labrepl.util :only (c code)])
   (:require [clojure.string :as str]))

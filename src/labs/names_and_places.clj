@@ -1,4 +1,5 @@
-(ns ^{:skip-wiki true}
+(ns ^{:next "It's All Data" :next-url "/labs/its-all-data"
+      :prev "Intro" :prev-url "/labs/intro"}
   labs.names-and-places
   (:use [labrepl.util :only (c code repl-code)]
         [solutions.dialect :only (canadianize)]

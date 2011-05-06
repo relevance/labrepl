@@ -1,4 +1,5 @@
-(ns ^{:skip-wiki true}
+(ns ^{:next "Rock Paper Scissors" :next-url "/labs/rock-paper-scissors"
+      :prev "Cellular Automata" :prev-url "/labs/cellular-automata"}
   labs.defstrict
   (:use [labrepl.util :only (c showme repl-code source)]
         solutions.defstrict))

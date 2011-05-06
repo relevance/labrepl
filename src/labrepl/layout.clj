@@ -23,7 +23,16 @@
      [:div {:id "content"} body]
      [:div {:id "footer"} "Clojure labrepl. Copyright Relevance Inc. All Rights Reserved."]]))
 
-(defn lab [title & body]
+(defn navigation [link-data]
+  [:div {:id "breadcrumb"}
+   [:div {:id "previous"} (if-let [prev (:prev link-data)]
+                            (link-to (:prev-url link-data) (str "Previous Lab: " prev))
+                            (link-to "/" "Home"))]
+   [:div {:id "next"} (if-let [next (:next link-data)]
+                        (link-to (:next-url link-data) (str "Next Lab: " next))
+                        (link-to "/" "Home"))]])
+
+(defn lab [title link-data & body]
   {:pre [(string? (last title))]}
   (html
     [:head
@@ -32,6 +41,6 @@
      (apply include-js default-javascripts)]
     [:body [:div {:id "header"} title]
      [:div {:id "content"}
-      [:div {:id "breadcrumb"} (link-to "/" "Home")]
+      (navigation link-data)
       body]
      [:div {:id "footer"} "Clojure labrepl. Copyright Relevance Inc. All Rights Reserved."]]))

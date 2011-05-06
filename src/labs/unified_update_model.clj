@@ -1,4 +1,6 @@
-(ns labs.unified-update-model
+(ns ^{:next "Zero Sum" :next-url "/labs/zero-sum"
+      :prev "Mini Browser" :prev-url "/labs/mini-browser"}
+  labs.unified-update-model
   (:refer-clojure :exclude [get])
   (:use [clojure.data.json :only (read-json)]
         [labrepl.util :only (c repl-code showme repl-showme code source)]

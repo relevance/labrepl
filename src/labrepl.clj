@@ -30,13 +30,18 @@
 
 (defn instructions
   [lab]
-  (let [lab-ns (symbol (str "labs." (name lab)))]
+  ((ns-resolve lab 'instructions)))
+
+(defn render-lab [lab]
+  (let [lab-ns (symbol (str "labs." lab))]
     (require lab-ns)
-    ((ns-resolve lab-ns 'instructions))))
+    (layout/lab [:h2 lab]
+                (meta (find-ns lab-ns))
+                (instructions lab-ns))))
 
 (defroutes lab-routes
   (GET "/" [] (home))
-  (GET "/labs/:name" [name] (layout/lab [:h2 name] (instructions name)))
+  (GET "/labs/:name" [name] (render-lab name))
   (route/files "/")
   (route/not-found "<h1>Not Found</h1>"))
 

@@ -1,4 +1,5 @@
-(ns ^{:skip-wiki true}
+(ns ^{:next "Mini Browser" :next-url "/labs/mini-browser"
+      :prev "Looping" :prev-url "/labs/looping"}
   labs.project-euler
   (:use [labrepl.util :only (c showme repl-showme)]
         [solutions.project-euler]))

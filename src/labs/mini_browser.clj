@@ -1,4 +1,5 @@
-(ns ^{:skip-wiki true}
+(ns ^{:next "Unified Update Model" :next-url "/labs/unified-update-model"
+      :prev "Project Euler" :prev-url "/labs/project-euler"}
   labs.mini-browser
   (:use [compojure.core :only (defroutes GET)]
         [hiccup.core :only (html)]
