@@ -117,7 +117,8 @@
         in action, let's create something slow: a program that compares the estimated
         google results for two search terms. You will need to include the following
         namespaces:"
-        (code "(use '[clojure.data.json :only (read-json)])")]
+    (code "(use '[clojure.data.json :only (read-json)])")
+    (code "(use '[solutions.fight])")]
    [:ol
     [:li "The " (c request) " function takes a URL string and returns a map of
           response data. Try it a the REPL to see how it works."]
