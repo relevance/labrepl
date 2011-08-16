@@ -13,4 +13,6 @@
                                               com.sun.jmx/jmxri]]
                  [swank-clojure "1.3.0-SNAPSHOT" :exclusions [org.clojure/clojure]]
                  [jline "0.9.94"]]
-  :dev-dependencies [[swank-clojure "1.3.0-SNAPSHOT" :exclusions [org.clojure/clojure]]])
+  :dev-dependencies [[swank-clojure "1.3.0-SNAPSHOT" :exclusions [org.clojure/clojure]]]
+  :repositories {"snapshots" {:url "http://build.clojure.org/snapshots"}
+                 "releases" {:url "http://build.clojure.org/releases"}})
