@@ -56,7 +56,7 @@
           (code (ns-refers *ns*))]]
    [:li "The refers map is often pretty big. If you are only interested in one symbol,
          pass that symbol to the result of calling " [:code "ns-refers"] ": "
-         (repl-code ((ns-refers 'labs.names-and-places) 'file))]])
+         (code ((ns-refers 'labs.names-and-places) 'file))]])
 
 (defn import-section []
   [[:h3 "Import"]
@@ -67,19 +67,18 @@
     [:li "You can import multiple classes in a Java package with the form "
           (code (import [package Class Class])) "For example: "
           (code (import [java.util Date Random])
-                (Date. (long (.nextInt (Random.)))))]
+                (Date. (.nextInt (Random.))))]
     [:li "Programmers new to Lisp are often put off by the \"inside-out\" reading
           of forms like the date creation above. Starting from the inside, you "
      [:ul
       [:li "get a new " [:code "Random"]]
       [:li "get the next random integer"]
-      [:li "cast it to a long"]
       [:li "pass the long to the " [:code "Date"] " constructor"]]
      "You don't have to write inside-out code in Clojure. The " [:code "->"] "
      macro takes its first form, and passes it as the first argument to its next form.
      The result then becomes the first argument of the next form, and so on. It is
      easier to read than to describe:"
-     (repl-code (-> (Random.) (.nextInt) (long) (Date.)))]]])
+     (repl-code (-> (Random.) (.nextInt) (Date.)))]]])
 
 (defn load-and-reload []
   [[:h3 "Load and Reload"]
