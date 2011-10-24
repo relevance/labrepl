@@ -89,7 +89,7 @@ code.inline-syntax { color: #4C5770; font-family: "Consolas","Bitstream Vera San
 ol li { list-style-type: decimal; margin-left: 20px; }
 
 #header, #footer, #content {
-  width: 740px;
+  max-width: 740px;
   padding: 0 10px;
   margin: 0 auto;
 }
