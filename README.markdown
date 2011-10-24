@@ -23,6 +23,10 @@ includes:
 
 See the Wiki for getting started with NetBeans/Enclojure, Eclipse/Counterclockwise, Maven, Mac/Linux command line, Windows command line, IDEA/La Clojure, and Emacs.
 
+## Getting Started
+
+Setup instructions for most popular editors/IDEs can be found [on the wiki](https://github.com/relevance/labrepl/wiki)
+
 ## Running the Tests
 
 * Leiningen: `lein test`
