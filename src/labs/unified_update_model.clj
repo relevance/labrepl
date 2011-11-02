@@ -119,17 +119,19 @@
         namespaces:"
         (code "(use '[clojure.data.json :only (read-json)])")]
    [:ol
-    [:li "The " (c request) " function takes a URL string and returns a map of
+    [:li "The " (c slurp) " function takes a URL or filename string and returns a String of
           response data. Try it a the REPL to see how it works."]
     [:li "To get google search results, you will need the following URL prefix:"
      (source google-search-base)]
     [:li "Since some interesting searches are multiword, you will want
           to " (c url-encode) " them: "
-          (repl-showme (url-encode "two words"))]
+     (repl-code (url-encode "two words"))]
+    [:li "The " (c url-encode) " function is a thin wrapper around Java's " (c URLEncoder)
+     (showme url-encode)]
     [:li "The search results are returned as JSON. The" (c read-json) " function
           converts JSON into Clojure data. Test it at the REPL:"
           (repl-showme (read-json "{\"foo\" : [1, 2]}"))]
-    [:li "Using the functions " (c request) ", " (c url-encode) ", and "
+    [:li "Using the functions " (c slurp) ", " (c url-encode) ", and "
           (c read-json) ", you can write an " (c estimated-hits-for) " function
           that returns the estimated hits for a search term:"
           (showme estimated-hits-for)]
