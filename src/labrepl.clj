@@ -50,4 +50,4 @@
 
 (defn -main [& args]
   (run-jetty (var application) {:port 8080 :join? false})
-  (println "Welcome to the labrepl. Browse to localhost:8080 to get started!"))
+  (println "Welcome to the labrepl. Browse to http://localhost:8080 to get started!"))
