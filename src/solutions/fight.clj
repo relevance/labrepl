@@ -1,5 +1,5 @@
 (ns solutions.fight
-  (:use [clojure.data.json :only (read-json)])
+  (:require [clojure.data.json :as json])
   (:import (java.net URL URLEncoder)))
 
 (def google-search-base
@@ -11,7 +11,7 @@
 (defn estimated-hits-for
   [term]
   (let [http-response (slurp (str google-search-base (url-encode term)))
-        json-response (read-json http-response)]
+        json-response (json/read-str http-response :key-fn keyword)]
     (Long/parseLong (get-in json-response [:responseData :cursor :estimatedResultCount]))))
 
 (defn fight

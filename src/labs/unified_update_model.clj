@@ -2,14 +2,15 @@
       :prev "Mini Browser" :prev-url "/labs/mini-browser"}
   labs.unified-update-model
   (:refer-clojure :exclude [get])
-  (:use [clojure.data.json :only (read-json)]
-        [labrepl.util :only (c repl-code showme repl-showme code source)]
+  (:use [labrepl.util :only (c repl-code showme repl-showme code source)]
         [solutions.fight :only (google-search-base
                                 url-encode fight
                                 estimated-hits-for
                                 add-estimate)]
         [solutions.atom-cache])
-  (:require [solutions.ref-cache :as rc]))
+  (:require
+   [clojure.data.json :as json]
+   [solutions.ref-cache :as rc]))
 
 (defn overview []
   [[:h3 "Overview"]
@@ -117,7 +118,7 @@
         in action, let's create something slow: a program that compares the estimated
         google results for two search terms. You will need to include the following
         namespaces:"
-    (code "(use '[clojure.data.json :only (read-json)])")
+    (code "(require '[clojure.data.json :as json])")
     (code "(use '[solutions.fight])")]
    [:ol
     [:li "The " (c slurp) " function takes a URL or filename string and returns a String of
@@ -129,11 +130,11 @@
      (repl-code (url-encode "two words"))]
     [:li "The " (c url-encode) " function is a thin wrapper around Java's " (c URLEncoder)
      (showme url-encode)]
-    [:li "The search results are returned as JSON. The" (c read-json) " function
+    [:li "The search results are returned as JSON. The" (c json/read-str) " function
           converts JSON into Clojure data. Test it at the REPL:"
-          (repl-showme (read-json "{\"foo\" : [1, 2]}"))]
+          (repl-showme (json/read-str "{\"foo\" : [1, 2]}" :key-fn keyword))]
     [:li "Using the functions " (c slurp) ", " (c url-encode) ", and "
-          (c read-json) ", you can write an " (c estimated-hits-for) " function
+          (c json/read-str) ", you can write an " (c estimated-hits-for) " function
           that returns the estimated hits for a search term:"
           (showme estimated-hits-for)]
     [:li "Try calling " (c estimated-hits-for) ". Note the (hopefully brief) latency
