@@ -27,8 +27,15 @@
           (code (class (* 1000 1000)))
           (code (class (* 1000 1000 1000 1000)))
           (code (class (* 1000 1000 1000 1000 1000 1000 1000 1000)))
-         "There are various ways to use Java primitive types directly; these techniques
-          will be covered elsewhere."]
+          "Notice that the last expression throws and overflow exception. This is
+          due to the result overflowing into a BigInteger. Starting in 1.3.0,
+          Clojure no longer auto-boxes this type of operation for you. Instead, you need
+          to give a small hint to ensure that overflowing does not occur"
+          (code (class (* 1000N 1000 1000 1000 1000 1000 1000 1000)))
+          "The " (c N) " at the end of the first argument means " (c BigInteger) "
+          to Clojure and will cause the entire expression to box accordingly. The " (c N)
+          " can be placed at the end of any of the arguments and will yield the same result."
+          (code (class (* 1000 1000 1000N 1000 1000 1000 1000 1000)))]
     [:li "Numeric literals suffixed with " (c M) " are " (c BigDecimal) "s, and provide
           the same guarantees for correctness as the underlying platform:"
           (code "(+ 100000M 0.00000000001M)")]
@@ -75,7 +82,7 @@
          " to specify a short form prefix for a namespace you are loading:"
           (code (require '[clojure.string :as str]))]
     [:li "Now you can use the" (c str) "prefix to access string functions:"
-          (code (str/join "," ["the" "quick" "brown" "fox"]))]]])
+          (code (str/join " " ["the" "quick" "brown" "fox"]))]]])
 
 (defn collections []
   [[:h3 "Collections"]
@@ -121,7 +128,7 @@
            (code (rest [1 2 3]))
           "Try taking the " (c first) " and " (c rest) " of some maps and sets. What are
            the return types?"]
-     [:li "You can " (c take) " or " (c drop) "n elements of a collection."
+     [:li "You can " (c take) " or " (c drop) " n elements of a collection."
            (code (take 5 (range 100)))
            (code (drop 5 (range 100)))
           "Again, try these functions against some other collection types as well."]

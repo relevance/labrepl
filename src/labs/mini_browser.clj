@@ -42,8 +42,8 @@
          generated HTML.  Use " (c compojure.core) " and put the HTML from the previous
          step into a " (c mockup-1) " function:"
          (showme mockup-1)]
-    [:li "Use " (c defroutes) " to create " (c mockup-routes) " that routes a GET of /m1
-          to" (c mockup-1)". " (showme* '(defroutes mockup-routes (GET "/m1" [] (mockup-1))))]
+    [:li "Pull in " (c compojure.core) " and use " (c defroutes) " to create " (c mockup-routes) " that routes a GET of /m1
+          to " (c mockup-1)". " (showme* '(defroutes mockup-routes (GET "/m1" [] (mockup-1))))]
     [:li "Use " (c ring.adapter.jetty) " and create a " (c mockup-server) " function that
           calls " (c run-jetty) " with two arguments:"
      [:ol

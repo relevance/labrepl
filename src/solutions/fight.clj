@@ -1,7 +1,6 @@
 (ns solutions.fight
   (:use [clojure.data.json :only (read-json)])
-  (:import (java.net URL URLEncoder)
-           (java.io BufferedReader InputStreamReader)))
+  (:import (java.net URL URLEncoder)))
 
 (def google-search-base
   "http://ajax.googleapis.com/ajax/services/search/web?v=1.0&q=")
@@ -9,15 +8,9 @@
 (defn url-encode [q]
   (URLEncoder/encode q "UTF-8"))
 
-(defn request [address]
-  (let [url (URL. address)]
-    (with-open [stream (. url (openStream))]
-      (let [buf (BufferedReader. (InputStreamReader. stream))]
-        (apply str (line-seq buf))))))
-
 (defn estimated-hits-for
   [term]
-  (let [http-response (request (str google-search-base (url-encode term)))
+  (let [http-response (slurp (str google-search-base (url-encode term)))
         json-response (read-json http-response)]
     (Long/parseLong (get-in json-response [:responseData :cursor :estimatedResultCount]))))
 

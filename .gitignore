@@ -7,3 +7,4 @@ log
 *~
 target
 /logs/labrepl.log
+.lein-failures

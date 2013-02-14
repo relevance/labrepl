@@ -11,6 +11,6 @@
       (is
        (= {:status 200
            :headers  
-           {"Content-Type" "text/html"}}
+           {"Content-Type" "text/html; charset=utf-8"}}
           (select-keys resp 
                        [:status :headers]))))))
