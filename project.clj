@@ -1,6 +1,6 @@
 (defproject labrepl "0.0.2-SNAPSHOT"
   :description "Clojure exercises, with integrated repl and webapp"
-  :dependencies [[org.clojure/clojure "1.3.0"]
+  :dependencies [[org.clojure/clojure "1.5.0-RC15"]
                  [org.clojure/tools.logging "0.2.3"]
                  [org.clojure/data.json "0.1.2"]
                  [ring/ring-jetty-adapter "1.0.0-RC1" :exclusions [org.clojure/clojure
