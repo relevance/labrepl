@@ -1,13 +1,8 @@
 #!/bin/sh
-CLASSPATH=$CLASSPATH:src:test:resources:data
+CLASSPATH=src:test:resources:data:`lein classpath`
 
-# For lein 1
 for f in lib/*.jar; do
     CLASSPATH=$CLASSPATH:$f
 done
 
-# For lein 2
-CLASSPATH=$CLASSPATH:`lein classpath`
-
-
-java -Xmx1G -cp $CLASSPATH jline.ConsoleRunner clojure.main -i script/run.clj -r
+java -Xmx1G -cp $CLASSPATH jline.ConsoleRunner clojure.main -i bin/run.clj -r
