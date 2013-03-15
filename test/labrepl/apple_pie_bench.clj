@@ -3,22 +3,26 @@
    [solutions.apple-pie :as pie]
    [criterium.core :as crit]
    [clojure.core.reducers :as r]
-   [clojure.pprint :as pprint]))
+   [clojure.pprint :as pprint]
+   [clojure.data :as data]))
 
-(defn filter-apples
+(defn filter-serial
   [apples]
   (->> (filter :edible? apples)
        dorun))
 
-(defn map-apples
+(defn map-serial
   [apples]
   (->> (map #(dissoc % :sticker?) apples)
        dorun))
 
-(defn map-and-filter-apples
+(def map-and-filter
+  (comp (partial filter :edible?)
+        (partial map #(dissoc % :sticker?))))
+
+(defn map-filter-serial
   [apples]
-  (->> (filter :edible? apples)
-       (map #(dissoc % :sticker?))
+  (->> (map-and-filter apples)
        dorun))
 
 (defn pmap-apples
@@ -26,17 +30,28 @@
   (->> (pmap #(dissoc % :sticker?) apples)
        dorun))
 
-(def prep (comp (r/filter :edible?)
-                (r/map #(dissoc % :sticker))))
+(def transform-apples
+  (comp (r/filter :edible?)
+        (r/map #(dissoc % :sticker?))))
 
 (defn reduce-apples
   [apples]
-  (->> (prep apples)
+  (->> (transform-apples apples)
        (into [])))
 
-(defn fold-apples
+(defn filter-fold
   [apples]
-  (->> (prep apples)
+  (->> (r/filter :edible? apples)
+       r/foldcat))
+
+(defn map-fold
+  [apples]
+  (->> (r/map #(dissoc % :sticker?) apples)
+       r/foldcat))
+
+(defn map-filter-fold
+  [apples]
+  (->> (transform-apples apples)
        r/foldcat))
 
 (defn bench
@@ -47,12 +62,23 @@
       (assoc (crit/quick-benchmark* f)
         :stdout (str s)))))
 
+(defn transformations-equivalent
+  [apples]
+  (let [serial-reduced (map-and-filter apples)
+        parallel-folded (map-filter-fold apples)
+        [f s both :as diff] (data/diff serial-reduced (seq parallel-folded))]
+    (when (or f s)
+      (throw (ex-info "Serial and parallel implementations produced different results"
+                      {:serial serial-reduced
+                       :parallel parallel-folded
+                       :diff diff})))))
+
 (defn -main
   [& _]
   (let [mean-msec #(long (* 1000 (first (:sample-mean %))))]
-    (->> (for [napples [100000 1000000 10000000]
+    (->> (for [napples [100000 1000000]
                :let [apples (pie/gen-apples {:n napples :type :golden :stickers 1 :edible 0.8})]
-               sym '[filter-apples map-apples map-and-filter-apples pmap-apples reduce-apples fold-apples]]
+               sym '[filter-serial map-serial map-filter-serial filter-fold map-fold map-filter-fold]]
            (do
              (print "Testing " sym " " napples ": ") (flush)
              (let [result (bench (partial @(resolve sym) apples))]
@@ -69,12 +95,11 @@
 
 (comment
   (require :reload 'labrepl.apple-pie-bench)
-  (-main)
-  (set! *print-length* 100)
   (in-ns 'labrepl.apple-pie-bench)
-
-  (crit/quick-benchmark* filter-apples)
-
+  (set! *print-length* 100)
+  (transformations-equivalent (pie/gen-apples {:n 10000 :type :granny :stickers 1 :edible 0.5}))
+  (ex-data *e)
+  (-main)
   )
 
 (comment
