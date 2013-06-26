@@ -49,5 +49,5 @@
                      handlers/with-logging))
 
 (defn -main [& args]
-  (run-jetty (var application) {:port 8080 :join? false})
-  (println "Welcome to the labrepl. Browse to http://localhost:8080 to get started!"))
+  (run-jetty (var application) {:port 8888 :join? false})
+  (println "Welcome to the labrepl. Browse to http://localhost:8888 to get started!"))

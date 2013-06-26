@@ -1,6 +1,7 @@
 (ns labrepl.layout
   (:use [hiccup.core :only (html)]
-        [hiccup.page-helpers :only (include-css include-js link-to)]))
+        [hiccup.page :only (include-css include-js)]
+        [hiccup.element :only (link-to)]))
 
 (def default-stylesheets
   ["/stylesheets/shCore.css"
