@@ -2,7 +2,7 @@
   (:use [ring.adapter.jetty :only (run-jetty)]
         [compojure.core :only (defroutes GET)]
         [hiccup.core :only (html)]
-        [hiccup.page-helpers :only (include-css include-js)]
+        [hiccup.page :only (include-css include-js)]
         [labrepl.util :only (code*)]
         [labrepl.layout :only (default-stylesheets default-javascripts)]
         [compojure.route])

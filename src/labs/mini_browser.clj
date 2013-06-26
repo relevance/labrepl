@@ -3,7 +3,7 @@
   labs.mini-browser
   (:use [compojure.core :only (defroutes GET)]
         [hiccup.core :only (html)]
-        [hiccup.page-helpers :only (include-css include-js)]
+        [hiccup.page :only (include-css include-js)]
         [labrepl.layout :only (default-stylesheets default-javascripts)]
         [labrepl.util :only (c repl-showme showme showme* source)]
         [solutions.browser-mockup]
@@ -56,7 +56,7 @@
      (source mockup-2)]
     [:li "Add " (c mockup-2) " to a route /m2 and browse to " (ll "http://localhost:8999/m2") "
           to see the second mockup."]
-    [:li "Now let's add some standard styling and JavaScript. Use " (c hiccup.page-helpers) "
+    [:li "Now let's add some standard styling and JavaScript. Use " (c hiccup.page) "
           and its " (c include-css) " function to generate markup that will pull in CSS files.
           Try it at the REPL:"
           (repl-showme (include-css "/stylesheets/application.css"))]

@@ -1,6 +1,6 @@
 (ns solutions.browser-mockup
   (:use [hiccup.core :only (html)]
-        [hiccup.page-helpers :only (include-css include-js)]
+        [hiccup.page :only (include-css include-js)]
         [compojure.core :only (defroutes GET)]
         [ring.adapter.jetty :only (run-jetty)]
         [labrepl.layout :only (default-stylesheets default-javascripts)]
