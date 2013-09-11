@@ -50,4 +50,5 @@
 
 (defn -main [& args]
   (run-jetty (var application) {:port 8080 :join? false})
+  (apply require clojure.main/repl-require)
   (println "Welcome to the labrepl. Browse to http://localhost:8080 to get started!"))
