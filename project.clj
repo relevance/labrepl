@@ -15,6 +15,6 @@
                                               javax.jms/jms
                                               com.sun.jdmk/jmxtools
                                               com.sun.jmx/jmxri]]
-                 [jline "0.9.94"]]
-  :dev-dependencies [[swank-clojure "1.3.0" :exclusions [org.clojure/clojure]]
-                     [criterium/criterium "0.3.1"]])
+                 [jline "0.9.94"]
+                 [criterium/criterium "0.3.1"]]
+  :dev-dependencies [[swank-clojure "1.3.0" :exclusions [org.clojure/clojure]]])
