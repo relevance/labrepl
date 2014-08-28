@@ -1,6 +1,6 @@
 (defproject labrepl "0.0.2-SNAPSHOT"
   :description "Clojure exercises, with integrated repl and webapp"
-  :dependencies [[org.clojure/clojure "1.5.1"]
+  :dependencies [[org.clojure/clojure "1.7.0-alpha1"]
                  [org.clojure/tools.logging "0.2.3"]
                  [org.clojure/data.json "0.2.1"]
                  [org.clojure/test.generative "0.3.0"]
