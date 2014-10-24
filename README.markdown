@@ -25,6 +25,12 @@ See the Wiki for getting started with NetBeans/Enclojure, Eclipse/Counterclockwi
 
 ## Getting Started
 
+Quick start:
+    
+    bin/repl
+    
+Then follow the instructions at the REPL.
+
 Setup instructions for most popular editors/IDEs can be found [on the wiki](https://github.com/relevance/labrepl/wiki)
 
 ## Running the Tests
