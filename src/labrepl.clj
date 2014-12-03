@@ -51,3 +51,13 @@
 (defn -main [& args]
   (run-jetty (var application) {:port 8080 :join? false})
   (println "Welcome to the labrepl. Browse to http://localhost:8080 to get started!"))
+
+(comment
+  (require 'labrepl)
+
+  (labrepl/application {:request-method :get
+                        :uri "/nope"})
+  (labrepl/application {:request-method :get
+                        :uri "/labs/intro"})
+
+  )
